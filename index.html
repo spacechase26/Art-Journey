@@ -1,0 +1,1328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spacechase — Portfolio</title>
+  <link rel="icon" href="icon.png">
+  <meta name="description" content="Spacechase — Digital Art Portfolio. Vibrant digital paintings and visual explorations.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+
+/* ════════════════════════════════
+   TOKENS
+════════════════════════════════ */
+:root {
+  --cream:   #fef9f2;
+  --cream-d: #f5edd8;
+  --ink:     #1c1008;
+  --ink-2:   #3a2818;
+  --ink-m:   #8a7060;
+  --coral:  #e85830;
+  --amber:  #d48030;
+  --sage:   #3a7a52;
+  --plum:   #8844c0;
+  --cobalt: #2268d8;
+  --serif: 'Playfair Display', Georgia, serif;
+  --sans:  'Inter', system-ui, sans-serif;
+  --ease:  cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ════════════════════════════════
+   RESET
+════════════════════════════════ */
+*,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--sans);
+  overflow-x: hidden;
+  cursor: none;
+}
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.88' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.028'/%3E%3C/svg%3E");
+  pointer-events: none; z-index: 500;
+}
+a { color: inherit; text-decoration: none; }
+button { background: none; border: none; cursor: none; padding: 0; }
+img { display: block; max-width: 100%; }
+
+/* ════════════════════════════════
+   CURSOR
+════════════════════════════════ */
+.cursor {
+  position: fixed; left: 0; top: 0;
+  width: 36px; height: 36px; border-radius: 50%;
+  pointer-events: none; z-index: 9999;
+  will-change: transform;
+  background: white; mix-blend-mode: difference;
+  transition: width .3s var(--ease), height .3s var(--ease);
+}
+.cursor-dot {
+  position: fixed; left: 0; top: 0;
+  width: 6px; height: 6px; border-radius: 50%;
+  pointer-events: none; z-index: 9999;
+  will-change: transform;
+  background: white; mix-blend-mode: difference;
+}
+body.cursor-hover .cursor { width: 64px; height: 64px; }
+
+/* ════════════════════════════════
+   NAV
+════════════════════════════════ */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.4rem 4vw;
+  background: rgba(254,249,242,0);
+  transition: background .4s ease, box-shadow .4s ease;
+}
+.nav.solid {
+  background: rgba(254,249,242,.96);
+  box-shadow: 0 1px 0 rgba(28,16,8,.08);
+}
+.nav__logo {
+  font-family: var(--serif); font-weight: 900; font-size: 1.05rem;
+  letter-spacing: -.01em; color: var(--ink); transition: color .3s;
+}
+.nav__links { display: flex; gap: 2.5rem; }
+.nav__link {
+  font-size: .68rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase;
+  color: var(--ink-m); transition: color .3s ease;
+}
+.nav__link:hover, .nav__link--active { color: var(--ink); }
+.nav__link--active { position: relative; }
+.nav__link--active::after {
+  content: ''; position: absolute; bottom: -4px; left: 0; right: 0;
+  height: 2px; background: var(--coral); border-radius: 2px;
+}
+
+/* ════════════════════════════════
+   KEYFRAMES
+════════════════════════════════ */
+@keyframes fadeUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes heroCircleIn {
+  to { opacity: 1; }
+}
+@keyframes heroFloat {
+  0%,100% { transform: translateY(0); }
+  50%     { transform: translateY(-14px); }
+}
+@keyframes badgeFade {
+  from { opacity: 0; transform: translateY(10px) rotate(var(--badge-rot, 0deg)); }
+  to   { opacity: 1; transform: translateY(0)    rotate(var(--badge-rot, 0deg)); }
+}
+@keyframes tickerRun {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@keyframes linePulse {
+  0%,100% { opacity: .3; transform: scaleY(.75); }
+  50%     { opacity: 1;  transform: scaleY(1); }
+}
+
+/* ════════════════════════════════
+   HERO
+════════════════════════════════ */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  padding: 0 5vw 6vh;
+  gap: 2vw;
+  overflow: hidden;
+}
+.hero__bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 70% 60% at 85% 45%, rgba(232,88,48,.12) 0%, transparent 70%),
+    radial-gradient(ellipse 45% 45% at 12% 28%, rgba(212,128,48,.09) 0%, transparent 65%),
+    radial-gradient(circle at 45% 92%, rgba(58,122,82,.07) 0%, transparent 55%);
+}
+
+/* left: text */
+.hero__content {
+  position: relative; z-index: 2;
+  padding-top: 7rem;
+  padding-bottom: 4rem;
+}
+.hero__eyebrow {
+  font-size: .7rem; font-weight: 600; letter-spacing: .3em; text-transform: uppercase;
+  color: var(--coral); margin-bottom: 1.6rem;
+  opacity: 0; transform: translateY(16px);
+  animation: fadeUp .8s var(--ease) .2s forwards;
+}
+.hero__name {
+  font-family: var(--serif);
+  font-size: clamp(4.5rem, 9vw, 12rem);
+  font-weight: 900; line-height: .86; letter-spacing: -.03em;
+  color: var(--ink);
+  opacity: 0; transform: translateY(36px);
+  animation: fadeUp 1.1s var(--ease) .38s forwards;
+}
+.hero__name em { font-style: italic; color: var(--coral); }
+.hero__sub {
+  font-size: .72rem; font-weight: 400; letter-spacing: .3em; text-transform: uppercase;
+  color: var(--ink-m); margin-top: 1.5rem;
+  opacity: 0; transform: translateY(12px);
+  animation: fadeUp .8s var(--ease) .6s forwards;
+}
+.hero__tagline {
+  font-size: clamp(.88rem, 1.2vw, 1rem); font-weight: 300;
+  color: var(--ink-m); line-height: 1.7; margin-top: .7rem;
+  opacity: 0; transform: translateY(12px);
+  animation: fadeUp .8s var(--ease) .74s forwards;
+}
+/* .hero__cta styles now live under DOODLES section */
+
+/* right: circle + badges */
+.hero__visual {
+  position: relative; z-index: 2;
+  display: flex; align-items: center; justify-content: center;
+  min-height: 540px;
+}
+
+.hero-badge {
+  position: absolute;
+  background: rgba(254,249,242,.9);
+  border: 1.5px solid rgba(28,16,8,.11);
+  border-radius: 100px;
+  padding: .44rem 1.2rem;
+  font-size: .6rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--ink-2);
+  box-shadow: 0 2px 10px rgba(28,16,8,.07);
+  white-space: nowrap;
+  opacity: 0;
+  animation: badgeFade .7s var(--ease) var(--badge-delay, 1s) forwards;
+}
+.hb-1 { top: 8%;    left:  2%;   --badge-rot: -3deg;   --badge-delay: 1.0s; }
+.hb-2 { top: 20%;   right: 0%;   --badge-rot:  2deg;   --badge-delay: 1.25s; }
+.hb-3 { top: 50%;   left: -4%;   --badge-rot: -1.5deg; --badge-delay: 1.45s; }
+.hb-4 { bottom: 20%; right: 1%;  --badge-rot:  2.5deg; --badge-delay: 1.65s; }
+.hb-5 { bottom: 8%;  left: 8%;   --badge-rot: -2deg;   --badge-delay: 1.85s; }
+
+.hero__circle {
+  position: relative;
+  width: clamp(200px, 28vw, 440px);
+  height: clamp(200px, 28vw, 440px);
+  border-radius: 50%; overflow: hidden;
+  border: 5px solid rgba(28,16,8,.07);
+  flex-shrink: 0;
+  opacity: 0;
+  animation: heroCircleIn .9s var(--ease) .9s forwards, heroFloat 7s ease-in-out 1.8s infinite;
+  will-change: transform;
+}
+.hero__circle .art-canvas {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+}
+
+.hero__scroll {
+  position: absolute; bottom: 2.5rem; left: 5vw;
+  display: flex; flex-direction: column; align-items: center; gap: .7rem;
+  opacity: 0; animation: fadeUp .9s var(--ease) 1.3s forwards; z-index: 2;
+}
+.scroll-line {
+  width: 1px; height: 52px;
+  background: linear-gradient(to bottom, transparent, var(--ink-m));
+  animation: linePulse 2.6s ease-in-out infinite; transform-origin: top;
+}
+.scroll-text {
+  font-size: .6rem; letter-spacing: .22em; text-transform: uppercase; color: var(--ink-m);
+}
+
+/* ════════════════════════════════
+   MARQUEE TICKER
+════════════════════════════════ */
+.ticker {
+  overflow: hidden; padding: .9rem 0;
+  background: var(--coral);
+}
+.ticker--plum { background: var(--plum); }
+.ticker__track {
+  display: flex; width: max-content;
+  animation: tickerRun 24s linear infinite;
+}
+.ticker__track span {
+  font-size: .72rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase;
+  color: rgba(255,255,255,.92); padding: 0 1.1rem; white-space: nowrap;
+}
+
+/* ════════════════════════════════
+   STATEMENT
+════════════════════════════════ */
+.statement { background: var(--cream-d); padding: 8rem 5vw; text-align: center; }
+.statement__text {
+  font-family: var(--serif);
+  font-size: clamp(1.5rem, 3.2vw, 3rem);
+  font-style: italic; font-weight: 400; line-height: 1.45;
+  color: var(--ink-2); max-width: 860px; margin: 0 auto;
+}
+.statement__text em { color: var(--coral); font-style: normal; font-weight: 700; }
+
+/* ════════════════════════════════
+   CSS ART COMPOSITIONS
+════════════════════════════════ */
+.art-canvas {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform .85s var(--ease);
+}
+
+.a-coral-storm {
+  background:
+    radial-gradient(circle at 22% 22%, rgba(255,255,180,.95) 0%, transparent 22%),
+    radial-gradient(ellipse 64% 54% at 48% 50%, rgba(235,78,42,.97) 0%, rgba(255,128,68,.84) 35%, transparent 68%),
+    radial-gradient(ellipse 48% 64% at 78% 30%, rgba(255,172,52,.84) 0%, transparent 55%),
+    radial-gradient(circle at 82% 82%, rgba(175,32,52,.7) 0%, transparent 42%),
+    radial-gradient(circle at 8% 82%, rgba(255,78,112,.55) 0%, transparent 38%),
+    linear-gradient(132deg, #ff8852 0%, #ffaa5e 35%, #ffcc7c 65%, #ff6842 100%);
+}
+.a-aqua-garden {
+  background:
+    radial-gradient(circle at 30% 30%, rgba(200,255,244,.94) 0%, transparent 25%),
+    radial-gradient(ellipse 60% 54% at 45% 50%, rgba(0,198,162,.94) 0%, rgba(0,178,198,.74) 40%, transparent 68%),
+    radial-gradient(ellipse 50% 60% at 72% 34%, rgba(0,218,178,.8) 0%, transparent 55%),
+    radial-gradient(circle at 80% 78%, rgba(0,138,158,.64) 0%, transparent 42%),
+    radial-gradient(circle at 10% 78%, rgba(78,254,198,.55) 0%, transparent 38%),
+    linear-gradient(145deg, #00c6a6 0%, #00d6be 35%, #3ee6ce 65%, #00b69e 100%);
+}
+.a-golden-hour {
+  background:
+    radial-gradient(circle at 50% 34%, rgba(255,240,158,.97) 0%, transparent 30%),
+    radial-gradient(ellipse 70% 54% at 50% 50%, rgba(255,188,52,.94) 0%, rgba(255,148,58,.74) 40%, transparent 68%),
+    radial-gradient(ellipse 54% 64% at 25% 64%, rgba(255,118,48,.74) 0%, transparent 55%),
+    radial-gradient(circle at 78% 20%, rgba(255,218,88,.7) 0%, transparent 42%),
+    radial-gradient(circle at 85% 75%, rgba(212,78,38,.55) 0%, transparent 40%),
+    linear-gradient(155deg, #ffcc52 0%, #ffb63c 35%, #ff9e2c 65%, #ffba42 100%);
+}
+.a-purple-haze {
+  background:
+    radial-gradient(circle at 35% 30%, rgba(240,198,255,.94) 0%, transparent 25%),
+    radial-gradient(ellipse 62% 54% at 50% 48%, rgba(172,72,228,.94) 0%, rgba(128,52,198,.8) 40%, transparent 68%),
+    radial-gradient(ellipse 44% 62% at 74% 35%, rgba(208,98,254,.8) 0%, transparent 55%),
+    radial-gradient(circle at 80% 75%, rgba(98,32,158,.7) 0%, transparent 42%),
+    radial-gradient(circle at 12% 75%, rgba(218,98,254,.55) 0%, transparent 38%),
+    linear-gradient(138deg, #be52ee 0%, #a63cde 35%, #9032c6 65%, #b64ee6 100%);
+}
+.a-forest-dream {
+  background:
+    radial-gradient(circle at 28% 28%, rgba(198,255,178,.94) 0%, transparent 25%),
+    radial-gradient(ellipse 62% 54% at 48% 50%, rgba(58,192,78,.95) 0%, rgba(48,172,68,.8) 38%, transparent 68%),
+    radial-gradient(ellipse 48% 60% at 74% 32%, rgba(128,218,52,.8) 0%, transparent 55%),
+    radial-gradient(circle at 78% 78%, rgba(28,138,52,.7) 0%, transparent 42%),
+    radial-gradient(circle at 8% 76%, rgba(98,232,78,.56) 0%, transparent 38%),
+    linear-gradient(148deg, #42c65c 0%, #52d46c 35%, #7ce650 65%, #36b64c 100%);
+}
+.a-ocean-pulse {
+  background:
+    radial-gradient(circle at 30% 25%, rgba(178,226,255,.94) 0%, transparent 25%),
+    radial-gradient(ellipse 62% 54% at 50% 50%, rgba(22,128,228,.95) 0%, rgba(28,98,198,.8) 40%, transparent 68%),
+    radial-gradient(ellipse 50% 62% at 75% 35%, rgba(52,178,244,.8) 0%, transparent 55%),
+    radial-gradient(circle at 80% 76%, rgba(18,68,158,.7) 0%, transparent 42%),
+    radial-gradient(circle at 10% 76%, rgba(58,198,254,.56) 0%, transparent 38%),
+    linear-gradient(142deg, #188ee6 0%, #1c76d6 35%, #2686e6 65%, #146ec6 100%);
+}
+
+/* ════════════════════════════════
+   ARTWORK BASE
+════════════════════════════════ */
+.artwork {
+  position: relative; overflow: hidden; border-radius: 3px;
+  display: block; cursor: none;
+}
+.artwork:hover .art-canvas { transform: scale(1.05); }
+
+/* ════════════════════════════════
+   SECTION MARK
+════════════════════════════════ */
+.section-mark {
+  display: flex; align-items: center; gap: 1rem;
+  margin-bottom: 3rem;
+}
+.sm-dot {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--coral); flex-shrink: 0;
+}
+.sm-label {
+  font-size: .65rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--ink-m); flex-shrink: 0;
+}
+.sm-rule { flex: 1; height: 1px; background: rgba(28,16,8,.12); }
+.sm-count {
+  font-size: .62rem; font-weight: 600; letter-spacing: .1em;
+  background: var(--coral); color: #fff;
+  padding: .28rem .9rem; border-radius: 100px;
+  flex-shrink: 0;
+}
+
+/* ════════════════════════════════
+   FEATURED
+════════════════════════════════ */
+.featured-section {
+  padding: 8rem 5vw;
+  max-width: 1440px; margin: 0 auto;
+  position: relative;
+}
+.featured-section::before {
+  content: attr(data-num);
+  position: absolute; top: 50%; right: 2vw;
+  transform: translateY(-50%);
+  font-family: var(--serif); font-size: 30rem; font-weight: 900; line-height: 1;
+  color: var(--ink); opacity: .06;
+  user-select: none; pointer-events: none; z-index: 0;
+  letter-spacing: -.04em;
+}
+.featured-inner {
+  display: grid;
+  grid-template-columns: 54% 1fr;
+  gap: 5rem;
+  align-items: center;
+  position: relative; z-index: 1;
+}
+.featured__frame {
+  position: relative;
+  transform: rotate(-1.8deg);
+  transition: transform .7s var(--ease);
+}
+.featured__frame:hover { transform: rotate(0deg); }
+/* washi tape strip across top of featured artwork */
+.featured__frame::before {
+  content: '';
+  position: absolute; top: -10px; left: 50%;
+  transform: translateX(-50%) rotate(-1.5deg);
+  width: 68px; height: 18px;
+  background: rgba(212,128,48,.38);
+  border-radius: 2px; z-index: 10;
+  pointer-events: none;
+}
+.artwork--featured {
+  aspect-ratio: 4/5;
+  box-shadow: 22px 22px 0 var(--coral);
+}
+.featured__info { padding: .5rem 0; }
+.featured__num {
+  display: flex; align-items: center; gap: .8rem;
+  font-size: .66rem; font-weight: 600; letter-spacing: .24em; text-transform: uppercase;
+  color: var(--coral); margin-bottom: 1.2rem;
+}
+.featured__num::after {
+  content: ''; flex: 1; max-width: 56px; height: 1.5px;
+  background: var(--coral); border-radius: 2px;
+}
+.featured__title {
+  font-family: var(--serif);
+  font-size: clamp(3rem, 5vw, 5.8rem);
+  font-weight: 900; line-height: .88; letter-spacing: -.025em;
+  color: var(--ink); margin-bottom: 1rem;
+}
+.featured__year {
+  font-size: .7rem; letter-spacing: .16em; text-transform: uppercase;
+  color: var(--ink-m); margin-bottom: 1.8rem;
+}
+.featured__desc {
+  font-size: .96rem; font-weight: 300; line-height: 1.82;
+  color: var(--ink-2); max-width: 360px; margin-bottom: 2.4rem;
+}
+.tag-list { display: flex; flex-wrap: wrap; gap: .5rem; }
+.tag {
+  font-size: .62rem; letter-spacing: .1em; text-transform: uppercase;
+  padding: .38rem 1rem; border: 1.5px solid rgba(28,16,8,.15);
+  border-radius: 100px; color: var(--ink-m);
+}
+
+/* ════════════════════════════════
+   PORTFOLIO GALLERY
+════════════════════════════════ */
+.gallery-section {
+  padding: 2rem 5vw 8rem;
+  max-width: 1440px; margin: 0 auto;
+}
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+.portfolio-card {
+  cursor: none;
+  opacity: 0; transform: translateY(30px);
+  transition:
+    opacity   .72s var(--ease) calc(var(--i, 0) * 0.09s),
+    transform .72s var(--ease) calc(var(--i, 0) * 0.09s);
+}
+.portfolio-card.in-view { opacity: 1; transform: translateY(0); }
+
+/* editorial layout — repeating 5-card magazine pattern:
+   [wide][portrait] / [portrait][wide] / [cinematic full] */
+.portfolio-card:nth-child(5n+1)            { grid-column: span 2; }
+.portfolio-card:nth-child(5n+1) .pc-frame  { aspect-ratio: 4/3; }
+.portfolio-card:nth-child(5n+2) .pc-frame  { aspect-ratio: 3/4; }
+.portfolio-card:nth-child(5n+3) .pc-frame  { aspect-ratio: 3/4; }
+.portfolio-card:nth-child(5n+4)            { grid-column: span 2; }
+.portfolio-card:nth-child(5n+4) .pc-frame  { aspect-ratio: 4/3; }
+.portfolio-card:nth-child(5n)              { grid-column: span 3; }
+.portfolio-card:nth-child(5n) .pc-frame    { aspect-ratio: 21/9; }
+
+.pc-frame {
+  position: relative; overflow: hidden; border-radius: 4px;
+  width: 100%;
+}
+.pc-frame .art-canvas {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  transition: transform .6s var(--ease), filter .4s ease;
+}
+.portfolio-card:hover .pc-frame .art-canvas {
+  transform: scale(1.05);
+  filter: saturate(1.15) brightness(1.04);
+}
+
+.pc-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(10,8,5,.82) 0%, rgba(10,8,5,.22) 55%, transparent 100%);
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 1.2rem 1.3rem;
+  transform: translateY(100%);
+  transition: transform .42s var(--ease);
+}
+.portfolio-card:hover .pc-overlay { transform: translateY(0); }
+
+.pc-num {
+  font-size: .58rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase;
+  color: rgba(255,255,255,.55); display: block; margin-bottom: .25rem;
+}
+.pc-title {
+  font-family: var(--serif); font-size: 1.35rem; font-weight: 700; line-height: 1.1;
+  color: #fff; margin-bottom: .35rem;
+}
+.pc-meta {
+  font-size: .63rem; letter-spacing: .06em;
+  color: rgba(255,255,255,.68); margin-bottom: .75rem;
+}
+.pc-tags { display: flex; flex-wrap: wrap; gap: .35rem; margin-bottom: .85rem; }
+.pc-tag {
+  font-size: .57rem; letter-spacing: .08em; text-transform: uppercase;
+  padding: .2rem .65rem; border: 1px solid rgba(255,255,255,.28);
+  border-radius: 100px; color: rgba(255,255,255,.72);
+}
+.pc-view {
+  align-self: flex-start;
+  padding: .4rem .95rem; border-radius: 100px;
+  background: rgba(254,249,242,.92); color: var(--ink);
+  font-size: .6rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
+  transition: background .22s ease;
+}
+.pc-view:hover { background: #fff; }
+
+.pc-caption {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: .55rem .2rem;
+}
+.pc-caption-title { font-size: .8rem; font-weight: 500; color: var(--ink-2); }
+.pc-caption-num   { font-size: .62rem; letter-spacing: .1em; color: var(--ink-m); }
+
+/* ════════════════════════════════
+   SPOTLIGHT
+════════════════════════════════ */
+.spotlight {
+  padding: 8rem 5vw;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem; align-items: center;
+  position: relative; overflow: hidden;
+}
+.spotlight::before {
+  content: attr(data-num);
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--serif); font-size: 28rem; font-weight: 900; line-height: 1;
+  color: var(--ink); opacity: .07;
+  user-select: none; pointer-events: none; z-index: 0;
+  letter-spacing: -.04em;
+}
+.spotlight > * { position: relative; z-index: 1; }
+.artwork--spotlight { aspect-ratio: 3/4; border-radius: 4px; }
+.spotlight__text { padding: .5rem 0; }
+.spotlight__num {
+  display: block; font-size: .66rem; font-weight: 600;
+  letter-spacing: .24em; text-transform: uppercase;
+  color: var(--coral); margin-bottom: 1.2rem;
+}
+.spotlight__title {
+  font-family: var(--serif);
+  font-size: clamp(3rem, 5.5vw, 7rem);
+  font-weight: 900; line-height: .87; letter-spacing: -.025em;
+  color: var(--ink); margin-bottom: 1.6rem;
+}
+.spotlight__body {
+  font-size: .95rem; font-weight: 300; line-height: 1.88;
+  color: var(--ink-2); max-width: 380px; margin-bottom: 1.4rem;
+}
+.spotlight__meta { font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-m); }
+
+/* ════════════════════════════════
+   FOOTER
+════════════════════════════════ */
+.footer {
+  background: #1a2a1a; color: #e8f5e0;
+  padding: 8rem 5vw 4rem; text-align: center;
+}
+.footer__inner { max-width: 480px; margin: 0 auto; }
+.footer__name {
+  font-family: var(--serif); font-size: 3rem; font-weight: 900;
+  letter-spacing: -.02em; margin-bottom: .5rem;
+}
+.footer__tagline { font-size: .8rem; color: #6c8c6c; letter-spacing: .1em; margin-bottom: 2rem; }
+.social-links { display: flex; justify-content: center; gap: 1rem; margin-bottom: 2rem; }
+.social-link {
+  display: flex; align-items: center; justify-content: center;
+  width: 40px; height: 40px; border-radius: 50%;
+  border: 1px solid rgba(255,255,255,.15); color: rgba(255,255,255,.5);
+  transition: border-color .3s ease, color .3s ease, transform .3s ease;
+}
+.social-link:hover { border-color: var(--coral); color: var(--coral); transform: translateY(-3px); }
+.social-link svg { width: 16px; height: 16px; }
+.footer__nav { display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem; }
+.footer__nav a {
+  font-size: .68rem; letter-spacing: .16em; text-transform: uppercase;
+  color: #6c8c6c; transition: color .3s;
+}
+.footer__nav a:hover { color: #e8f5e0; }
+.footer__credit { font-size: .64rem; color: #3a4a3a; letter-spacing: .1em; }
+
+/* ════════════════════════════════
+   LIGHTBOX
+════════════════════════════════ */
+.lightbox {
+  position: fixed; inset: 0; z-index: 800;
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none;
+  transition: opacity .4s ease;
+}
+.lightbox.open { opacity: 1; pointer-events: all; }
+.lightbox__back { position: absolute; inset: 0; background: rgba(10,8,5,.94); }
+.lightbox__frame {
+  position: relative; z-index: 1;
+  width: min(84vw, 940px); aspect-ratio: 4/3;
+  border-radius: 4px; overflow: hidden;
+  transform: scale(.88); transition: transform .5s var(--ease);
+}
+.lightbox.open .lightbox__frame { transform: scale(1); }
+.lightbox__canvas { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.lightbox__close {
+  position: absolute; top: 1.4rem; right: 1.6rem; z-index: 2;
+  font-size: 1.5rem; color: rgba(254,249,242,.65); transition: color .3s;
+}
+.lightbox__close:hover { color: var(--cream); }
+
+/* ════════════════════════════════
+   SCROLL REVEAL
+════════════════════════════════ */
+.reveal {
+  opacity: 0; transform: translateY(36px);
+  transition: opacity .9s var(--ease), transform .9s var(--ease);
+}
+.reveal.in-view { opacity: 1; transform: translateY(0); }
+
+/* ════════════════════════════════
+   DOODLES & CREATIVE BITS
+════════════════════════════════ */
+@keyframes doodleFloat {
+  from { transform: translateY(0)    rotate(0deg); }
+  to   { transform: translateY(-9px) rotate(18deg); }
+}
+@keyframes doodlePulse {
+  0%,100% { opacity: var(--op,.22); transform: scale(1); }
+  50%     { opacity: calc(var(--op,.22) * 1.6); transform: scale(1.15); }
+}
+
+.d-star {
+  position: absolute; pointer-events: none; user-select: none;
+  left: var(--x, 10%); top: var(--y, 20%);
+  font-size: var(--sz, 1rem); color: var(--clr, var(--ink-m));
+  opacity: var(--op, .22);
+  animation: doodleFloat var(--dur,5s) ease-in-out var(--del,0s) infinite alternate;
+  z-index: 3;
+}
+
+/* artist sticky note */
+.hero__note {
+  display: inline-flex; align-items: flex-start; gap: .5rem;
+  background: #fff8df;
+  border-left: 3px solid var(--amber);
+  border-radius: 0 6px 6px 0;
+  padding: .55rem .9rem .55rem .75rem;
+  margin-top: 1.6rem;
+  font-size: .65rem; line-height: 1.5; color: var(--ink-2);
+  box-shadow: 2px 3px 10px rgba(28,16,8,.08);
+  max-width: 260px;
+  transform: rotate(-.4deg);
+  opacity: 0; animation: fadeUp .7s var(--ease) 1.05s forwards;
+}
+.hero__note-icon { font-size: 1rem; line-height: 1; flex-shrink: 0; }
+
+/* color palette swatches */
+.hero__palette {
+  display: flex; align-items: center; gap: .55rem; margin-top: 1.5rem;
+  opacity: 0; animation: fadeUp .7s var(--ease) 1.18s forwards;
+}
+.hero__palette-label {
+  font-size: .58rem; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--ink-m); margin-right: .2rem;
+}
+.palette-dot {
+  width: 15px; height: 15px; border-radius: 50%;
+  background: var(--c);
+  box-shadow: 0 2px 5px rgba(0,0,0,.14);
+  transition: transform .25s ease;
+  cursor: default;
+}
+.palette-dot:hover { transform: scale(1.35); }
+
+/* hand-drawn arrow near CTA */
+.doodle-cta-wrap {
+  display: flex; align-items: center; gap: .8rem; margin-top: 2rem;
+  opacity: 0; animation: fadeUp .8s var(--ease) .9s forwards;
+}
+.hero__cta {
+  display: inline-flex; align-items: center; gap: .55rem;
+  padding: .88rem 2rem;
+  background: var(--coral); color: #fff;
+  border-radius: 100px;
+  font-size: .7rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
+  transition: background .3s ease, transform .25s ease;
+}
+.hero__cta:hover { background: var(--ink); transform: translateY(-2px); }
+.hero__cta svg { flex-shrink: 0; }
+.doodle-arrow-svg {
+  opacity: .45; flex-shrink: 0;
+  animation: doodlePulse 3s ease-in-out infinite;
+  --op: .45;
+}
+
+/* "Selected Works" intro line */
+.gallery-intro {
+  font-size: .75rem; font-style: italic; color: var(--ink-m); letter-spacing: .04em;
+  margin-bottom: .4rem;
+}
+
+/* statement big quote mark + closing mark */
+.statement { position: relative; overflow: hidden; }
+.statement::before {
+  content: '\201C';
+  position: absolute; top: -.5rem; left: 3vw;
+  font-family: var(--serif); font-size: 18rem; font-weight: 900; line-height: 1;
+  color: var(--coral); opacity: .1;
+  user-select: none; pointer-events: none;
+}
+.statement::after {
+  content: '\201D';
+  position: absolute; bottom: -.5rem; right: 3vw;
+  font-family: var(--serif); font-size: 18rem; font-weight: 900; line-height: 1;
+  color: var(--plum); opacity: .1;
+  user-select: none; pointer-events: none;
+}
+/* highlight on italic em tags in statement */
+.statement__text em {
+  position: relative; display: inline-block;
+}
+.statement__text em::after {
+  content: '';
+  position: absolute; left: -3px; right: -3px; bottom: 2px;
+  height: 8px; background: var(--coral); opacity: .2;
+  border-radius: 2px; z-index: -1;
+}
+
+/* ── PAINT DOT STRIP ── */
+@keyframes dotBounce {
+  from { transform: translateY(0) scale(1) rotate(0deg); }
+  to   { transform: translateY(-10px) scale(1.2) rotate(20deg); }
+}
+.paint-strip {
+  display: flex; align-items: center; justify-content: center;
+  gap: 1rem; padding: 1.8rem 5vw;
+  background: var(--cream-d);
+  overflow: hidden; position: relative;
+}
+.paint-strip::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(
+    90deg, transparent 0, transparent 50px,
+    rgba(28,16,8,.02) 50px, rgba(28,16,8,.02) 51px
+  );
+}
+.ps-dot {
+  width: 16px; height: 16px; border-radius: 50%;
+  background: var(--c);
+  box-shadow: 0 4px 10px rgba(0,0,0,.2);
+  animation: dotBounce 1.8s ease-in-out var(--del, 0s) infinite alternate;
+  position: relative; z-index: 1; flex-shrink: 0;
+}
+/* bigger accent dots */
+.ps-dot.big { width: 24px; height: 24px; }
+.ps-dot.sm  { width: 10px; height: 10px; }
+.ps-label {
+  font-size: .58rem; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--ink-m); padding: 0 .5rem; position: relative; z-index: 1;
+}
+
+/* ── COLORED SPARKLES (for spotlights & sections) ── */
+@keyframes sparkleFloat {
+  0%   { transform: translateY(0)    rotate(0deg)  scale(1); }
+  50%  { transform: translateY(-10px) rotate(15deg) scale(1.15); }
+  100% { transform: translateY(-18px) rotate(-5deg) scale(.9); }
+}
+.sp-sparkle {
+  position: absolute; pointer-events: none; user-select: none;
+  font-size: var(--sz, 1.4rem); color: var(--clr, var(--coral));
+  opacity: var(--op, .55); z-index: 2;
+  left: var(--x, 5%); top: var(--y, 10%);
+  animation: sparkleFloat var(--dur,5s) ease-in-out var(--del,0s) infinite alternate;
+  line-height: 1;
+}
+
+/* ── SPOTLIGHT NUMBER FIX ── */
+/* even: art LEFT → number goes right (text column) */
+.sp-even::before { left: auto; right: 4%; top: 50%; transform: translateY(-50%); }
+/* odd:  art RIGHT → number goes left (text column) */
+.sp-odd::before  { left: 4%; right: auto; top: 50%; transform: translateY(-50%); }
+
+/* ── GALLERY SECTION DECO ── */
+.gallery-section { position: relative; }
+.gallery-section::before {
+  content: '✦';
+  position: absolute; top: 3.5rem; right: 5vw;
+  font-size: 5rem; color: var(--coral); opacity: .08;
+  user-select: none; pointer-events: none;
+  animation: doodleFloat 8s ease-in-out infinite alternate;
+}
+
+/* ── SQUIGGLY SVG UNDERLINE on section mark ── */
+.sm-squiggle { display: block; margin-top: .25rem; }
+
+/* ── FEATURED SECTION STAR DECO ── */
+.featured-section { position: relative; }
+.ft-sparkle {
+  position: absolute; pointer-events: none; user-select: none;
+  font-size: var(--sz, 1.2rem); color: var(--clr, var(--amber));
+  opacity: var(--op, .45); z-index: 2;
+  left: var(--x); top: var(--y);
+  animation: sparkleFloat var(--dur,5s) ease-in-out var(--del,0s) infinite alternate;
+}
+
+/* ── HERO extra sparkles (colorful) ── */
+.d-big {
+  position: absolute; pointer-events: none; user-select: none;
+  left: var(--x); top: var(--y);
+  font-size: var(--sz, 2rem); color: var(--clr, var(--coral));
+  opacity: var(--op, .18);
+  animation: sparkleFloat var(--dur,6s) ease-in-out var(--del,0s) infinite alternate;
+  z-index: 1; line-height: 1;
+}
+
+/* ── COLOR BLOB ACCENTS in spotlight ── */
+.spot-blob {
+  position: absolute; pointer-events: none; z-index: 0;
+  width: var(--w, 180px); height: var(--h, 180px);
+  border-radius: 40% 60% 65% 35% / 40% 45% 55% 60%;
+  background: var(--c, var(--coral));
+  opacity: var(--op, .07);
+  top: var(--y, 10%); left: var(--x, 5%);
+  animation: blobMorph 8s ease-in-out infinite alternate;
+}
+@keyframes blobMorph {
+  from { border-radius: 40% 60% 65% 35% / 40% 45% 55% 60%; }
+  to   { border-radius: 65% 35% 40% 60% / 55% 60% 40% 45%; }
+}
+
+/* ════════════════════════════════
+   RESPONSIVE
+════════════════════════════════ */
+@media (max-width: 1000px) {
+  .hero {
+    grid-template-columns: 1fr;
+    min-height: auto;
+    padding-top: 0;
+    padding-bottom: 4rem;
+  }
+  .hero__content { padding-top: 8rem; }
+  .hero__visual {
+    order: -1;
+    min-height: 320px;
+    padding-top: 1rem;
+  }
+  .hero__circle { width: 240px; height: 240px; }
+  .hero-badge { display: none; }
+  .hero__scroll { display: none; }
+  .featured-inner { grid-template-columns: 1fr; gap: 3rem; }
+  .artwork--featured { max-width: 480px; box-shadow: 14px 14px 0 var(--coral); }
+  .featured-section::before { font-size: 14rem; }
+  .spotlight { grid-template-columns: 1fr; gap: 3rem; padding: 5rem 6vw; }
+  .spotlight::before { font-size: 10rem; }
+  /* collapse editorial grid to 2-col on tablets */
+  .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
+  .portfolio-card:nth-child(5n+1)           { grid-column: span 2; }
+  .portfolio-card:nth-child(5n+1) .pc-frame { aspect-ratio: 16/9; }
+  .portfolio-card:nth-child(5n+2) .pc-frame { aspect-ratio: 3/4; }
+  .portfolio-card:nth-child(5n+3) .pc-frame { aspect-ratio: 3/4; }
+  .portfolio-card:nth-child(5n+4)           { grid-column: span 2; }
+  .portfolio-card:nth-child(5n+4) .pc-frame { aspect-ratio: 16/9; }
+  .portfolio-card:nth-child(5n)             { grid-column: span 2; }
+  .portfolio-card:nth-child(5n) .pc-frame   { aspect-ratio: 16/9; }
+}
+@media (max-width: 600px) {
+  .hero__name { font-size: clamp(3.8rem, 17vw, 7rem); }
+  .nav { padding: 1.1rem 5vw; }
+  .nav__links { gap: 1.4rem; }
+  /* single column grid on mobile */
+  .portfolio-grid { grid-template-columns: 1fr; }
+  .portfolio-card:nth-child(n)            { grid-column: span 1; }
+  .portfolio-card:nth-child(n) .pc-frame  { aspect-ratio: 4/3; }
+  body { cursor: auto; }
+  .cursor, .cursor-dot { display: none; }
+  .statement { padding: 5rem 6vw; }
+  .statement::before { font-size: 8rem; }
+  .featured-section { padding: 5rem 5vw; }
+  .gallery-section { padding: 2rem 5vw 5rem; }
+  .d-star { display: none; }
+}
+@media (max-width: 420px) {
+  .nav__logo { font-size: .88rem; }
+  .nav__links { gap: .9rem; }
+  .nav__link  { font-size: .58rem; letter-spacing: .1em; }
+  .hero__name { font-size: clamp(3.2rem, 16vw, 5.5rem); }
+  .hero__cta  { padding: .72rem 1.4rem; font-size: .63rem; }
+  .doodle-arrow-svg { display: none; }
+}
+@media (max-width: 360px) {
+  .nav { padding: 1rem 4vw; }
+  .nav__logo { font-size: .8rem; }
+  .nav__links { gap: .6rem; }
+  .nav__link  { font-size: .54rem; letter-spacing: .06em; }
+}
+
+  </style>
+</head>
+<body>
+
+<div class="cursor"     id="cursor"></div>
+<div class="cursor-dot" id="cursorDot"></div>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <a href="index.html" class="nav__logo">Spacechase</a>
+  <div class="nav__links">
+    <a href="index.html"   class="nav__link nav__link--active">Portfolio</a>
+    <a href="gallery.html" class="nav__link">Gallery</a>
+    <a href="roadmap.html" class="nav__link">Roadmap</a>
+    <a href="about.html"   class="nav__link">Meet Me</a>
+  </div>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <div class="hero__bg"></div>
+
+  <!-- colorful doodle elements across hero -->
+  <span class="d-star"  style="--x:6%;--y:22%;--sz:1.2rem;--clr:var(--coral);--op:.45;--dur:6s;--del:0s">✦</span>
+  <span class="d-star"  style="--x:48%;--y:8%;--sz:0.9rem;--clr:var(--plum);--op:.38;--dur:8s;--del:1.3s">✧</span>
+  <span class="d-star"  style="--x:5%;--y:74%;--sz:1rem;--clr:var(--sage);--op:.4;--dur:5s;--del:.6s">✶</span>
+  <span class="d-star"  style="--x:52%;--y:82%;--sz:0.8rem;--clr:var(--amber);--op:.35;--dur:7s;--del:1.8s">✦</span>
+  <!-- big soft color blobs in background of hero -->
+  <span class="d-big" style="--x:2%;--y:38%;--sz:5rem;--clr:var(--coral);--op:.06;--dur:12s">●</span>
+  <span class="d-big" style="--x:40%;--y:5%;--sz:3.5rem;--clr:var(--plum);--op:.07;--dur:15s;--del:3s">●</span>
+
+  <!-- left: text -->
+  <div class="hero__content">
+    <p class="hero__eyebrow">Digital Artist · 2024</p>
+    <h1 class="hero__name">Space<br><em>chase</em></h1>
+    <p class="hero__sub">colour · light · feeling</p>
+    <p class="hero__tagline">Chasing light through the digital canvas</p>
+
+    <!-- sticky note -->
+    <div class="hero__note">
+      <span class="hero__note-icon">🎨</span>
+      currently making: something with colour
+    </div>
+
+    <!-- colour palette -->
+    <div class="hero__palette">
+      <span class="hero__palette-label">palette →</span>
+      <span class="palette-dot" style="--c:#e85830" title="coral"></span>
+      <span class="palette-dot" style="--c:#d48030" title="amber"></span>
+      <span class="palette-dot" style="--c:#3a7a52" title="sage"></span>
+      <span class="palette-dot" style="--c:#8844c0" title="plum"></span>
+      <span class="palette-dot" style="--c:#2268d8" title="cobalt"></span>
+    </div>
+
+    <!-- CTA with hand-drawn arrow doodle -->
+    <div class="doodle-cta-wrap">
+      <a href="https://instagram.com" class="hero__cta" target="_blank" rel="noopener">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor" stroke="none"/></svg>
+        Follow on Instagram
+      </a>
+      <svg class="doodle-arrow-svg" width="40" height="28" viewBox="0 0 40 28" fill="none">
+        <path d="M2,20 C10,18 20,14 32,10" stroke="var(--ink-m)" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M26,4 L34,10 L26,17" stroke="var(--ink-m)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- right: floating circle + badges -->
+  <div class="hero__visual">
+    <div class="hero-badge hb-1">✦ Digital</div>
+    <div class="hero-badge hb-2">Procreate</div>
+    <div class="hero-badge hb-3">2024</div>
+    <div class="hero-badge hb-4">Always Learning</div>
+    <div class="hero-badge hb-5">Colour · Light</div>
+    <div class="hero__circle">
+      <div class="art-canvas a-coral-storm"></div>
+    </div>
+  </div>
+
+  <div class="hero__scroll">
+    <span class="scroll-line"></span>
+    <span class="scroll-text">Scroll</span>
+  </div>
+</section>
+
+<!-- TICKER 1 -->
+<div class="ticker">
+  <div class="ticker__track">
+    <span>Spacechase</span><span>✦</span><span>Digital Artist</span><span>✦</span>
+    <span>2024</span><span>○</span><span>Original Works</span><span>✦</span>
+    <span>Procreate</span><span>○</span><span>Colour Study</span><span>✦</span>
+    <span>Spacechase</span><span>✦</span><span>Digital Artist</span><span>✦</span>
+    <span>2024</span><span>○</span><span>Original Works</span><span>✦</span>
+    <span>Procreate</span><span>○</span><span>Colour Study</span><span>✦</span>
+  </div>
+</div>
+
+<!-- ══ STATEMENT ══ -->
+<section class="statement reveal">
+  <p class="statement__text">
+    "I make images that feel like <em>memories</em> —<br>
+    of places I've never been, emotions I can't name."
+  </p>
+</section>
+
+<!-- ══ PAINT DOT STRIP ══ -->
+<div class="paint-strip" aria-hidden="true">
+  <span class="ps-label">✦</span>
+  <span class="ps-dot sm"  style="--c:#e85830;--del:0s"></span>
+  <span class="ps-dot"     style="--c:#d48030;--del:.14s"></span>
+  <span class="ps-dot big" style="--c:#3a7a52;--del:.28s"></span>
+  <span class="ps-dot"     style="--c:#8844c0;--del:.42s"></span>
+  <span class="ps-dot big" style="--c:#e85830;--del:.56s"></span>
+  <span class="ps-dot sm"  style="--c:#2268d8;--del:.7s"></span>
+  <span class="ps-dot"     style="--c:#d48030;--del:.84s"></span>
+  <span class="ps-dot big" style="--c:#8844c0;--del:.98s"></span>
+  <span class="ps-dot"     style="--c:#e85830;--del:1.12s"></span>
+  <span class="ps-dot sm"  style="--c:#3a7a52;--del:1.26s"></span>
+  <span class="ps-dot"     style="--c:#2268d8;--del:1.4s"></span>
+  <span class="ps-dot big" style="--c:#d48030;--del:1.54s"></span>
+  <span class="ps-label">✦</span>
+</div>
+
+<!-- ══ FEATURED (filled by JS) ══ -->
+<section class="featured-section reveal" id="featuredRoot">
+  <span class="ft-sparkle" style="--x:2%;--y:15%;--sz:1.5rem;--clr:var(--coral);--op:.4;--dur:5s">✦</span>
+  <span class="ft-sparkle" style="--x:4%;--y:65%;--sz:0.9rem;--clr:var(--amber);--op:.35;--dur:7s;--del:.8s">✦</span>
+  <span class="ft-sparkle" style="--x:96%;--y:20%;--sz:1.1rem;--clr:var(--plum);--op:.3;--dur:6s;--del:.4s">✧</span>
+  <span class="ft-sparkle" style="--x:94%;--y:75%;--sz:0.8rem;--clr:var(--sage);--op:.35;--dur:8s;--del:1.2s">✶</span>
+</section>
+
+<!-- ══ GALLERY ══ -->
+<section class="gallery-section" id="gallery">
+  <p class="gallery-intro reveal">selected pieces from the journey so far</p>
+  <div class="section-mark reveal">
+    <div class="sm-dot"></div>
+    <div style="display:flex;flex-direction:column;gap:.1rem;flex-shrink:0;">
+      <span class="sm-label">The Work</span>
+      <svg class="sm-squiggle" width="72" height="8" viewBox="0 0 72 8" fill="none">
+        <path d="M0,5 Q9,1 18,5 Q27,9 36,5 Q45,1 54,5 Q63,9 72,5" stroke="var(--coral)" stroke-width="2" stroke-linecap="round" fill="none"/>
+      </svg>
+    </div>
+    <div class="sm-rule"></div>
+    <span class="sm-count" id="galleryCount"></span>
+  </div>
+  <div class="portfolio-grid" id="galleryRoot"></div>
+</section>
+
+<!-- ══ PAINT DOT STRIP 2 ══ -->
+<div class="paint-strip" aria-hidden="true">
+  <span class="ps-label">○</span>
+  <span class="ps-dot big" style="--c:#8844c0;--del:0s"></span>
+  <span class="ps-dot sm"  style="--c:#e85830;--del:.18s"></span>
+  <span class="ps-dot"     style="--c:#2268d8;--del:.36s"></span>
+  <span class="ps-dot big" style="--c:#d48030;--del:.54s"></span>
+  <span class="ps-dot"     style="--c:#3a7a52;--del:.72s"></span>
+  <span class="ps-dot sm"  style="--c:#8844c0;--del:.9s"></span>
+  <span class="ps-dot"     style="--c:#e85830;--del:1.08s"></span>
+  <span class="ps-dot big" style="--c:#2268d8;--del:1.26s"></span>
+  <span class="ps-dot sm"  style="--c:#3a7a52;--del:1.44s"></span>
+  <span class="ps-dot"     style="--c:#d48030;--del:1.62s"></span>
+  <span class="ps-label">○</span>
+</div>
+
+<!-- TICKER 2 -->
+<div class="ticker ticker--plum">
+  <div class="ticker__track">
+    <span>Selected Works</span><span>✦</span><span>Digital Paintings</span><span>○</span>
+    <span>Colour Studies</span><span>✦</span><span>Atmosphere</span><span>○</span>
+    <span>Light</span><span>✦</span><span>Feeling</span><span>○</span>
+    <span>Selected Works</span><span>✦</span><span>Digital Paintings</span><span>○</span>
+    <span>Colour Studies</span><span>✦</span><span>Atmosphere</span><span>○</span>
+    <span>Light</span><span>✦</span><span>Feeling</span><span>○</span>
+  </div>
+</div>
+
+<!-- ══ SPOTLIGHTS (filled by JS) ══ -->
+<div id="spotlightsRoot"></div>
+
+<!-- ══ FOOTER ══ -->
+<footer class="footer reveal">
+  <div class="footer__inner">
+    <p class="footer__name">Spacechase</p>
+    <p class="footer__tagline">Digital Artist · Always Learning</p>
+    <div class="social-links">
+      <a href="#" class="social-link" title="Instagram" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor" stroke="none"/></svg>
+      </a>
+      <a href="#" class="social-link" title="Twitter / X" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      </a>
+      <a href="#" class="social-link" title="ArtStation" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M0 17.723l2.027 3.505h.001a2.424 2.424 0 0 0 2.164 1.333h13.457l-2.792-4.838H0zm24 .025c0-.484-.143-.935-.388-1.314L15.728 2.728a2.424 2.424 0 0 0-2.142-1.289H9.419L21.598 22.54l1.92-3.325c.378-.637.482-.919.482-1.467zm-11.129-3.462L7.428 4.858l-5.444 9.428h10.887z"/></svg>
+      </a>
+    </div>
+    <nav class="footer__nav">
+      <a href="index.html">Portfolio</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="roadmap.html">Roadmap</a>
+      <a href="about.html">Meet Me</a>
+    </nav>
+    <p class="footer__credit">Made with intention · 2024</p>
+  </div>
+</footer>
+
+<!-- ══ LIGHTBOX ══ -->
+<div class="lightbox" id="lightbox">
+  <div class="lightbox__back" id="lbBack"></div>
+  <div class="lightbox__frame">
+    <div class="lightbox__canvas" id="lbCanvas"></div>
+  </div>
+  <button class="lightbox__close" id="lbClose">✕</button>
+</div>
+
+<script src="portfolio-data.js"></script>
+<script>
+/* ── CURSOR ── */
+const cursor    = document.getElementById('cursor');
+const cursorDot = document.getElementById('cursorDot');
+let mx=0,my=0,cx=0,cy=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;},{passive:true});
+(function loop(){
+  cx+=(mx-cx)*.15; cy+=(my-cy)*.15;
+  cursor.style.transform    = `translate(calc(${cx}px - 50%),calc(${cy}px - 50%))`;
+  cursorDot.style.transform = `translate(calc(${mx}px - 50%),calc(${my}px - 50%))`;
+  requestAnimationFrame(loop);
+})();
+
+/* ── NAV ── */
+const nav = document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('solid',window.scrollY>50),{passive:true});
+
+/* ── BUILD FEATURED ── */
+function buildFeatured() {
+  const root = document.getElementById('featuredRoot');
+  const f = FEATURED;
+  root.dataset.num = f.number;
+
+  const artHtml = f.file
+    ? `<img src="img/gallery/${f.file}" alt="${f.title}" class="art-canvas">`
+    : `<div class="art-canvas ${f.css || ''}"></div>`;
+
+  root.innerHTML = `
+    <div class="featured-inner">
+      <div class="featured__frame">
+        <div class="artwork artwork--featured"
+          ${f.css  ? `data-css="${f.css}"`   : ''}
+          ${f.file ? `data-file="${f.file}"` : ''}>
+          ${artHtml}
+        </div>
+      </div>
+      <div class="featured__info">
+        <div class="featured__num">No. ${f.number}</div>
+        <h2 class="featured__title">${f.title}</h2>
+        <p class="featured__year">${f.medium} · ${f.year}</p>
+        <p class="featured__desc">${f.description}</p>
+        <div class="tag-list">
+          ${f.tags.map(t=>`<span class="tag">${t}</span>`).join('')}
+        </div>
+      </div>
+    </div>`;
+}
+
+/* ── BUILD GALLERY ── */
+function buildGallery() {
+  const root    = document.getElementById('galleryRoot');
+  const countEl = document.getElementById('galleryCount');
+  countEl.textContent = String(GALLERY_PIECES.length).padStart(2,'0') + ' pieces';
+
+  GALLERY_PIECES.forEach((p, i) => {
+    const artHtml = p.file
+      ? `<img src="img/gallery/${p.file}" alt="${p.title}" class="art-canvas">`
+      : `<div class="art-canvas ${p.css || ''}"></div>`;
+
+    const card = document.createElement('article');
+    card.className = 'portfolio-card';
+    card.style.setProperty('--i', Math.min(i, 5));
+    if (p.css)  card.dataset.css  = p.css;
+    if (p.file) card.dataset.file = p.file;
+
+    const num = String(i + 1).padStart(2, '0');
+    card.innerHTML = `
+      <div class="pc-frame">
+        ${artHtml}
+        <div class="pc-overlay">
+          <span class="pc-num">#${num}</span>
+          <h3 class="pc-title">${p.title}</h3>
+          <p class="pc-meta">${p.medium} · ${p.year}</p>
+          <div class="pc-tags">${p.tags.map(t=>`<span class="pc-tag">${t}</span>`).join('')}</div>
+          <button class="pc-view">View ⤢</button>
+        </div>
+      </div>
+      <div class="pc-caption">
+        <span class="pc-caption-title">${p.title}</span>
+        <span class="pc-caption-num">#${num}</span>
+      </div>`;
+
+    root.appendChild(card);
+  });
+}
+
+/* ── BUILD SPOTLIGHTS ── */
+function buildSpotlights() {
+  const root = document.getElementById('spotlightsRoot');
+
+  SPOTLIGHTS.forEach((s, i) => {
+    const artHtml = s.file
+      ? `<img src="img/gallery/${s.file}" alt="${s.title}" class="art-canvas">`
+      : `<div class="art-canvas ${s.css || ''}"></div>`;
+
+    const artBlock = `
+      <div class="artwork artwork--spotlight"
+        ${s.css  ? `data-css="${s.css}"`   : ''}
+        ${s.file ? `data-file="${s.file}"` : ''}>
+        ${artHtml}
+      </div>`;
+
+    const textBlock = `
+      <div class="spotlight__text">
+        <span class="spotlight__num">No. ${s.number}</span>
+        <h2 class="spotlight__title">${s.title}</h2>
+        <p class="spotlight__body">${s.description}</p>
+        <div class="tag-list" style="margin-bottom:1.4rem;">
+          ${s.tags.map(t=>`<span class="tag">${t}</span>`).join('')}
+        </div>
+        <div class="spotlight__meta">${s.medium} · ${s.year}</div>
+      </div>`;
+
+    const section = document.createElement('section');
+    section.className = `spotlight reveal ${i % 2 === 0 ? 'sp-even' : 'sp-odd'}`;
+    section.dataset.num = s.number;
+    section.style.background =
+      `linear-gradient(135deg,${s.accentColor}22 0%,transparent 60%),var(--cream)`;
+
+    // colored blob accent
+    const blob = document.createElement('div');
+    blob.className = 'spot-blob';
+    blob.style.cssText = `--c:${s.accentColor};--op:.1;--w:240px;--h:220px;--y:${i%2===0?'10%':'60%'};--x:${i%2===0?'60%':'5%'}`;
+
+    // sparkle cluster (5 stars scattered around)
+    const sparkData = [
+      {ch:'✦',sz:1.6,op:.55,dur:5,del:0,  x:i%2===0?'58%':'8%', y:'12%', clr:s.accentColor},
+      {ch:'✧',sz:1.0,op:.45,dur:7,del:.7, x:i%2===0?'75%':'25%',y:'22%', clr:'var(--amber)'},
+      {ch:'✶',sz:1.3,op:.5, dur:6,del:.4, x:i%2===0?'62%':'12%',y:'72%', clr:s.accentColor},
+      {ch:'✦',sz:0.8,op:.4, dur:8,del:1.1,x:i%2===0?'85%':'35%',y:'55%', clr:'var(--coral)'},
+      {ch:'✧',sz:1.8,op:.3, dur:9,del:1.8,x:i%2===0?'68%':'18%',y:'40%', clr:'var(--plum)'},
+    ];
+    const sparkHtml = sparkData.map(d =>
+      `<span class="sp-sparkle" style="--sz:${d.sz}rem;--clr:${d.clr};--op:${d.op};--dur:${d.dur}s;--del:${d.del}s;--x:${d.x};--y:${d.y}">${d.ch}</span>`
+    ).join('');
+
+    section.innerHTML = (i % 2 === 0 ? artBlock + textBlock : textBlock + artBlock) + sparkHtml;
+    section.appendChild(blob);
+
+    root.appendChild(section);
+  });
+}
+
+/* ── INIT ── */
+buildFeatured();
+buildGallery();
+buildSpotlights();
+
+/* ── SCROLL REVEAL ── */
+const ro = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if (e.isIntersecting) { e.target.classList.add('in-view'); ro.unobserve(e.target); }
+  });
+},{threshold:.1, rootMargin:'0px 0px -48px 0px'});
+document.querySelectorAll('.reveal, .portfolio-card').forEach(el=>ro.observe(el));
+
+/* ── CURSOR HOVER ── */
+function addHover(sel) {
+  document.querySelectorAll(sel).forEach(el=>{
+    el.addEventListener('mouseenter',()=>document.body.classList.add('cursor-hover'));
+    el.addEventListener('mouseleave',()=>document.body.classList.remove('cursor-hover'));
+  });
+}
+addHover('a, button, .artwork, .portfolio-card');
+
+/* ── LIGHTBOX ── */
+const lb       = document.getElementById('lightbox');
+const lbCanvas = document.getElementById('lbCanvas');
+
+function openLb(src) {
+  lbCanvas.innerHTML = '';
+  lbCanvas.className = 'lightbox__canvas';
+  if (src.file) {
+    const img = document.createElement('img');
+    img.src = `img/gallery/${src.file}`;
+    img.alt = ''; img.className = 'lightbox__canvas';
+    img.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover;';
+    lbCanvas.appendChild(img);
+  } else if (src.css) {
+    lbCanvas.classList.add(src.css);
+  }
+  lb.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLb() { lb.classList.remove('open'); document.body.style.overflow = ''; }
+
+document.addEventListener('click', e => {
+  if (e.target.id === 'lbClose' || e.target.id === 'lbBack') { closeLb(); return; }
+
+  const card = e.target.closest('.portfolio-card');
+  if (card) { openLb({ css: card.dataset.css, file: card.dataset.file }); return; }
+
+  const artwork = e.target.closest('.artwork[data-css], .artwork[data-file]');
+  if (artwork && !artwork.closest('#lightbox')) {
+    openLb({ css: artwork.dataset.css, file: artwork.dataset.file });
+  }
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLb(); });
+</script>
+
+</body>
+</html>

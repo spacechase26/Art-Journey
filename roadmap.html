@@ -1,0 +1,2141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digital Art Roadmap - Weekly Schedule</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+
+<style>
+/* ═══════════════════════════════════════════════════════
+   TOKENS & RESET
+═══════════════════════════════════════════════════════ */
+:root {
+  --cream:       #f2fff2;
+  --cream-2:     #e0f5e5;
+  --cream-3:     #ccebd4;
+  --parchment:   #b8e0c4;
+
+  --ink:         #1a2a1a;
+  --ink-2:       #2e3a2e;
+  --ink-soft:    #4a5a4a;
+  --ink-muted:   #6c7c6c;
+
+  --terra:       #d47a60;
+  --terra-2:     #e89a84;
+  --terra-pale:  #f5dad0;
+
+  --gold:        #d4a84a;
+  --gold-2:      #e0c080;
+  --gold-pale:   #f0e4c0;
+
+  --sage:        #5ab874;
+  --sage-pale:   #c4e8d0;
+
+  --cobalt:      #4a9ab8;
+  --cobalt-pale: #c4dce8;
+
+  --plum:        #a874a8;
+  --plum-pale:   #e4d4e4;
+
+  --slate:       #4a9ca4;
+  --slate-pale:  #c4d8dc;
+
+  --rust:        #d47a60;
+  --dust:        #b8a088;
+
+  /* ── Vibrant card colours ── */
+  --amber-bg:    linear-gradient(135deg, #fff0e0, #ffe0c0);
+  --amber-edge:  #d4a040;
+  --amber-text:  #7a4a10;
+  --amber-glow:  rgba(212, 160, 64, 0.25);
+
+  --purple-bg:   linear-gradient(135deg, #edddf5, #e0c8f0);
+  --purple-edge: #9a5cb8;
+  --purple-text: #5a2a78;
+  --purple-glow: rgba(154, 92, 184, 0.25);
+
+  --teal-bg:     linear-gradient(135deg, #d0f0ea, #b8e8e0);
+  --teal-edge:  #40a898;
+  --teal-text:  #206860;
+  --teal-glow:  rgba(64, 168, 152, 0.25);
+
+  --sky-bg:      linear-gradient(135deg, #d0e8f5, #b8ddf0);
+  --sky-edge:   #4090b8;
+  --sky-text:   #205878;
+  --sky-glow:   rgba(64, 144, 184, 0.25);
+
+  --rose-bg:     linear-gradient(135deg, #fdd8d8, #fcc4c8);
+  --rose-edge:  #d46068;
+  --rose-text:  #882038;
+  --rose-glow:  rgba(212, 96, 104, 0.25);
+
+  --green-bg:    linear-gradient(135deg, #d8f0d8, #c0e5c0);
+  --green-edge: #58a858;
+  --green-text: #286828;
+  --green-glow: rgba(88, 168, 88, 0.25);
+
+  --mint-bg:     linear-gradient(135deg, #d0f5e0, #b8e8cc);
+  --mint-edge:  #40a880;
+  --mint-text:  #206848;
+  --mint-glow:  rgba(64, 168, 128, 0.25);
+
+  --slate-bg:    linear-gradient(135deg, #d8e0e8, #c4d0dc);
+  --slate-edge: #508098;
+  --slate-text: #284858;
+  --slate-glow: rgba(80, 128, 152, 0.25);
+
+  --plum-bg:     linear-gradient(135deg, #f0d8f0, #e4c4e4);
+  --plum-edge:  #a860a8;
+  --plum-text:  #682868;
+  --plum-glow:  rgba(168, 96, 168, 0.25);
+
+  --coral-bg:    linear-gradient(135deg, #fdd8d0, #fcc4b8);
+  --coral-edge: #d46850;
+  --coral-text: #883018;
+  --coral-glow: rgba(212, 104, 80, 0.25);
+
+  --gold-bg:     linear-gradient(135deg, #f5e8d0, #f0dca8);
+  --gold-edge:  #c8a040;
+  --gold-text:  #786020;
+  --gold-glow:  rgba(200, 160, 64, 0.25);
+
+  --dark-background: #2a2d2a;
+
+  --serif: 'Playfair Display', Georgia, serif;
+  --sans:  'Inter', system-ui, sans-serif;
+
+  --shadow-sm: 0 8px 24px rgba(74, 54, 45, 0.08);
+  --shadow-md: 0 18px 42px rgba(74, 54, 45, 0.12);
+  --shadow-lg: 0 28px 64px rgba(74, 54, 45, 0.16);
+
+  --sidebar-w: 260px;
+  --radius: 18px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  background: linear-gradient(135deg, #1a2a1a 0%, #2a2d2a 40%, #1e2a22 100%);
+  color: var(--cream);
+  font-family: var(--sans);
+  font-weight: 400;
+  line-height: 1.75;
+  display: grid;
+  grid-template-columns: var(--sidebar-w) 1fr;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Grain overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: multiply;
+}
+
+/* ═══════════════════════════════════════════════════════
+   SIDEBAR
+═══════════════════════════════════════════════════════ */
+.sidebar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  background: linear-gradient(180deg, rgba(30,35,30,0.92) 0%, rgba(40,45,40,0.92) 100%);
+  border-right: 1px solid rgba(255,255,255,0.1);
+  display: flex;
+  flex-direction: column;
+  padding: 0 0 40px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.15) transparent;
+}
+.sidebar::-webkit-scrollbar { width: 4px; }
+.sidebar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 2px; }
+
+.sidebar-brand {
+  padding: 28px 24px 24px;
+  border-bottom: 1px solid rgba(212, 168, 74, 0.15);
+  position: sticky;
+  top: 0;
+  background: linear-gradient(180deg, rgba(30,35,30,0.92) 0%, rgba(40,45,40,0.92) 100%);
+  z-index: 2;
+}
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.sidebar-logo .icon {
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, var(--gold), var(--terra));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 18px;
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(212, 168, 74, 0.3);
+}
+.sidebar-brand .name {
+  font-family: var(--serif);
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--gold);
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+}
+.sidebar-brand .sub {
+  font-size: 13px;
+  color: rgba(245,240,232,0.75);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-weight: 500;
+  margin-top: 4px;
+  display: block;
+}
+
+.nav-group {
+  padding: 20px 24px 6px;
+  font-size: 12px;
+  color: rgba(245,240,232,0.65);
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-weight: 600;
+}
+
+.sidebar a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 24px;
+  font-size: 15px;
+  color: rgba(245,240,232,0.85);
+  text-decoration: none;
+  transition: color 0.18s, background 0.18s;
+  line-height: 1.3;
+  border-left: 2px solid transparent;
+}
+.sidebar a:hover {
+  color: var(--cream);
+  background: rgba(255,255,255,0.1);
+}
+.sidebar a.active {
+  color: var(--gold);
+  border-left-color: var(--gold);
+  background: rgba(212, 168, 74, 0.12);
+}
+.sidebar a .phase-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: currentColor;
+  opacity: 0.6;
+}
+
+/* Progress bar in sidebar */
+.sidebar-progress {
+  padding: 16px 24px;
+  border-top: 1px solid rgba(212, 168, 74, 0.15);
+  margin-top: auto;
+}
+.sidebar-progress .prog-label {
+  font-size: 12px;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  margin-bottom: 8px;
+  opacity: 0.7;
+}
+.prog-bar {
+  height: 4px;
+  background: rgba(212, 168, 74, 0.12);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.prog-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gold), var(--terra));
+  border-radius: 2px;
+  width: 0%;
+  transition: width 0.6s ease;
+}
+.prog-count {
+  font-size: 13px;
+  color: var(--gold);
+  margin-top: 6px;
+  display: flex;
+  justify-content: space-between;
+  opacity: 0.7;
+}
+
+/* ═══════════════════════════════════════════════════════
+   MAIN
+═══════════════════════════════════════════════════════ */
+main {
+  max-width: 900px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 64px 60px 140px;
+  min-width: 0;
+  animation: fadeUp 0.6s ease both;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ═══════════════════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════════════════ */
+.hero {
+  margin-bottom: 72px;
+  position: relative;
+  background: linear-gradient(135deg, rgba(46, 58, 46, 0.6), rgba(30, 38, 30, 0.8), rgba(25, 35, 28, 0.7));
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  padding: 48px;
+  border-radius: 32px;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.4);
+}
+
+.hero-decoration {
+  position: absolute;
+  right: -20px;
+  top: -20px;
+  width: 220px;
+  height: 220px;
+  opacity: 0.07;
+  pointer-events: none;
+}
+
+.eyebrow {
+  font-size: 13px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.eyebrow::after {
+  content: '';
+  height: 1px;
+  width: 40px;
+  background: var(--gold);
+  opacity: 0.5;
+  flex-shrink: 0;
+}
+
+.hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(38px, 5vw, 58px);
+  font-weight: 700;
+  line-height: 1.08;
+  color: var(--gold);
+  margin-bottom: 20px;
+  letter-spacing: -0.01em;
+  text-shadow: 0 4px 20px rgba(0,0,0,0.4);
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--cream);
+}
+
+.hero-lede {
+  font-size: 18px;
+  color: var(--cream-3);
+  max-width: 600px;
+  line-height: 1.8;
+  margin-bottom: 36px;
+  opacity: 0.9;
+}
+
+.hero-stats {
+  display: flex;
+  gap: 0;
+  flex-wrap: wrap;
+  border: 2px solid rgba(212, 168, 74, 0.4);
+  border-radius: 24px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #f5e8d0, #f0dca8);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 20px 50px rgba(200, 160, 64, 0.2), 0 10px 25px rgba(0,0,0,0.25);
+}
+.hero-stat {
+  flex: 1;
+  min-width: 120px;
+  padding: 20px 24px;
+  border-right: 1px solid rgba(26, 42, 26, 0.15);
+  position: relative;
+}
+.hero-stat:last-child { border-right: none; }
+.hero-stat .val {
+  display: block;
+  font-family: var(--serif);
+  font-size: 34px;
+  font-weight: 700;
+  color: #a08030;
+  line-height: 1;
+  margin-bottom: 5px;
+}
+.hero-stat .lbl {
+  display: block;
+  font-size: 12px;
+  color: #786020;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-weight: 600;
+  opacity: 0.9;
+}
+
+/* ═══════════════════════════════════════════════════════
+   SECTION HEADERS
+═══════════════════════════════════════════════════════ */
+section {
+  margin-bottom: 72px;
+  scroll-margin-top: 32px;
+}
+
+.section-h {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 28px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid rgba(212, 168, 74, 0.35);
+}
+.section-h .num {
+  font-family: var(--serif);
+  font-size: 14px;
+  color: var(--gold);
+  font-style: italic;
+  flex-shrink: 0;
+  opacity: 0.8;
+  font-weight: 600;
+}
+.section-h h2 {
+  font-family: var(--serif);
+  font-size: 34px;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: -0.01em;
+  text-shadow: 0 2px 10px rgba(212, 168, 74, 0.2);
+}
+
+p { margin-bottom: 16px; font-size: 18px; color: var(--ink-soft); opacity: 0.95; }
+p:last-child { margin-bottom: 0; }
+
+/* ═══════════════════════════════════════════════════════
+   CALLOUTS
+═══════════════════════════════════════════════════════ */
+.callout {
+  border-left: 5px solid var(--gold);
+  background: rgba(232, 224, 194, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-left: 5px solid var(--gold);
+  padding: 24px 28px;
+  border-radius: 0 var(--radius) var(--radius) 0;
+  margin: 32px 0;
+  font-size: 18px;
+  line-height: 1.7;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+.callout.info  { border-left-color: var(--cobalt); background: var(--cobalt-pale); }
+.callout.good  { border-left-color: var(--sage);   background: var(--sage-pale); }
+.callout .lbl {
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+.callout.info .lbl { color: var(--cobalt); }
+.callout.good .lbl { color: var(--sage); }
+.callout p { font-size: 18px; color: var(--ink); margin-bottom: 0; }
+.callout p strong { color: var(--ink); }
+
+/* ═══════════════════════════════════════════════════════
+   HABITS  ←  VIBRANT GOLD
+═══════════════════════════════════════════════════════ */
+.habits {
+  background: linear-gradient(135deg, #f5e8d0, #f0dca8);
+  border: 2px solid #c8a040;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 28px 64px rgba(200, 160, 64, 0.2), 0 10px 30px rgba(0,0,0,0.25);
+  backdrop-filter: blur(20px);
+}
+.habits h3 {
+  font-family: var(--serif);
+  font-size: 24px;
+  font-weight: 700;
+  color: #786020;
+  padding: 24px 32px 20px;
+  border-bottom: 2px solid rgba(200, 160, 64, 0.25);
+  background: linear-gradient(135deg, rgba(200, 160, 64, 0.12), rgba(255, 255, 255, 0.3));
+}
+.habits ul { list-style: none; }
+.habits li {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid rgba(26, 42, 26, 0.2);
+}
+.habits li:last-child { border-bottom: none; }
+.habits .when {
+  font-family: var(--serif);
+  font-size: 16px;
+  font-style: italic;
+  color: #a08030;
+  min-width: 130px;
+  flex-shrink: 0;
+  padding: 18px 24px 18px 32px;
+  border-right: 2px solid rgba(26, 42, 26, 0.12);
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+}
+.habits .what {
+  flex: 1;
+  font-size: 17px;
+  padding: 18px 32px;
+  color: #4a3810;
+  line-height: 1.6;
+}
+.habits .what strong { color: #2a1a00; }
+.habits .what code {
+  font-size: 14px;
+  background: rgba(200, 160, 64, 0.15);
+  padding: 1px 6px;
+  border-radius: 4px;
+  color: #a06020;
+  font-family: ui-monospace, monospace;
+  font-weight: 600;
+}
+
+/* ═══════════════════════════════════════════════════════
+   PHASE CARDS  ←  VIBRANT OVERHAUL
+═══════════════════════════════════════════════════════ */
+.phase {
+  border-radius: 24px;
+  overflow: hidden;
+  margin-bottom: 48px;
+  backdrop-filter: blur(24px);
+  scroll-margin-top: 32px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 2px solid;
+  position: relative;
+}
+.phase:hover {
+  transform: translateY(-6px);
+}
+
+/* ── Per‑phase card background, border, shadow ── */
+.phase[data-color="amber"] { background: var(--amber-bg); border-color: var(--amber-edge);   box-shadow: 0 28px 64px var(--amber-glow), 0 10px 30px rgba(0,0,0,0.25); }
+.phase[data-color="amber"]:hover { box-shadow: 0 40px 90px var(--amber-glow), 0 15px 40px rgba(0,0,0,0.3); }
+
+.phase[data-color="teal"]   { background: var(--teal-bg);  border-color: var(--teal-edge);   box-shadow: 0 28px 64px var(--teal-glow), 0 10px 30px rgba(0,0,0,0.25); }
+.phase[data-color="teal"]:hover   { box-shadow: 0 40px 90px var(--teal-glow), 0 15px 40px rgba(0,0,0,0.3); }
+
+.phase[data-color="purple"] { background: var(--purple-bg); border-color: var(--purple-edge); box-shadow: 0 28px 64px var(--purple-glow), 0 10px 30px rgba(0,0,0,0.25); }
+.phase[data-color="purple"]:hover { box-shadow: 0 40px 90px var(--purple-glow), 0 15px 40px rgba(0,0,0,0.3); }
+
+.phase[data-color="rose"]   { background: var(--rose-bg);  border-color: var(--rose-edge);   box-shadow: 0 28px 64px var(--rose-glow), 0 10px 30px rgba(0,0,0,0.25); }
+.phase[data-color="rose"]:hover   { box-shadow: 0 40px 90px var(--rose-glow), 0 15px 40px rgba(0,0,0,0.3); }
+
+.phase[data-color="sky"]    { background: var(--sky-bg);   border-color: var(--sky-edge);    box-shadow: 0 28px 64px var(--sky-glow), 0 10px 30px rgba(0,0,0,0.25); }
+.phase[data-color="sky"]:hover    { box-shadow: 0 40px 90px var(--sky-glow), 0 15px 40px rgba(0,0,0,0.3); }
+
+.phase[data-color="green"]  { background: var(--green-bg); border-color: var(--green-edge);  box-shadow: 0 28px 64px var(--green-glow), 0 10px 30px rgba(0,0,0,0.25); }
+.phase[data-color="green"]:hover  { box-shadow: 0 40px 90px var(--green-glow), 0 15px 40px rgba(0,0,0,0.3); }
+
+.phase[data-color="red"]    { background: var(--coral-bg); border-color: var(--coral-edge);  box-shadow: 0 28px 64px var(--coral-glow), 0 10px 30px rgba(0,0,0,0.25); }
+.phase[data-color="red"]:hover    { box-shadow: 0 40px 90px var(--coral-glow), 0 15px 40px rgba(0,0,0,0.3); }
+
+.phase[data-color="cream"]  { background: var(--gold-bg);  border-color: var(--gold-edge);   box-shadow: 0 28px 64px var(--gold-glow), 0 10px 30px rgba(0,0,0,0.25); }
+.phase[data-color="cream"]:hover  { box-shadow: 0 40px 90px var(--gold-glow), 0 15px 40px rgba(0,0,0,0.3); }
+
+.phase[data-color="mint"]   { background: var(--mint-bg);  border-color: var(--mint-edge);   box-shadow: 0 28px 64px var(--mint-glow), 0 10px 30px rgba(0,0,0,0.25); }
+.phase[data-color="mint"]:hover   { box-shadow: 0 40px 90px var(--mint-glow), 0 15px 40px rgba(0,0,0,0.3); }
+
+.phase[data-color="slate"]  { background: var(--slate-bg); border-color: var(--slate-edge);  box-shadow: 0 28px 64px var(--slate-glow), 0 10px 30px rgba(0,0,0,0.25); }
+.phase[data-color="slate"]:hover  { box-shadow: 0 40px 90px var(--slate-glow), 0 15px 40px rgba(0,0,0,0.3); }
+
+/* ── Phase header ── */
+.phase-header {
+  padding: 36px 40px 32px;
+  border-bottom: 2px solid;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Per‑phase header bottom border */
+.phase[data-color="amber"] .phase-header { border-color: rgba(212, 160, 64, 0.25); }
+.phase[data-color="teal"]   .phase-header { border-color: rgba(64, 168, 152, 0.25); }
+.phase[data-color="purple"] .phase-header { border-color: rgba(154, 92, 184, 0.25); }
+.phase[data-color="rose"]   .phase-header { border-color: rgba(212, 96, 104, 0.25); }
+.phase[data-color="sky"]    .phase-header { border-color: rgba(64, 144, 184, 0.25); }
+.phase[data-color="green"]  .phase-header { border-color: rgba(88, 168, 88, 0.25); }
+.phase[data-color="red"]    .phase-header { border-color: rgba(212, 104, 80, 0.25); }
+.phase[data-color="cream"]  .phase-header { border-color: rgba(200, 160, 64, 0.25); }
+.phase[data-color="mint"]   .phase-header { border-color: rgba(64, 168, 128, 0.25); }
+.phase[data-color="slate"]  .phase-header { border-color: rgba(80, 128, 152, 0.25); }
+
+.phase-header::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 6px;
+  background: linear-gradient(90deg, var(--gold), var(--terra));
+}
+.phase[data-color="amber"] .phase-header::before { background: linear-gradient(90deg, #f0a030, #d47020); }
+.phase[data-color="teal"]   .phase-header::before { background: linear-gradient(90deg, #40a898, #2a7a6a); }
+.phase[data-color="purple"] .phase-header::before { background: linear-gradient(90deg, #9a5cb8, #6a2a8a); }
+.phase[data-color="rose"]   .phase-header::before { background: linear-gradient(90deg, #d46068, #b04048); }
+.phase[data-color="sky"]    .phase-header::before { background: linear-gradient(90deg, #4090b8, #2a6a8a); }
+.phase[data-color="green"]  .phase-header::before { background: linear-gradient(90deg, #58a858, #3a7a3a); }
+.phase[data-color="red"]    .phase-header::before { background: linear-gradient(90deg, #d46850, #b04830); }
+.phase[data-color="cream"]  .phase-header::before { background: linear-gradient(90deg, #c8a040, #a08020); }
+.phase[data-color="mint"]   .phase-header::before { background: linear-gradient(90deg, #40a880, #2a7a60); }
+.phase[data-color="slate"]  .phase-header::before { background: linear-gradient(90deg, #508098, #3a6078); }
+
+.phase-header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+/* ── Phase badge ── */
+.phase-badge {
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 5px 14px;
+  border-radius: 20px;
+  border: 1px solid;
+}
+.phase[data-color="amber"] .phase-badge { background: #f5d0a0; color: #7a4a10; border-color: #d4a040; }
+.phase[data-color="teal"]   .phase-badge { background: #a0e0d5; color: #206860; border-color: #40a898; }
+.phase[data-color="purple"] .phase-badge { background: #d0b0e0; color: #5a2a78; border-color: #9a5cb8; }
+.phase[data-color="rose"]   .phase-badge { background: #f0b8b8; color: #882038; border-color: #d46068; }
+.phase[data-color="sky"]    .phase-badge { background: #a0d0f0; color: #205878; border-color: #4090b8; }
+.phase[data-color="green"]  .phase-badge { background: #b8e0b8; color: #286828; border-color: #58a858; }
+.phase[data-color="red"]    .phase-badge { background: #f0b8a8; color: #883018; border-color: #d46850; }
+.phase[data-color="cream"]  .phase-badge { background: #e0c880; color: #786020; border-color: #c8a040; }
+.phase[data-color="mint"]   .phase-badge { background: #a0e0c0; color: #206848; border-color: #40a880; }
+.phase[data-color="slate"]  .phase-badge { background: #b0c8d8; color: #284858; border-color: #508098; }
+
+.phase-dur {
+  font-size: 14px;
+  color: inherit;
+  font-family: ui-monospace, monospace;
+  opacity: 0.6;
+}
+.phase[data-color="amber"] .phase-dur { color: #7a4a10; }
+.phase[data-color="teal"]   .phase-dur { color: #206860; }
+.phase[data-color="purple"] .phase-dur { color: #5a2a78; }
+.phase[data-color="rose"]   .phase-dur { color: #882038; }
+.phase[data-color="sky"]    .phase-dur { color: #205878; }
+.phase[data-color="green"]  .phase-dur { color: #286828; }
+.phase[data-color="red"]    .phase-dur { color: #883018; }
+.phase[data-color="cream"]  .phase-dur { color: #786020; }
+.phase[data-color="mint"]   .phase-dur { color: #206848; }
+.phase[data-color="slate"]  .phase-dur { color: #284858; }
+
+/* ── Phase title - big, bold, coloured ── */
+.phase-title {
+  font-family: var(--serif);
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 14px;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+.phase[data-color="amber"] .phase-title { color: #7a4a10; }
+.phase[data-color="teal"]   .phase-title { color: #206860; }
+.phase[data-color="purple"] .phase-title { color: #5a2a78; }
+.phase[data-color="rose"]   .phase-title { color: #882038; }
+.phase[data-color="sky"]    .phase-title { color: #205878; }
+.phase[data-color="green"]  .phase-title { color: #286828; }
+.phase[data-color="red"]    .phase-title { color: #883018; }
+.phase[data-color="cream"]  .phase-title { color: #786020; }
+.phase[data-color="mint"]   .phase-title { color: #206848; }
+.phase[data-color="slate"]  .phase-title { color: #284858; }
+
+/* ── Phase goal ── */
+.phase-goal {
+  font-size: 16px;
+  line-height: 1.7;
+  max-width: 680px;
+}
+.phase[data-color="amber"] .phase-goal { color: #5a3a10; }
+.phase[data-color="teal"]   .phase-goal { color: #184840; }
+.phase[data-color="purple"] .phase-goal { color: #3a1a50; }
+.phase[data-color="rose"]   .phase-goal { color: #5a1828; }
+.phase[data-color="sky"]    .phase-goal { color: #183848; }
+.phase[data-color="green"]  .phase-goal { color: #184818; }
+.phase[data-color="red"]    .phase-goal { color: #5a2010; }
+.phase[data-color="cream"]  .phase-goal { color: #504010; }
+.phase[data-color="mint"]   .phase-goal { color: #184838; }
+.phase[data-color="slate"]  .phase-goal { color: #183848; }
+.phase-goal em { font-style: italic; }
+.phase[data-color="amber"] .phase-goal em { color: #d48020; }
+.phase[data-color="teal"]   .phase-goal em { color: #40a898; }
+.phase[data-color="purple"] .phase-goal em { color: #9a5cb8; }
+.phase[data-color="rose"]   .phase-goal em { color: #d46068; }
+.phase[data-color="sky"]    .phase-goal em { color: #4090b8; }
+.phase[data-color="green"]  .phase-goal em { color: #58a858; }
+.phase[data-color="red"]    .phase-goal em { color: #d46850; }
+.phase[data-color="cream"]  .phase-goal em { color: #c8a040; }
+.phase[data-color="mint"]   .phase-goal em { color: #40a880; }
+.phase[data-color="slate"]  .phase-goal em { color: #508098; }
+
+/* Big decorative number - coloured per phase */
+.phase-header .phase-num {
+  position: absolute;
+  right: 28px;
+  bottom: -8px;
+  font-family: var(--serif);
+  font-size: 100px;
+  font-weight: 800;
+  opacity: 0.10;
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+}
+.phase[data-color="amber"] .phase-num { color: #d4a040; }
+.phase[data-color="teal"]   .phase-num { color: #40a898; }
+.phase[data-color="purple"] .phase-num { color: #9a5cb8; }
+.phase[data-color="rose"]   .phase-num { color: #d46068; }
+.phase[data-color="sky"]    .phase-num { color: #4090b8; }
+.phase[data-color="green"]  .phase-num { color: #58a858; }
+.phase[data-color="red"]    .phase-num { color: #d46850; }
+.phase[data-color="cream"]  .phase-num { color: #c8a040; }
+.phase[data-color="mint"]   .phase-num { color: #40a880; }
+.phase[data-color="slate"]  .phase-num { color: #508098; }
+
+/* ═══════════════════════════════════════════════════════
+   WEEK ACCORDIONS  ←  DARK BORDERS + PER‑PHASE COLOUR
+═══════════════════════════════════════════════════════ */
+details.week {
+  border-bottom: 1px solid rgba(26, 42, 26, 0.35);
+}
+details.week:last-child { border-bottom: none; }
+
+details.week summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 14px 32px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  user-select: none;
+  transition: all 0.2s;
+  position: relative;
+}
+details.week summary::-webkit-details-marker { display: none; }
+
+/* Per‑phase summary colour + hover */
+.phase[data-color="amber"] details.week summary { color: #7a4a10; }
+.phase[data-color="teal"]   details.week summary { color: #206860; }
+.phase[data-color="purple"] details.week summary { color: #5a2a78; }
+.phase[data-color="rose"]   details.week summary { color: #882038; }
+.phase[data-color="sky"]    details.week summary { color: #205878; }
+.phase[data-color="green"]  details.week summary { color: #286828; }
+.phase[data-color="red"]    details.week summary { color: #883018; }
+.phase[data-color="cream"]  details.week summary { color: #786020; }
+.phase[data-color="mint"]   details.week summary { color: #206848; }
+.phase[data-color="slate"]  details.week summary { color: #284858; }
+
+.phase[data-color="amber"] details.week summary:hover { background: rgba(212, 160, 64, 0.10); }
+.phase[data-color="teal"]   details.week summary:hover { background: rgba(64, 168, 152, 0.10); }
+.phase[data-color="purple"] details.week summary:hover { background: rgba(154, 92, 184, 0.10); }
+.phase[data-color="rose"]   details.week summary:hover { background: rgba(212, 96, 104, 0.10); }
+.phase[data-color="sky"]    details.week summary:hover { background: rgba(64, 144, 184, 0.10); }
+.phase[data-color="green"]  details.week summary:hover { background: rgba(88, 168, 88, 0.10); }
+.phase[data-color="red"]    details.week summary:hover { background: rgba(212, 104, 80, 0.10); }
+.phase[data-color="cream"]  details.week summary:hover { background: rgba(200, 160, 64, 0.10); }
+.phase[data-color="mint"]   details.week summary:hover { background: rgba(64, 168, 128, 0.10); }
+.phase[data-color="slate"]  details.week summary:hover { background: rgba(80, 128, 152, 0.10); }
+
+.phase[data-color="amber"] details.week[open] { background: rgba(212, 160, 64, 0.06); }
+.phase[data-color="teal"]   details.week[open] { background: rgba(64, 168, 152, 0.06); }
+.phase[data-color="purple"] details.week[open] { background: rgba(154, 92, 184, 0.06); }
+.phase[data-color="rose"]   details.week[open] { background: rgba(212, 96, 104, 0.06); }
+.phase[data-color="sky"]    details.week[open] { background: rgba(64, 144, 184, 0.06); }
+.phase[data-color="green"]  details.week[open] { background: rgba(88, 168, 88, 0.06); }
+.phase[data-color="red"]    details.week[open] { background: rgba(212, 104, 80, 0.06); }
+.phase[data-color="cream"]  details.week[open] { background: rgba(200, 160, 64, 0.06); }
+.phase[data-color="mint"]   details.week[open] { background: rgba(64, 168, 128, 0.06); }
+.phase[data-color="slate"]  details.week[open] { background: rgba(80, 128, 152, 0.06); }
+
+/* ── Arrow ── */
+.w-arrow {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.3s;
+  font-size: 12px;
+  border: 2px solid;
+}
+.phase[data-color="amber"] .w-arrow { background: rgba(212, 160, 64, 0.15); color: #7a4a10; border-color: rgba(212, 160, 64, 0.3); }
+.phase[data-color="teal"]   .w-arrow { background: rgba(64, 168, 152, 0.15); color: #206860; border-color: rgba(64, 168, 152, 0.3); }
+.phase[data-color="purple"] .w-arrow { background: rgba(154, 92, 184, 0.15); color: #5a2a78; border-color: rgba(154, 92, 184, 0.3); }
+.phase[data-color="rose"]   .w-arrow { background: rgba(212, 96, 104, 0.15); color: #882038; border-color: rgba(212, 96, 104, 0.3); }
+.phase[data-color="sky"]    .w-arrow { background: rgba(64, 144, 184, 0.15); color: #205878; border-color: rgba(64, 144, 184, 0.3); }
+.phase[data-color="green"]  .w-arrow { background: rgba(88, 168, 88, 0.15); color: #286828; border-color: rgba(88, 168, 88, 0.3); }
+.phase[data-color="red"]    .w-arrow { background: rgba(212, 104, 80, 0.15); color: #883018; border-color: rgba(212, 104, 80, 0.3); }
+.phase[data-color="cream"]  .w-arrow { background: rgba(200, 160, 64, 0.15); color: #786020; border-color: rgba(200, 160, 64, 0.3); }
+.phase[data-color="mint"]   .w-arrow { background: rgba(64, 168, 128, 0.15); color: #206848; border-color: rgba(64, 168, 128, 0.3); }
+.phase[data-color="slate"]  .w-arrow { background: rgba(80, 128, 152, 0.15); color: #284858; border-color: rgba(80, 128, 152, 0.3); }
+
+details.week[open] .w-arrow {
+  transform: rotate(90deg);
+  color: #fff;
+  border-color: transparent;
+}
+.phase[data-color="amber"] details.week[open] .w-arrow { background: linear-gradient(135deg, #f0a030, #d47020); }
+.phase[data-color="teal"]   details.week[open] .w-arrow { background: linear-gradient(135deg, #40a898, #2a7a6a); }
+.phase[data-color="purple"] details.week[open] .w-arrow { background: linear-gradient(135deg, #9a5cb8, #6a2a8a); }
+.phase[data-color="rose"]   details.week[open] .w-arrow { background: linear-gradient(135deg, #d46068, #b04048); }
+.phase[data-color="sky"]    details.week[open] .w-arrow { background: linear-gradient(135deg, #4090b8, #2a6a8a); }
+.phase[data-color="green"]  details.week[open] .w-arrow { background: linear-gradient(135deg, #58a858, #3a7a3a); }
+.phase[data-color="red"]    details.week[open] .w-arrow { background: linear-gradient(135deg, #d46850, #b04830); }
+.phase[data-color="cream"]  details.week[open] .w-arrow { background: linear-gradient(135deg, #c8a040, #a08020); }
+.phase[data-color="mint"]   details.week[open] .w-arrow { background: linear-gradient(135deg, #40a880, #2a7a60); }
+.phase[data-color="slate"] details.week[open] .w-arrow { background: linear-gradient(135deg, #508098, #3a6078); }
+
+/* ── Week checkbox (circular) ── */
+.week-checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid;
+  cursor: pointer;
+  flex-shrink: 0;
+  position: relative;
+  transition: all 0.25s;
+  outline: none;
+}
+.week-checkbox:checked {
+  border-color: transparent;
+}
+.week-checkbox:checked::after {
+  content: '✓';
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+}
+.phase[data-color="amber"] .week-checkbox { border-color: rgba(212, 160, 64, 0.3); }
+.phase[data-color="teal"]   .week-checkbox { border-color: rgba(64, 168, 152, 0.3); }
+.phase[data-color="purple"] .week-checkbox { border-color: rgba(154, 92, 184, 0.3); }
+.phase[data-color="rose"]   .week-checkbox { border-color: rgba(212, 96, 104, 0.3); }
+.phase[data-color="sky"]    .week-checkbox { border-color: rgba(64, 144, 184, 0.3); }
+.phase[data-color="green"]  .week-checkbox { border-color: rgba(88, 168, 88, 0.3); }
+.phase[data-color="red"]    .week-checkbox { border-color: rgba(212, 104, 80, 0.3); }
+.phase[data-color="cream"]  .week-checkbox { border-color: rgba(200, 160, 64, 0.3); }
+.phase[data-color="mint"]   .week-checkbox { border-color: rgba(64, 168, 128, 0.3); }
+.phase[data-color="slate"]  .week-checkbox { border-color: rgba(80, 128, 152, 0.3); }
+.phase[data-color="amber"] .week-checkbox:checked { background: linear-gradient(135deg, #f0a030, #d47020); }
+.phase[data-color="teal"]   .week-checkbox:checked { background: linear-gradient(135deg, #40a898, #2a7a6a); }
+.phase[data-color="purple"] .week-checkbox:checked { background: linear-gradient(135deg, #9a5cb8, #6a2a8a); }
+.phase[data-color="rose"]   .week-checkbox:checked { background: linear-gradient(135deg, #d46068, #b04048); }
+.phase[data-color="sky"]    .week-checkbox:checked { background: linear-gradient(135deg, #4090b8, #2a6a8a); }
+.phase[data-color="green"]  .week-checkbox:checked { background: linear-gradient(135deg, #58a858, #3a7a3a); }
+.phase[data-color="red"]    .week-checkbox:checked { background: linear-gradient(135deg, #d46850, #b04830); }
+.phase[data-color="cream"]  .week-checkbox:checked { background: linear-gradient(135deg, #c8a040, #a08020); }
+.phase[data-color="mint"]   .week-checkbox:checked { background: linear-gradient(135deg, #40a880, #2a7a60); }
+.phase[data-color="slate"]  .week-checkbox:checked { background: linear-gradient(135deg, #508098, #3a6078); }
+
+/* ── Week tag (e.g. "Week 1") ── */
+.w-tag {
+  font-family: ui-monospace, monospace;
+  font-size: 13px;
+  min-width: 62px;
+  flex-shrink: 0;
+  font-weight: 600;
+}
+.phase[data-color="amber"] .w-tag { color: #d4a040; }
+.phase[data-color="teal"]   .w-tag { color: #40a898; }
+.phase[data-color="purple"] .w-tag { color: #9a5cb8; }
+.phase[data-color="rose"]   .w-tag { color: #d46068; }
+.phase[data-color="sky"]    .w-tag { color: #4090b8; }
+.phase[data-color="green"]  .w-tag { color: #58a858; }
+.phase[data-color="red"]    .w-tag { color: #d46850; }
+.phase[data-color="cream"]  .w-tag { color: #c8a040; }
+.phase[data-color="mint"]   .w-tag { color: #40a880; }
+.phase[data-color="slate"]  .w-tag { color: #508098; }
+
+/* ── Week title ── */
+.w-title {
+  flex: 1;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+.phase[data-color="amber"] .w-title { color: #5a3a10; }
+.phase[data-color="teal"]   .w-title { color: #184840; }
+.phase[data-color="purple"] .w-title { color: #3a1a50; }
+.phase[data-color="rose"]   .w-title { color: #5a1828; }
+.phase[data-color="sky"]    .w-title { color: #183848; }
+.phase[data-color="green"]  .w-title { color: #184818; }
+.phase[data-color="red"]    .w-title { color: #5a2010; }
+.phase[data-color="cream"]  .w-title { color: #504010; }
+.phase[data-color="mint"]   .w-title { color: #184838; }
+.phase[data-color="slate"]  .w-title { color: #183848; }
+
+/* ── Week body ── */
+.w-body {
+  padding: 6px 32px 28px;
+  border-top: 1px dashed rgba(26, 42, 26, 0.18);
+}
+
+.w-body h4 {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  margin: 22px 0 10px;
+  font-weight: 700;
+}
+.phase[data-color="amber"] .w-body h4 { color: #d4a040; }
+.phase[data-color="teal"]   .w-body h4 { color: #40a898; }
+.phase[data-color="purple"] .w-body h4 { color: #9a5cb8; }
+.phase[data-color="rose"]   .w-body h4 { color: #d46068; }
+.phase[data-color="sky"]    .w-body h4 { color: #4090b8; }
+.phase[data-color="green"]  .w-body h4 { color: #58a858; }
+.phase[data-color="red"]    .w-body h4 { color: #d46850; }
+.phase[data-color="cream"]  .w-body h4 { color: #c8a040; }
+.phase[data-color="mint"]   .w-body h4 { color: #40a880; }
+.phase[data-color="slate"]  .w-body h4 { color: #508098; }
+
+.w-body ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.w-body ul li {
+  font-size: 16px;
+  padding-left: 16px;
+  position: relative;
+  line-height: 1.6;
+}
+.phase[data-color="amber"] .w-body ul li { color: #4a3010; }
+.phase[data-color="teal"]   .w-body ul li { color: #103830; }
+.phase[data-color="purple"] .w-body ul li { color: #2a1040; }
+.phase[data-color="rose"]   .w-body ul li { color: #481020; }
+.phase[data-color="sky"]    .w-body ul li { color: #102838; }
+.phase[data-color="green"]  .w-body ul li { color: #103810; }
+.phase[data-color="red"]    .w-body ul li { color: #481808; }
+.phase[data-color="cream"]  .w-body ul li { color: #403008; }
+.phase[data-color="mint"]   .w-body ul li { color: #103828; }
+.phase[data-color="slate"]  .w-body ul li { color: #102838; }
+.w-body ul li::before {
+  content: "-";
+  position: absolute;
+  left: 0;
+  font-size: 11px;
+  top: 1px;
+  opacity: 0.8;
+}
+.phase[data-color="amber"] .w-body ul li::before { color: #f0a030; }
+.phase[data-color="teal"]   .w-body ul li::before { color: #40a898; }
+.phase[data-color="purple"] .w-body ul li::before { color: #9a5cb8; }
+.phase[data-color="rose"]   .w-body ul li::before { color: #d46068; }
+.phase[data-color="sky"]    .w-body ul li::before { color: #4090b8; }
+.phase[data-color="green"]  .w-body ul li::before { color: #58a858; }
+.phase[data-color="red"]    .w-body ul li::before { color: #d46850; }
+.phase[data-color="cream"]  .w-body ul li::before { color: #c8a040; }
+.phase[data-color="mint"]   .w-body ul li::before { color: #40a880; }
+.phase[data-color="slate"]  .w-body ul li::before { color: #508098; }
+
+/* Resources */
+.res {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 14px;
+  padding: 16px 20px;
+  margin: 12px 0;
+  font-size: 15px;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  backdrop-filter: blur(8px);
+}
+.phase .res {
+  background: rgba(255, 255, 255, 0.35);
+}
+.phase[data-color="amber"] .res { border-color: rgba(212, 160, 64, 0.2); }
+.phase[data-color="teal"]   .res { border-color: rgba(64, 168, 152, 0.2); }
+.phase[data-color="purple"] .res { border-color: rgba(154, 92, 184, 0.2); }
+.phase[data-color="rose"]   .res { border-color: rgba(212, 96, 104, 0.2); }
+.phase[data-color="sky"]    .res { border-color: rgba(64, 144, 184, 0.2); }
+.phase[data-color="green"]  .res { border-color: rgba(88, 168, 88, 0.2); }
+.phase[data-color="red"]    .res { border-color: rgba(212, 104, 80, 0.2); }
+.phase[data-color="cream"]  .res { border-color: rgba(200, 160, 64, 0.2); }
+.phase[data-color="mint"]   .res { border-color: rgba(64, 168, 128, 0.2); }
+.phase[data-color="slate"]  .res { border-color: rgba(80, 128, 152, 0.2); }
+
+.res-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--sage);
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+.res.paid .res-dot { background: var(--gold); }
+.res.book .res-dot { background: var(--cobalt); }
+.res.tool .res-dot { background: var(--plum); }
+.res .name {
+  color: var(--gold);
+  font-weight: 600;
+  display: block;
+  margin-bottom: 2px;
+}
+.phase .res .name { font-weight: 700; }
+.phase[data-color="amber"] .res .name { color: #7a4a10; }
+.phase[data-color="teal"]   .res .name { color: #206860; }
+.phase[data-color="purple"] .res .name { color: #5a2a78; }
+.phase[data-color="rose"]   .res .name { color: #882038; }
+.phase[data-color="sky"]    .res .name { color: #205878; }
+.phase[data-color="green"]  .res .name { color: #286828; }
+.phase[data-color="red"]    .res .name { color: #883018; }
+.phase[data-color="cream"]  .res .name { color: #786020; }
+.phase[data-color="mint"]   .res .name { color: #206848; }
+.phase[data-color="slate"]  .res .name { color: #284858; }
+
+.res .what {
+  color: var(--ink-soft);
+  font-size: 15px;
+  line-height: 1.6;
+  display: block;
+  opacity: 0.95;
+}
+.phase[data-color="amber"] .res .what { color: #4a3010; }
+.phase[data-color="teal"]   .res .what { color: #103830; }
+.phase[data-color="purple"] .res .what { color: #2a1040; }
+.phase[data-color="rose"]   .res .what { color: #481020; }
+.phase[data-color="sky"]    .res .what { color: #102838; }
+.phase[data-color="green"]  .res .what { color: #103810; }
+.phase[data-color="red"]    .res .what { color: #481808; }
+.phase[data-color="cream"]  .res .what { color: #403008; }
+.phase[data-color="mint"]   .res .what { color: #103828; }
+.phase[data-color="slate"]  .res .what { color: #102838; }
+
+/* Output box - base (overridden per‑phase in phase cards) */
+.w-output {
+  background: linear-gradient(135deg, rgba(90, 140, 104, 0.15), rgba(255, 255, 255, 0.05));
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-left: 5px solid var(--sage);
+  padding: 20px 24px;
+  border-radius: 0 18px 18px 0;
+  margin-top: 24px;
+  font-size: 16px;
+  line-height: 1.65;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  color: var(--ink-soft);
+}
+
+/* ═══════════════════════════════════════════════════════
+   RESOURCE TABLE
+═══════════════════════════════════════════════════════ */
+.table-scroll {
+  overflow-x: auto;
+  margin: 20px 0;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  backdrop-filter: blur(10px);
+}
+table.res-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+  min-width: 520px;
+  background: linear-gradient(135deg, #f5e8d0, #f0dca8);
+  border: 1px solid rgba(200, 160, 64, 0.3);
+  border-radius: 18px;
+}
+table.res-table th {
+  background: linear-gradient(180deg, #3a4a3a 0%, #2e3a2e 100%);
+  color: var(--gold);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-weight: 700;
+  padding: 14px 18px;
+  text-align: left;
+  font-family: var(--sans);
+  border-bottom: 2px solid rgba(200, 160, 64, 0.25);
+}
+table.res-table td {
+  border-bottom: 1px solid rgba(26, 42, 26, 0.12);
+  padding: 14px 20px;
+  text-align: left;
+  vertical-align: top;
+  color: #4a3810;
+  line-height: 1.5;
+}
+table.res-table tr:last-child td { border-bottom: none; }
+table.res-table td:first-child {
+  font-weight: 700;
+  color: #7a4a10;
+  font-size: 15px;
+}
+table.res-table tr:hover td { background: rgba(200, 160, 64, 0.08); }
+
+/* ═══════════════════════════════════════════════════════
+   MISC COMPONENTS
+═══════════════════════════════════════════════════════ */
+hr {
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin: 48px 0;
+}
+
+/* Phase timeline strip */
+.phase-timeline {
+  display: flex;
+  gap: 0;
+  margin: 28px 0 0;
+  border-radius: var(--radius);
+  overflow: hidden;
+  height: 6px;
+}
+.phase-timeline .tl-seg {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.08);
+  transition: background 0.3s;
+}
+
+/* Back to top */
+.back-to-top {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  width: 44px;
+  height: 44px;
+  background: linear-gradient(180deg, rgba(120,101,95,0.82) 0%, rgba(94,88,97,0.82) 100%);
+  color: var(--cream);
+  text-decoration: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  box-shadow: var(--shadow-md);
+  transition: background 0.15s, transform 0.15s;
+  z-index: 100;
+  opacity: 0;
+  pointer-events: none;
+}
+.back-to-top.visible {
+  opacity: 1;
+  pointer-events: all;
+}
+.back-to-top:hover {
+  background: var(--terra);
+  transform: translateY(-3px);
+}
+
+/* Resource legend dots */
+.res-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin: 16px 0 24px;
+  font-size: 14px;
+  color: var(--cream-2);
+  opacity: 0.8;
+}
+.res-legend span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.res-legend .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* Opening quote */
+.opening-quote {
+  border-left: 5px solid var(--gold);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(212, 168, 74, 0.2);
+  border-left: 5px solid var(--gold);
+  padding: 24px 32px;
+  margin: 48px 0 64px;
+  font-family: var(--serif);
+  font-size: 24px;
+  font-style: italic;
+  color: var(--cream);
+  line-height: 1.5;
+  border-radius: 0 20px 20px 0;
+  box-shadow: 0 20px 50px rgba(212, 168, 74, 0.1), 0 10px 30px rgba(0,0,0,0.25);
+}
+.opening-quote cite {
+  display: block;
+  font-style: normal;
+  font-size: 14px;
+  font-family: var(--sans);
+  color: var(--cream-3);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-top: 8px;
+  opacity: 0.7;
+}
+
+/* Mobile nav (only visible on small screens) */
+.mobile-nav {
+  display: none;
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 999;
+  align-items: center; justify-content: space-between;
+  padding: .9rem 5vw;
+  background: rgba(20,25,20,.96);
+  border-bottom: 1px solid rgba(255,255,255,.07);
+}
+.mobile-nav__brand {
+  font-family: 'Playfair Display', serif; font-weight: 700; font-size: .95rem;
+  color: #f2fff2; letter-spacing: -.01em;
+}
+.mobile-nav__link {
+  font-size: .65rem; font-weight: 600; letter-spacing: .16em;
+  text-transform: uppercase; color: rgba(255,255,255,.5);
+  transition: color .3s;
+}
+.mobile-nav__link:hover { color: #f2fff2; }
+
+/* Responsive */
+@media (max-width: 920px) {
+  body {
+    grid-template-columns: 1fr;
+    display: block;
+  }
+  .mobile-nav { display: flex; }
+  .sidebar {
+    position: static;
+    height: auto;
+    overflow-y: visible;
+    padding-bottom: 0;
+    padding-top: 60px;
+  }
+  .sidebar-brand { position: static; }
+  .sidebar a { padding: 7px 20px; }
+  .nav-group { padding: 12px 20px 4px; }
+  main { padding: 36px 24px 100px; }
+  .hero h1 { font-size: 36px; }
+  .w-body, details.week summary { padding-left: 20px; padding-right: 20px; }
+  .phase-header { padding: 22px 24px 20px; }
+  .hero-stats { flex-direction: column; }
+  .hero-stat { border-right: none; border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+}
+
+/* Smooth stagger for phases */
+.phase { animation: fadeUp 0.5s ease both; }
+.phase:nth-child(2) { animation-delay: 0.05s; }
+.phase:nth-child(3) { animation-delay: 0.1s; }
+.phase:nth-child(4) { animation-delay: 0.15s; }
+
+body {
+  background-attachment: fixed;
+}
+
+.sidebar {
+  backdrop-filter: blur(20px);
+  background: linear-gradient(180deg, rgba(20, 25, 20, 0.95) 0%, rgba(35, 45, 35, 0.95) 100%);
+  border-right: 1px solid rgba(212, 168, 74, 0.15);
+}
+
+.hero h1 {
+  text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+}
+
+.phase,
+.habits,
+.hero-stats,
+table.res-table,
+.callout,
+.res,
+.w-output {
+  backdrop-filter: blur(20px);
+}
+
+/* ── W-output inside phase cards - per‑phase accent ── */
+.phase .w-output {
+  border-left-width: 5px !important;
+  border-left-style: solid !important;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+}
+.phase[data-color="amber"] .w-output { background: linear-gradient(135deg, rgba(240, 160, 48, 0.20), rgba(255, 255, 255, 0.5)) !important; border-color: rgba(212, 160, 64, 0.3) !important; border-left-color: #d4a040 !important; }
+.phase[data-color="teal"]   .w-output { background: linear-gradient(135deg, rgba(64, 168, 152, 0.20), rgba(255, 255, 255, 0.5)) !important; border-color: rgba(64, 168, 152, 0.3) !important; border-left-color: #40a898 !important; }
+.phase[data-color="purple"] .w-output { background: linear-gradient(135deg, rgba(154, 92, 184, 0.20), rgba(255, 255, 255, 0.5)) !important; border-color: rgba(154, 92, 184, 0.3) !important; border-left-color: #9a5cb8 !important; }
+.phase[data-color="rose"]   .w-output { background: linear-gradient(135deg, rgba(212, 96, 104, 0.20), rgba(255, 255, 255, 0.5)) !important; border-color: rgba(212, 96, 104, 0.3) !important; border-left-color: #d46068 !important; }
+.phase[data-color="sky"]    .w-output { background: linear-gradient(135deg, rgba(64, 144, 184, 0.20), rgba(255, 255, 255, 0.5)) !important; border-color: rgba(64, 144, 184, 0.3) !important; border-left-color: #4090b8 !important; }
+.phase[data-color="green"]  .w-output { background: linear-gradient(135deg, rgba(88, 168, 88, 0.20), rgba(255, 255, 255, 0.5)) !important; border-color: rgba(88, 168, 88, 0.3) !important; border-left-color: #58a858 !important; }
+.phase[data-color="red"]    .w-output { background: linear-gradient(135deg, rgba(212, 104, 80, 0.20), rgba(255, 255, 255, 0.5)) !important; border-color: rgba(212, 104, 80, 0.3) !important; border-left-color: #d46850 !important; }
+.phase[data-color="cream"]  .w-output { background: linear-gradient(135deg, rgba(200, 160, 64, 0.20), rgba(255, 255, 255, 0.5)) !important; border-color: rgba(200, 160, 64, 0.3) !important; border-left-color: #c8a040 !important; }
+.phase[data-color="mint"]   .w-output { background: linear-gradient(135deg, rgba(64, 168, 128, 0.20), rgba(255, 255, 255, 0.5)) !important; border-color: rgba(64, 168, 128, 0.3) !important; border-left-color: #40a880 !important; }
+.phase[data-color="slate"]  .w-output { background: linear-gradient(135deg, rgba(80, 128, 152, 0.20), rgba(255, 255, 255, 0.5)) !important; border-color: rgba(80, 128, 152, 0.3) !important; border-left-color: #508098 !important; }
+
+.w-output strong {
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 6px;
+}
+.phase[data-color="amber"] .w-output strong { color: #d4a040; }
+.phase[data-color="teal"]   .w-output strong { color: #40a898; }
+.phase[data-color="purple"] .w-output strong { color: #9a5cb8; }
+.phase[data-color="rose"]   .w-output strong { color: #d46068; }
+.phase[data-color="sky"]    .w-output strong { color: #4090b8; }
+.phase[data-color="green"]  .w-output strong { color: #58a858; }
+.phase[data-color="red"]    .w-output strong { color: #d46850; }
+.phase[data-color="cream"]  .w-output strong { color: #c8a040; }
+.phase[data-color="mint"]   .w-output strong { color: #40a880; }
+.phase[data-color="slate"]  .w-output strong { color: #508098; }
+
+/* ── Callouts ── */
+.callout {
+  background: linear-gradient(135deg, rgba(240, 228, 192, 0.85), rgba(255, 255, 255, 0.7)) !important;
+  border: 1px solid rgba(212, 168, 74, 0.3) !important;
+  border-left: 5px solid var(--gold) !important;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+}
+.callout p { color: var(--ink) !important; }
+
+.callout.info {
+  background: linear-gradient(135deg, rgba(196, 220, 232, 0.85), rgba(255, 255, 255, 0.7)) !important;
+  border: 1px solid rgba(74, 154, 184, 0.3) !important;
+  border-left: 5px solid var(--cobalt) !important;
+}
+
+.callout.good {
+  background: linear-gradient(135deg, rgba(196, 232, 208, 0.85), rgba(255, 255, 255, 0.7)) !important;
+  border: 1px solid rgba(90, 184, 116, 0.3) !important;
+  border-left: 5px solid var(--sage) !important;
+}
+
+.back-to-top {
+  background: linear-gradient(135deg, var(--gold), var(--terra));
+  box-shadow: 0 10px 30px rgba(212, 168, 74, 0.3);
+  color: #fff;
+}
+
+.back-to-top:hover {
+  background: linear-gradient(135deg, var(--terra), var(--sage)) !important;
+  transform: translateY(-5px);
+}
+
+::selection {
+  background: var(--gold);
+  color: #1a2a1a;
+}
+
+.hero {
+  background: linear-gradient(135deg, rgba(46, 58, 46, 0.6), rgba(30, 38, 30, 0.8), rgba(25, 35, 28, 0.7)) !important;
+  border: 2px solid rgba(212, 168, 74, 0.2) !important;
+  box-shadow: 0 30px 70px rgba(0,0,0,0.4) !important;
+}
+
+.hero-stat:nth-child(1),
+.hero-stat:nth-child(2),
+.hero-stat:nth-child(3),
+.hero-stat:nth-child(4) {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.04), rgba(200, 232, 208, 0.04));
+}
+
+.sidebar a:hover {
+  background: rgba(212, 168, 74, 0.15);
+  color: var(--gold);
+}
+
+.res {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(12px);
+}
+
+table.res-table th {
+  background: linear-gradient(135deg, #3a4a3a, #2e3a2e);
+  color: var(--cream);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.opening-quote {
+  background: linear-gradient(135deg, rgba(242, 255, 242, 0.06), rgba(224, 245, 229, 0.03));
+  border: 1px solid rgba(212, 168, 74, 0.2);
+  border-left: 5px solid var(--gold);
+}
+
+body::before {
+  opacity: 0.04;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ─── SIDEBAR ─── -->
+<aside class="sidebar">
+  <div class="sidebar-brand">
+    <div class="sidebar-logo">
+      <div class="icon">🤍</div>
+      <div>
+        <div class="name">Digital Art Roadmap</div>
+        <span class="sub">by Spacechase</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="nav-group">Start Here</div>
+  <a href="#top"><span class="phase-dot" style="background:#c4512a"></span>Overview</a>
+  <a href="#how"><span class="phase-dot" style="background:#c4512a"></span>How to use</a>
+  <a href="#habits"><span class="phase-dot" style="background:#c4512a"></span>Daily habits</a>
+
+  <div class="nav-group">The 11 Phases</div>
+  <a href="#p1"><span class="phase-dot" style="background:#c4512a"></span>P1 - Mark-Making</a>
+  <a href="#p2"><span class="phase-dot" style="background:#6b3d6b"></span>P2 - Gesture &amp; Figure</a>
+  <a href="#p3"><span class="phase-dot" style="background:#3a5c6b"></span>P3 - Perspective</a>
+  <a href="#p4"><span class="phase-dot" style="background:#2a4a7c"></span>P4 - Value &amp; Light</a>
+  <a href="#p5"><span class="phase-dot" style="background:#8c3a2a"></span>P5 - Head &amp; Portraits</a>
+  <a href="#p6"><span class="phase-dot" style="background:#4a7c59"></span>P6 - Figure Construction</a>
+  <a href="#p7"><span class="phase-dot" style="background:#3a5c6b"></span>P7 - Colour</a>
+  <a href="#p8"><span class="phase-dot" style="background:#2a4a7c"></span>P8 - Composition</a>
+  <a href="#p9"><span class="phase-dot" style="background:#6b3d6b"></span>P9 - Design &amp; Style</a>
+  <a href="#p10"><span class="phase-dot" style="background:#8c3a2a"></span>P10 - Environment</a>
+  <a href="#p11"><span class="phase-dot" style="background:#8c7a5c"></span>P11 - Creature &amp; Capstone</a>
+
+  <div class="nav-group">Reference</div>
+  <a href="#resources"><span class="phase-dot" style="background:#b8892a"></span>All resources</a>
+
+  <div class="nav-group">Pages</div>
+  <a href="index.html"><span class="phase-dot" style="background:#d47a60"></span>Portfolio ↗</a>
+  <a href="gallery.html"><span class="phase-dot" style="background:#2268d8"></span>Gallery ↗</a>
+  <a href="about.html"><span class="phase-dot" style="background:#5ab874"></span>Meet Me ↗</a>
+
+  <div class="sidebar-progress">
+    <div class="prog-label">Weeks completed</div>
+    <div class="prog-bar"><div class="prog-fill" id="progFill"></div></div>
+    <div class="prog-count">
+      <span id="progText">0 of 60</span>
+      <span id="progPct">0%</span>
+    </div>
+  </div>
+</aside>
+
+<!-- Mobile top nav (hidden on desktop, shown on mobile) -->
+<nav class="mobile-nav">
+  <a href="index.html"   class="mobile-nav__link">Portfolio</a>
+  <a href="gallery.html" class="mobile-nav__link">Gallery</a>
+  <span class="mobile-nav__brand">Roadmap</span>
+  <a href="about.html"   class="mobile-nav__link">Meet Me</a>
+</nav>
+
+<!-- ─── MAIN ─── -->
+<main>
+
+<!-- ══ HERO ══ -->
+<div class="hero" id="top">
+  <svg class="hero-decoration" viewBox="0 0 220 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="110" cy="110" r="100" stroke="#c4512a" stroke-width="1"/>
+    <circle cx="110" cy="110" r="70" stroke="#c4512a" stroke-width="1"/>
+    <circle cx="110" cy="110" r="40" stroke="#c4512a" stroke-width="1"/>
+    <line x1="10" y1="110" x2="210" y2="110" stroke="#c4512a" stroke-width="0.5"/>
+    <line x1="110" y1="10" x2="110" y2="210" stroke="#c4512a" stroke-width="0.5"/>
+    <line x1="39" y1="39" x2="181" y2="181" stroke="#c4512a" stroke-width="0.5"/>
+    <line x1="181" y1="39" x2="39" y2="181" stroke="#c4512a" stroke-width="0.5"/>
+  </svg>
+
+  <div class="eyebrow">Hobby Artist · ~60 Weeks · 1–1.5 hrs / day</div>
+  <h1>A weekly roadmap for<br><em>self-taught digital art</em></h1>
+  <p class="hero-lede">A flexible, sustainable schedule built around practical art fundamentals - gesture, value, color, composition, design. Each week tells you exactly what to study, from which resource, and which sections. No grinding, no checkboxes, no productivity-app overhead.</p>
+
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <span class="val">11</span>
+      <span class="lbl">Phases</span>
+    </div>
+    <div class="hero-stat">
+      <span class="val">60</span>
+      <span class="lbl">Weeks total</span>
+    </div>
+    <div class="hero-stat">
+      <span class="val">1–1.5 hrs</span>
+      <span class="lbl">Per day</span>
+    </div>
+    <div class="hero-stat">
+      <span class="val" style="font-size:20px;font-style:italic">Spacechase</span>
+      <span class="lbl">Creator</span>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══ HOW TO USE ══ -->
+<section id="how">
+  <div class="section-h"><span class="num">00</span><h2>How to use this</h2></div>
+
+  <p>This page is a <strong>reference roadmap</strong>, not a productivity tracker. Open the phase you are in, expand the week, do the work. Move on when it feels honest - not when a box is ticked.</p>
+
+  <div class="callout info">
+    <div class="lbl">The rhythm</div>
+    <p>Five to six drawing days a week. One rest day. Each session is about an hour. Mix <em>study</em> (watching/reading + targeted exercises) and <em>application</em> (your own art - fan art, personal projects, finished pieces). Application never waits until you "feel ready."</p>
+  </div>
+
+  <div class="callout">
+    <div class="lbl">Primary vs. optional resources</div>
+    <p><strong>Primary</strong> resources are the core of the week - watch and apply. <strong>Optional</strong> resources deepen the topic; do them if you have time or curiosity. Skipping all optional resources still gets you everything you need.</p>
+  </div>
+
+  <div class="callout good">
+    <div class="lbl">If a week feels too short or too long</div>
+    <p>Stretch it. Compress it. Repeat it. The week numbers are guides, not deadlines. Honest pace &gt; checked boxes. Finishing the curriculum in 20 months at 80% consistency beats finishing in 12 months at 50%.</p>
+  </div>
+</section>
+
+
+<!-- ══ HABITS ══ -->
+<section id="habits">
+  <div class="section-h"><span class="num">01</span><h2>Always-on daily habits</h2></div>
+  <p>These run every drawing day, regardless of phase. They are the foundation everything else builds on.</p>
+
+  <div class="habits">
+    <h3>Run these every drawing day</h3>
+    <ul>
+      <li>
+        <span class="when">5–10 min</span>
+        <span class="what"><strong>Imagination sketch.</strong> No reference, no pressure, no judgement. Anything on the page. Starts day one, never stops.</span>
+      </li>
+      <li>
+        <span class="when">15–20 min</span>
+        <span class="what"><strong>Gesture warmup</strong> at <code>line-of-action.com</code> - 30-second poses (first 10 min) then 2-minute poses (next 10). 4 days a week.</span>
+      </li>
+      <li>
+        <span class="when">5 min</span>
+        <span class="what"><strong>Form fill.</strong> 5–8 simple 3D primitives from imagination as a warmup. Trains spatial thinking on autopilot.</span>
+      </li>
+      <li>
+        <span class="when">Always</span>
+        <span class="what"><strong>Creative output.</strong> Fan art, sketches of things you love, personal pieces. Begins in Phase 1, never stops. Polish is optional; presence is mandatory.</span>
+      </li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ══════════════ PHASES ══════════════ -->
+
+<!-- ─── PHASE 1 ─── -->
+<article class="phase" data-color="amber" id="p1">
+  <div class="phase-header">
+    <div class="phase-num">1</div>
+    <div class="phase-header-top">
+      <span class="phase-badge">Phase 1</span>
+      <span class="phase-dur">Weeks 1–4</span>
+    </div>
+    <h3 class="phase-title">Mark-Making, Line Control &amp; Construction</h3>
+    <p class="phase-goal">Rewire <em>how</em> you make marks before worrying about <em>what</em> you draw. Replace symbol-drawing with spatial thinking. Confident, committed strokes. Begin gesture and creative output from day one - not after.</p>
+  </div>
+
+  <details class="week" open>
+    <summary>
+      <span class="w-arrow">›</span>
+      <span class="w-tag">Week 1</span>
+      <span class="w-title">Lines, planes &amp; the ghosting habit</span>
+    </summary>
+    <div class="w-body">
+      <h4>Focus</h4>
+      <ul>
+        <li>Confident ghosted strokes - commit to the line before you draw it</li>
+        <li>Line weight as expression, not accident</li>
+        <li>Daily form fill warmup begins (5 primitives, every session)</li>
+        <li>Daily imagination sketch begins today and never stops</li>
+      </ul>
+      <h4>Primary resources</h4>
+      <div class="res">
+        <span class="res-dot"></span>
+        <div><span class="name">Drawabox - Lesson 0 (Introduction) + Lesson 1 (Lines, Ellipses, Boxes)</span>
+        <span class="what">Watch Lesson 0 fully. Lesson 1: do the superimposed lines, ghosted lines, and ghosted planes exercises only this week. Treat as a habit-builder, not a perfection test.</span></div>
+      </div>
+      <h4>Optional</h4>
+      <div class="res paid">
+        <span class="res-dot"></span>
+        <div><span class="name">Brent Eviston - The Art &amp; Science of Drawing (Udemy)</span>
+        <span class="what">Section 1 (Basic Skills) - 3 short videos. Watch one per day with sketchbook open.</span></div>
+      </div>
+      <div class="w-output">
+        <strong>By end of week</strong>
+        One full page of ghosted lines and one of ghosted planes. The lines should look more confident than at the start.
+      </div>
+    </div>
+  </details>
+
+  <details class="week">
+    <summary>
+      <span class="w-arrow">›</span>
+      <span class="w-tag">Week 2</span>
+      <span class="w-title">Ellipses &amp; the 250 Box Challenge (start)</span>
+    </summary>
+    <div class="w-body">
+      <h4>Focus</h4>
+      <ul>
+        <li>Ellipses as foundation for every cylindrical form</li>
+        <li>Begin the 250 Box Challenge - boxes 1–60 this week</li>
+        <li>Sketch fan art loosely - pick a character you love, draw them badly, learn what you don't know yet</li>
+      </ul>
+      <h4>Primary resources</h4>
+      <div class="res">
+        <span class="res-dot"></span>
+        <div><span class="name">Drawabox - Lesson 1: Ellipses + 250 Box Challenge intro</span>
+        <span class="what">Watch the Tables of Ellipses and Ellipses in Planes videos. Do one page of each. Then start the 250 Box Challenge - boxes 1–60, with line extensions on each.</span></div>
+      </div>
+      <h4>Optional</h4>
+      <div class="res paid">
+        <span class="res-dot"></span>
+        <div><span class="name">Brent Eviston - Art &amp; Science of Drawing</span>
+        <span class="what">Section 2 (Contour Drawing) - fights symbol-drawing. Do one contour exercise per session.</span></div>
+      </div>
+      <div class="w-output">
+        <strong>By end of week</strong>
+        ~60 boxes done, one fan-art sketch made (loose, fun, imperfect).
+      </div>
+    </div>
+  </details>
+
+  <details class="week">
+    <summary>
+      <span class="w-arrow">›</span>
+      <span class="w-tag">Week 3</span>
+      <span class="w-title">Finish 250 boxes &amp; organic forms</span>
+    </summary>
+    <div class="w-body">
+      <h4>Focus</h4>
+      <ul>
+        <li>Finish the 250 Box Challenge (~190 more boxes) - boot camp, not a spiritual journey</li>
+        <li>Move into organic forms: sausages, cylinders, contour curves</li>
+        <li>Begin overlapping forms - feel the depth, not just trace the outline</li>
+      </ul>
+      <h4>Primary resources</h4>
+      <div class="res">
+        <span class="res-dot"></span>
+        <div><span class="name">Drawabox - Lesson 1 (250 Boxes) + Lesson 2 (Organic Forms with Contour Lines, Arrows)</span>
+        <span class="what">Finish boxes 61–250. Then watch L2 Organic Forms with Contour Lines + Arrows videos. Do one page of each exercise.</span></div>
+      </div>
+      <h4>Optional</h4>
+      <div class="res">
+        <span class="res-dot"></span>
+        <div><span class="name">Proko - Form &amp; Construction (YouTube)</span>
+        <span class="what">2–3 short videos on construction thinking. Pick what catches your eye, skim the rest.</span></div>
+      </div>
+      <div class="w-output">
+        <strong>By end of week</strong>
+        250 Box Challenge complete (do not repeat it later - gains are front-loaded). 1–2 fan-art sketches made.
+      </div>
+    </div>
+  </details>
+
+  <details class="week">
+    <summary>
+      <span class="w-arrow">›</span>
+      <span class="w-tag">Week 4</span>
+      <span class="w-title">Plants, primitives from imagination, phase review</span>
+    </summary>
+    <div class="w-body">
+      <h4>Focus</h4>
+      <ul>
+        <li>Construct any natural form from primitive shapes</li>
+        <li>Begin sketching 3D primitives from imagination - no reference</li>
+        <li>Review your worst Lesson 1–2 page; redraw it once with what you know now</li>
+      </ul>
+      <h4>Primary resources</h4>
+      <div class="res">
+        <span class="res-dot"></span>
+        <div><span class="name">Drawabox - Lesson 3 (Plants)</span>
+        <span class="what">Watch the intro video. Pick 2–3 plant studies - leaves, twigs, branches. Don't grind the full lesson; the skill transfers in a few studies.</span></div>
+      </div>
+      <h4>Optional</h4>
+      <div class="res paid">
+        <span class="res-dot"></span>
+        <div><span class="name">Brent Eviston - Art &amp; Science of Drawing</span>
+        <span class="what">Section 3 (Proportion) - start watching as bedtime reading. Reinforces relational seeing.</span></div>
+      </div>
+      <div class="w-output">
+        <strong>Phase 1 milestone</strong>
+        Lines feel confident. You can rough-construct a sphere/box/cylinder from imagination without copying. Daily imagination sketch is automatic. 3–5 fan-art sketches exist. Move on even if rough - polish comes later.
+      </div>
+    </div>
+  </details>
+</article>
+
+
+<!-- ─── PHASE 2 ─── -->
+<article class="phase" data-color="purple" id="p2">
+  <div class="phase-header">
+    <div class="phase-num">2</div>
+    <div class="phase-header-top">
+      <span class="phase-badge">Phase 2</span>
+      <span class="phase-dur">Weeks 5–9</span>
+    </div>
+    <h3 class="phase-title">Gesture &amp; Early Figure Drawing</h3>
+    <p class="phase-goal">Gesture is what separates a figure that looks alive from one that looks traced. It is a lifelong skill, never "completed." Start with feeling - the energy, the line of action - then add structure. Apply to characters you love from week one.</p>
+  </div>
+
+  <details class="week">
+    <summary><span class="w-arrow">›</span><span class="w-tag">Week 5</span><span class="w-title">Line of action, C/S curves &amp; rhythm</span></summary>
+    <div class="w-body">
+      <h4>Focus</h4>
+      <ul>
+        <li>The single line that captures a pose's energy</li>
+        <li>Opposing curves create flow - straight against curve, action against rest</li>
+        <li>Begin Figuary - Day 1 of the 28-day challenge</li>
+      </ul>
+      <h4>Primary resources</h4>
+      <div class="res"><span class="res-dot"></span><div><span class="name">Proko - Figure Drawing Fundamentals: Gesture (YouTube playlist)</span><span class="what">Watch videos 1–3: Line of Action, Rhythm, C and S Curves. Sketch alongside.</span></div></div>
+      <div class="res"><span class="res-dot"></span><div><span class="name">Love Life Drawing - Figuary (YouTube)</span><span class="what">Begin Figuary Day 1. Aim for 5 sessions this week - even if short.</span></div></div>
+      <div class="res tool"><span class="res-dot"></span><div><span class="name">line-of-action.com</span><span class="what">Daily gesture warmup. 10 min of 30-second poses + 10 min of 2-minute poses. Permanent habit from now on.</span></div></div>
+      <h4>Optional</h4>
+      <div class="res book"><span class="res-dot"></span><div><span class="name">Force: Dynamic Life Drawing - Michael Mattesi</span><span class="what">Read Chapter 1 (The Concept of Force). 30 minutes, dense but reframing.</span></div></div>
+      <div class="w-output"><strong>By end of week</strong>5 Figuary sessions done. Gesture warmup feels normal.</div>
+    </div>
+  </details>
+
+  <details class="week">
+    <summary><span class="w-arrow">›</span><span class="w-tag">Week 6</span><span class="w-title">Force - pushes and pulls</span></summary>
+    <div class="w-body">
+      <h4>Focus</h4>
+      <ul>
+        <li>The figure as a system of forces, not a collection of shapes</li>
+        <li>Where is this figure being pushed? Where is the ground pushing back?</li>
+        <li>Continue Figuary - Days 8–14</li>
+      </ul>
+      <h4>Primary resources</h4>
+      <div class="res book"><span class="res-dot"></span><div><span class="name">Force: Dynamic Life Drawing - Michael Mattesi</span><span class="what">Read Chapters 2–3 (Rhythm, Applied Force). Apply the concept directly to your line-of-action sessions.</span></div></div>
+      <div class="res"><span class="res-dot"></span><div><span class="name">Proko - Figure Drawing Fundamentals: Gesture</span><span class="what">Videos 4–5: Tilt &amp; Turn, Force vs. Shape.</span></div></div>
+      <h4>Optional</h4>
+      <div class="res"><span class="res-dot"></span><div><span class="name">Love Life Drawing - additional gesture demos (YouTube)</span><span class="what">Browse 2–3 videos by topic - feet-not-floating, weight distribution.</span></div></div>
+      <div class="w-output"><strong>By end of week</strong>Drawings start to feel like pushes-and-pulls, not shapes-on-paper. Figuary at the halfway mark.</div>
+    </div>
+  </details>
+
+  <details class="week">
+    <summary><span class="w-arrow">›</span><span class="w-tag">Week 7</span><span class="w-title">Bean, mannequin &amp; proportional landmarks</span></summary>
+    <div class="w-body">
+      <h4>Focus</h4>
+      <ul>
+        <li>Simplified 3D mass before any anatomical detail - the bean and mannequin</li>
+        <li>Head count, shoulder/hip width, knee-to-foot proportions</li>
+        <li>Figuary - Days 15–21</li>
+      </ul>
+      <h4>Primary resources</h4>
+      <div class="res"><span class="res-dot"></span><div><span class="name">Proko - Figure Drawing Fundamentals: Gesture</span><span class="what">Videos 6–8: Bean, Mannequinization, Proportions. Draw 10 mannequins from imagination each session.</span></div></div>
+      <div class="res book"><span class="res-dot"></span><div><span class="name">Force: Dynamic Life Drawing - Michael Mattesi</span><span class="what">Chapter 4 (Form: Wrapping &amp; Cross-Contours). Read alongside Proko's mannequin lessons - they reinforce each other.</span></div></div>
+      <h4>Optional</h4>
+      <div class="res"><span class="res-dot"></span><div><span class="name">Proko - Figure proportions detail (free YouTube)</span><span class="what">Optional dive on head count. Sketch the proportion chart once.</span></div></div>
+      <div class="w-output"><strong>By end of week</strong>You can sketch a basic mannequin from imagination in any standing or sitting pose.</div>
+    </div>
+  </details>
+
+  <details class="week">
+    <summary><span class="w-arrow">›</span><span class="w-tag">Week 8</span><span class="w-title">Finish Figuary &amp; apply force to characters</span></summary>
+    <div class="w-body">
+      <h4>Focus</h4>
+      <ul>
+        <li>Finish Figuary - Days 22–28</li>
+        <li>Apply gesture &amp; force to a character you love (fan art with feeling)</li>
+        <li>Emotion through posture - sketch 4 figures, no faces, only body language</li>
+      </ul>
+      <h4>Primary resources</h4>
+      <div class="res"><span class="res-dot"></span><div><span class="name">Love Life Drawing - Figuary final days</span><span class="what">Finish all 28. Compile into a contact-sheet grid afterward.</span></div></div>
+      <div class="res book"><span class="res-dot"></span><div><span class="name">Force: Dynamic Life Drawing - Mattesi</span><span class="what">Chapters 5–6 (Negative Spaces, Force Form). Final reading.</span></div></div>
+      <div class="w-output"><strong>By end of week</strong>Figuary complete. 4 emotion-by-posture sketches done.</div>
+    </div>
+  </details>
+
+  <details class="week">
+    <summary><span class="w-arrow">›</span><span class="w-tag">Week 9</span><span class="w-title">Application: fan art &amp; Figuary contact sheet</span></summary>
+    <div class="w-body">
+      <h4>Focus</h4>
+      <ul>
+        <li>Take a Figuary screenshot grid as your first real progress milestone - post it if comfortable</li>
+        <li>Three loose fan-art figures, action poses</li>
+        <li>Continue daily gesture &amp; imagination habits - these never stop</li>
+      </ul>
+      <h4>Primary resources</h4>
+      <div class="res tool"><span class="res-dot"></span><div><span class="name">line-of-action.com - daily timed gesture (permanent)</span><span class="what">Maintain the rhythm. Gesture is maintenance forever, not a one-time topic.</span></div></div>
+      <h4>Optional</h4>
+      <div class="res"><span class="res-dot"></span><div><span class="name">Proko - Critique videos (YouTube)</span><span class="what">Watch 2–3 Proko critiques on figure work. Trains your eye to see your own errors.</span></div></div>
+      <div class="w-output"><strong>Phase 2 milestone</strong>Figures feel alive rather than stiff. You can start with line of action → gesture → mannequin reliably. Figuary contact sheet exists. 2–3 fan-art figures exist.</div>
+    </div>
+  </details>
+</article>
+
+
+<!-- ─── PHASE 3 ─── -->
+<article class="phase" data-color="teal" id="p3">
+  <div class="phase-header">
+    <div class="phase-num">3</div>
+    <div class="phase-header-top"><span class="phase-badge">Phase 3</span><span class="phase-dur">Weeks 10–14</span></div>
+    <h3 class="phase-title">Perspective &amp; Spatial Thinking</h3>
+    <p class="phase-goal">Perspective is the grammar of 3D space in 2D - the tool that lets you invent convincingly. The goal is spatial imagination, not mechanical drafting. No rulers. Loose, intentional, applied to scenes you actually want to draw.</p>
+  </div>
+  <details class="week"><summary><span class="w-arrow">›</span><span class="w-tag">Week 10</span><span class="w-title">1-point perspective - rooms, hallways, depth</span></summary><div class="w-body"><h4>Focus</h4><ul><li>Single vanishing point - depth into the page</li><li>Sketch interiors from imagination (your room, a café, a fantasy space)</li><li>No rulers. Loose. Construction over precision.</li></ul><h4>Primary resources</h4><div class="res"><span class="res-dot"></span><div><span class="name">moderndayjames - Perspective Playlist (YouTube)</span><span class="what">Watch videos 1–3 (intro + 1-point fundamentals). James teaches perspective as a tool for inventing, not drafting.</span></div></div><h4>Optional</h4><div class="res book"><span class="res-dot"></span><div><span class="name">Perspective! for Comic Book Artists - David Chelsea</span><span class="what">Chapters 1–3. Same concepts told as a comic - pleasant reinforcement.</span></div></div><div class="w-output"><strong>By end of week</strong>3 loose interior sketches with believable depth.</div></div></details>
+  <details class="week"><summary><span class="w-arrow">›</span><span class="w-tag">Week 11</span><span class="w-title">2-point perspective - exteriors &amp; objects</span></summary><div class="w-body"><h4>Focus</h4><ul><li>Two vanishing points - corner views of buildings and objects</li><li>Horizon line as the eye level of your viewer (a design decision, not a default)</li><li>Apply to a small exterior scene from imagination</li></ul><h4>Primary resources</h4><div class="res"><span class="res-dot"></span><div><span class="name">moderndayjames - Perspective Playlist</span><span class="what">Videos 4–6 (2-point + horizon-line decisions).</span></div></div><h4>Optional</h4><div class="res book"><span class="res-dot"></span><div><span class="name">Perspective! for Comic Book Artists - Chelsea</span><span class="what">Chapters 4–6. Especially helpful for 2-point variations.</span></div></div><div class="w-output"><strong>By end of week</strong>One exterior building or small scene from imagination using 2-point.</div></div></details>
+  <details class="week"><summary><span class="w-arrow">›</span><span class="w-tag">Week 12</span><span class="w-title">3-point, ellipses &amp; dramatic angles</span></summary><div class="w-body"><h4>Focus</h4><ul><li>3-point perspective - tall buildings, worm's-eye, bird's-eye</li><li>Ellipses in perspective: cylinders, arches, wheels, organic forms</li><li>Choose camera angle for emotional effect, not convenience</li></ul><h4>Primary resources</h4><div class="res"><span class="res-dot"></span><div><span class="name">moderndayjames - Perspective Playlist</span><span class="what">Videos 7–9 (3-point + ellipses in perspective + dramatic angles).</span></div></div><h4>Optional</h4><div class="res"><span class="res-dot"></span><div><span class="name">Marshall Vandruff - Perspective lectures (YouTube)</span><span class="what">Long-form deep dive. Watch one 1-hour lecture as background while drawing.</span></div></div><div class="w-output"><strong>By end of week</strong>One dramatic-angle scene - looking up at a tower, or down into a pit.</div></div></details>
+  <details class="week"><summary><span class="w-arrow">›</span><span class="w-tag">Week 13</span><span class="w-title">Figures in perspective &amp; form rotation</span></summary><div class="w-body"><h4>Focus</h4><ul><li>Place mannequins on a ground plane in 1-, 2-, and 3-point space</li><li>Foreshortening - start gentle, push slowly</li><li>Form rotation drill: same object drawn at 0°, 45°, 90° from imagination</li></ul><h4>Primary resources</h4><div class="res"><span class="res-dot"></span><div><span class="name">moderndayjames - Perspective Playlist</span><span class="what">Final videos on figures-in-space and foreshortening.</span></div></div><div class="res"><span class="res-dot"></span><div><span class="name">Proko - Foreshortening (YouTube)</span><span class="what">1–2 short videos on overlap and tangent. Apply to a few mannequin sketches.</span></div></div><h4>Optional</h4><div class="res"><span class="res-dot"></span><div><span class="name">Scott Robertson - How to Draw (sample chapters)</span><span class="what">Defer the full book - too dense for now - but skim the chapters on form rotation if curious.</span></div></div><div class="w-output"><strong>By end of week</strong>One object-design sheet (a chair, a sword, a fictional artefact) from 3 angles.</div></div></details>
+  <details class="week"><summary><span class="w-arrow">›</span><span class="w-tag">Week 14</span><span class="w-title">Integration - character in a real space</span></summary><div class="w-body"><h4>Focus</h4><ul><li>Place a Phase 2–3 character into an actual environment</li><li>Loose environment mood sketch - foggy alley, sunlit courtyard, cave</li><li>Review: which perspective topic still feels shaky? Revisit one moderndayjames video.</li></ul><h4>Primary resources</h4><div class="res"><span class="res-dot"></span><div><span class="name">Your own work + your favourite reference</span><span class="what">This week is application, not new study. Pick a previous head or mannequin and put it in a space.</span></div></div><h4>Optional</h4><div class="res"><span class="res-dot"></span><div><span class="name">FZD School - Design Cinema (YouTube)</span><span class="what">Browse a single environment episode for inspiration - full study comes in Phase 9.</span></div></div><div class="w-output"><strong>Phase 3 milestone</strong>Spaces sketched from imagination feel inhabited. Foreshortening is conceptually understood (not yet mastered). Objects feel placed in space, not floating.</div></div></details>
+</article>
+
+
+<!-- ─── PHASE 4 ─── -->
+<article class="phase" data-color="sky" id="p4">
+  <div class="phase-header">
+    <div class="phase-num">4</div>
+    <div class="phase-header-top"><span class="phase-badge">Phase 4</span><span class="phase-dur">Weeks 15–20</span></div>
+    <h3 class="phase-title">Value, Light &amp; Grayscale Painting</h3>
+    <p class="phase-goal">Value is the most powerful element in your toolkit - before colour, before anatomy. It creates depth, defines form, and sets mood. Build a complete grayscale workflow now; colour comes in Phase 7. Use as few values as you can.</p>
+  </div>
+  <details class="week"><summary><span class="w-arrow">›</span><span class="w-tag">Week 15</span><span class="w-title">Value scale &amp; 3-value thumbnails</span></summary><div class="w-body"><h4>Focus</h4><ul><li>5-step value scale - value as its own language, separate from colour</li><li>3-value thumbnail drill: reduce any image to light/midtone/dark</li><li>Begin thumbnail-before-piece habit</li></ul><h4>Primary resources</h4><div class="res"><span class="res-dot"></span><div><span class="name">Marco Bucci - 10 Minutes to Better Painting (YouTube)</span><span class="what">Watch 3 episodes: Value, Shape vs Form, 3-Value Composition. Do one 3-value thumbnail per session.</span></div></div><h4>Optional</h4><div class="res"><span class="res-dot"></span><div><span class="name">James Gurney - YouTube channel</span><span class="what">1–2 short value demos. Skim, don't grind.</span></div></div><div class="w-output"><strong>By end of week</strong>10+ small 3-value thumbnails of paintings you love.</div></div></details>
+  <details class="week"><summary><span class="w-arrow">›</span><span class="w-tag">Week 16</span><span class="w-title">Light on a sphere - the form-shadow model</span></summary><div class="w-body"><h4>Focus</h4><ul><li>Form shadow, cast shadow, core shadow, reflected light, highlight</li><li>Sphere studies - light from 5 directions, twice a week (5 weeks total)</li><li>Apply the same model to a cube and cylinder</li></ul><h4>Primary resources</h4><div class="res book"><span class="res-dot"></span><div><span class="name">James Gurney - Color and Light</span><span class="what">Chapter 2 (Sources of Light) + Chapter 3 (Light and Form). Read with a sketchbook open. Apply each idea to a primitive.</span></div></div><div class="res"><span class="res-dot"></span><div><span class="name">Marco Bucci - 10MTBP</span><span class="what">Episode: Form Shadow vs Cast Shadow. Apply directly to sphere studies.</span></div></div><div class="w-output"><strong>By end of week</strong>10 sphere studies, each lit differently. The five-light terminology should feel familiar.</div></div></details>
+  <details class="week"><summary><span class="w-arrow">›</span><span class="w-tag">Week 17</span><span class="w-title">Edge quality &amp; value grouping</span></summary><div class="w-body"><h4>Focus</h4><ul><li>Edge types: lost, found, soft, hard - and what each does emotionally</li><li>3-value compositional grouping in your own painting</li><li>Continue sphere studies (week 2 of 5)</li></ul><h4>Primary resources</h4><div class="res"><span class="res-dot"></span><div><span class="name">Marco Bucci - 10MTBP</span><span class="what">Episodes: Edge Control, Lost &amp; Found Edges, Value Grouping. Three episodes, three days.</span></div></div><div class="res book"><span class="res-dot"></span><div><span class="name">Gurney - Color and Light</span><span class="what">Chapter 4 (Surfaces and Edges). Pair the reading with one edge-focused study.</span></div></div><div class="w-output"><strong>By end of week</strong>3 grayscale studies using 3 values only, edges intentional.</div></div></details>
+  <details class="week"><summary><span class="w-arrow">›</span><span class="w-tag">Week 18</span><span class="w-title">Grayscale portrait &amp; figure studies</span></summary><div class="w-body"><h4>Focus</h4><ul><li>Apply the full value model to a face from reference - not as portraiture but as light-on-form</li><li>One grayscale figure from reference, 3 values max</li><li>Continue sphere studies (week 3 of 5)</li></ul><h4>Primary resources</h4><div class="res"><span class="res-dot"></span><div><span class="name">Asaro head reference (Sketchfab - 3D model, free)</span><span class="what">Use the Asaro head to study planes-of-the-head before adding photo reference. Rotate the model, light it.</span></div></div><div class="res"><span class="res-dot"></span><div><span class="name">Marco Bucci - 10MTBP</span><span class="what">Any remaining episodes relevant to portrait lighting.</span></div></div><div class="w-output"><strong>By end of week</strong>1 grayscale face study + 1 grayscale figure. Both feel 3D rather than flat.</div></div></details>
+  <details class="week"><summary><span class="w-arrow">›</span><span class="w-tag">Week 19</span><span class="w-title">Ambient light, secondary sources &amp; indirect light</span></summary><div class="w-body"><h4>Focus</h4><ul><li>Multiple light sources: primary + fill + ambient</li><li>Bounce light as subtle warmth, not bright glow</li><li>Outdoor light: sky dome as a light source, not just atmosphere</li></ul><h4>Primary resources</h4><div class="res book"><span class="res-dot"></span><div><span class="name">Gurney - Color and Light</span><span class="what">Chapters 5–6 (Ambient Light + Indirect Light). Read slowly; apply each to a sphere.</span></div></div><div class="w-output"><strong>By end of week</strong>One study with 2 intentional light sources. Sphere studies continue (week 4 of 5).</div></div></details>
+  <details class="week"><summary><span class="w-arrow">›</span><span class="w-tag">Week 20</span><span class="w-title">Grayscale painting - original piece</span></summary><div class="w-body"><h4>Focus</h4><ul><li>Paint one complete grayscale piece from imagination or a personal reference</li><li>Thumbnail first. Pick the strongest value grouping before you start painting.</li><li>Final sphere study (week 5 of 5) - keep as comparison reference</li></ul><h4>Primary resources</h4><div class="res"><span class="res-dot"></span><div><span class="name">Your own work + everything from Phases 4–6</span><span class="what">Apply all value knowledge. This is the milestone, not a study.</span></div></div><h4>Optional</h4><div class="res paid"><span class="res-dot"></span><div><span class="name">Marco Bucci - Understanding &amp; Painting the Head (Skillshare)</span><span class="what">If portrait painting is a priority, begin this now.</span></div></div><div class="w-output"><strong>Phase 4 milestone</strong>One grayscale painting exists. The five light terms are instinctive. Thumbnailing before painting is a reflex. Edge quality is a decision, not an accident.</div></div></details>
+</article>
+
+
+<!-- ─── PHASE 5 ─── -->
+<article class="phase" data-color="rose" id="p5">
+  <div class="phase-header">
+    <div class="phase-num">5</div>
+    <div class="phase-header-top"><span class="phase-badge">Phase 5</span><span class="phase-dur">Weeks 21–26</span></div>
+    <h3 class="phase-title">Head Drawing &amp; Portraits</h3>
+    <p class="phase-goal">Faces are the emotional anchor of character work. Portraits are immediately shareable and motivating. Loomis first for the framework; then mileage; then features and expression. Don't avoid 3/4 view just because it's harder - that's where the gain lives.</p>
+  </div>
+  <details class="week"><summary><span class="w-arrow">›</span><span class="w-tag">Week 21</span><span class="w-title">Loomis method - the sphere and plane</span></summary><div class="w-body"><h4>Focus</h4><ul><li>The Loomis sphere-and-plane approach to head construction</li><li>Front and side view first - establish the brow line, ear placement, chin</li><li>10 Loomis heads per session from imagination</li></ul><h4>Primary resources</h4><div class="res"><span class="res-dot"></span><div><span class="name">Proko - Loomis Method (YouTube)</span><span class="what">Watch the full Loomis series (3–4 videos). Draw with Proko in real time.</span></div></div><div class="w-output"><strong>By end of week</strong>Can construct a front- and side-view head with correct proportions from imagination.</div></div></details>
+  <details class="week"><summary><span class="w-arrow">›</span><span class="w-tag">Week 22</span><span class="w-title">3/4 view &amp; the 100 Head Challenge (start)</span></summary><div class="w-body"><h4>Focus</h4><ul><li>3/4 view - the hardest and most useful angle</li><li>Begin the 100 Head Challenge: heads 1–20 this week</li><li>Mix reference and imagination - roughly 50/50</li></ul><h4>Primary resources</h4><div class="res"><span class="res-dot"></span><div><span class="name">Ahmed Aldoori - 100 Head Challenge (YouTube)</span><span class="what">Watch the intro video and the first few critique sessions. Follow the challenge format.</span></div></div><div class="w-output"><strong>By end of week</strong>20 heads done. 3/4 view is attempted, even if rough.</div></div></details>
+  <details class="week"><summary><span class="w-arrow">›</span><span class="w-tag">Week 23</span><span class="w-title">Features - eyes, nose, mouth</span></summary><div class="w-body"><h4>Focus</h4><ul><li>Eyes as 3D spheres in sockets - not drawn symbols</li><li>Nose as a wedge form</li><li>Mouth as a cylinder-wrapped surface</li><li>100 Head Challenge: heads 21–50</li></ul><h4>Primary resources</h4><div class="res"><span class="res-dot"></span><div><span class="name">Proko - Features series (YouTube)</span><span class="what">Eyes, Nose, Lips - each as a mini-series. One feature per day, 2 days of application.</span></div></div><div class="w-output"><strong>By end of week</strong>50 heads done. Features drawn as forms, not as symbols.</div></div></details>
+  <details class="week"><summary><span class="w-arrow">›</span><span class="w-tag">Week 24</span><span class="w-title">Ears, hair &amp; facial proportions across ages</span></summary><div class="w-body"><h4>Focus</h4><ul><li>Ears as 3D forms, not flat decoration</li><li>Hair as mass and form, not individual strands</li><li>Proportional changes across child, adult, elderly faces</li><li>100 Head Challenge: heads 51–70</li></ul><h4>Primary resources</h4><div class="res"><span class="res-dot"></span><div><span class="name">Proko - Features series (YouTube)</span><span class="what">Ears + Hair videos. One study per video.</span></div></div><h4>Optional</h4><div class="res"><span class="res-dot"></span><div><span class="name">Stephen Bauman - head construction (YouTube)</span><span class="what">Alternative approach. Watch 1–2 videos to compare methods.</span></div></div><div class="w-output"><strong>By end of week</strong>70 heads done. Can draw a convincing ear and hair mass from imagination.</div></div></details>
+  <details class="week"><summary><span class="w-arrow">›</span><span class="w-tag">Week 25</span><span class="w-title">Expression &amp; emotion</span></summary><div class="w-body"><h4>Focus</h4><ul><li>7 core expressions from imagination: joy, sadness, anger, fear, disgust, surprise, contempt</li><li>Expression as skull movement + muscle contraction, not just mouth shape</li><li>Finish 100 Head Challenge: heads 71–100</li></ul><h4>Primary resources</h4><div class="res"><span class="res-dot"></span><div><span class="name">Proko - Expression series (YouTube)</span><span class="what">Expression videos + any anatomy-of-expression content. Draw alongside each video.</span></div></div><div class="w-output"><strong>By end of week</strong>100 Head Challenge complete. Can draw recognisable expressions from imagination.</div></div></details>
+  <details class="week"><summary><span class="w-arrow">›</span><span class="w-tag">Week 26</span><span class="w-title">Portrait painting - application week</span></summary><div class="w-body"><h4>Focus</h4><ul><li>Paint 2–3 portrait studies from photo reference in grayscale or limited colour</li><li>Focus: likeness through planes, not detail accumulation</li><li>One imagined character portrait - no reference</li></ul><h4>Primary resources</h4><div class="res"><span class="res-dot"></span><div><span class="name">Your own work + reference photos</span><span class="what">Choose photos with strong, directional light. Study the light before painting it.</span></div></div><div class="w-output"><strong>Phase 5 milestone</strong>100 Head Challenge complete. Can construct a believable head from imagination in any common angle. Features are placed correctly. At least one painted portrait exists.</div></div></details>
+</article>
+
+
+<!-- ─── PHASE 6 ─── -->
+<article class="phase" data-color="green" id="p6">
+  <div class="phase-header">
+    <div class="phase-num">6</div>
+    <div class="phase-header-top"><span class="phase-badge">Phase 6</span><span class="phase-dur">Weeks 27–31</span></div>
+    <h3 class="phase-title">Figure Construction - Surface Anatomy for Artists</h3>
+    <p class="phase-goal">A practical, expressive approach to anatomy - gesture-aware, simplified construction, major muscle shapes, proportions. This is for believable figure drawing, not medical illustration. No muscle-fiber memorisation. For every group studied, draw 10 figures applying it.</p>
+  </div>
+  <details class="week"><summary><span class="w-arrow">›</span><span class="w-tag">Week 27</span><span class="w-title">Torso - ribcage, pelvis, spine as forms</span></summary><div class="w-body"><h4>Focus</h4><ul><li>Ribcage as a simplified egg form</li><li>Pelvis as a bucket - its tilt drives posture</li><li>Spine as the connection: its curve determines gesture</li></ul><h4>Primary resources</h4><div class="res"><span class="res-dot"></span><div><span class="name">Proko - Figure Fundamentals: Anatomy (YouTube)</span><span class="what">Torso series. Watch each video, draw 10 figures applying that system immediately after.</span></div></div><div class="w-output"><strong>By end of week</strong>Can sketch a torso from imagination with correct proportional relationship between ribcage and pelvis.</div></div></details>
+  <details class="week"><summary><span class="w-arrow">›</span><span class="w-tag">Week 28</span><span class="w-title">Arm, shoulder &amp; hand construction</span></summary><div class="w-body"><h4>Focus</h4><ul><li>Shoulder as a ball-and-socket with a wrapping deltoid</li><li>Arm as two simplified cylinders with the elbow as the hinge</li><li>Hands from the box-and-wedge method</li></ul><h4>Primary resources</h4><div class="res"><span class="res-dot"></span><div><span class="name">Proko - Anatomy + Hands &amp; Feet videos (YouTube)</span><span class="what">Shoulder, arm, and full hand series. One section per day.</span></div></div><div class="w-output"><strong>By end of week</strong>Can draw a convincing arm and basic hand from imagination.</div></div></details>
+  <details class="week"><summary><span class="w-arrow">›</span><span class="w-tag">Week 29</span><span class="w-title">Leg, knee &amp; foot construction</span></summary><div class="w-body"><h4>Focus</h4><ul><li>Leg as two tapered cylinders; knee as the hinge</li><li>Foot as a wedge - arch, heel, ball, toes</li><li>Full figure: all limbs placed correctly, 10 drawings</li></ul><h4>Primary resources</h4><div class="res"><span class="res-dot"></span><div><span class="name">Proko - Anatomy + Hands &amp; Feet (YouTube)</span><span class="what">Leg, knee, foot series. Slow down on the foot - it's counterintuitive.</span></div></div><div class="w-output"><strong>By end of week</strong>Full figure from imagination with all major body segments placed correctly.</div></div></details>
+  <details class="week"><summary><span class="w-arrow">›</span><span class="w-tag">Week 30</span><span class="w-title">Cloth, drapery &amp; clothed figures</span></summary><div class="w-body"><h4>Focus</h4><ul><li>Drapery as gravity + anchor points - not random folds</li><li>7 fold types: pipe, diaper, zigzag, spiral, half-lock, drop, inert</li><li>Clothed figure studies: 5 from reference, 5 from imagination</li></ul><h4>Primary resources</h4><div class="res paid"><span class="res-dot"></span><div><span class="name">moderndayjames - Cloth &amp; Drapery (Gumroad)</span><span class="what">The definitive short course on drapery for artists. Worth the cost.</span></div></div><div class="res"><span class="res-dot"></span><div><span class="name">Christophe Young - Draw better clothes from Imagination (YouTube)</span><span class="what">Free companion. Watch alongside moderndayjames for the imagination-first perspective.</span></div></div><h4>Optional</h4><div class="res"><span class="res-dot"></span><div><span class="name">The Drawing Database - NKU Drapery Lecture (YouTube)</span><span class="what">Long-form academic lecture. Watch at 1.5× speed for the taxonomy of folds.</span></div></div><div class="w-output"><strong>By end of week</strong>Can draw a clothed figure with believable gravity-driven folds.</div></div></details>
+  <details class="week"><summary><span class="w-arrow">›</span><span class="w-tag">Week 31</span><span class="w-title">Anatomy integration - fully clothed figure</span></summary><div class="w-body"><h4>Focus</h4><ul><li>Complete a fully clothed character design from imagination - costume, pose, expression</li><li>Use everything from Phase 6: correct anatomy beneath, drapery on top, gestural pose</li></ul><h4>Primary resources</h4><div class="res"><span class="res-dot"></span><div><span class="name">Your own work</span><span class="what">Design and draw a character you actually care about in a full pose with clothes. Treat it as a real piece.</span></div></div><div class="w-output"><strong>Phase 6 milestone</strong>A fully clothed character from imagination exists. Anatomy is correct enough to be convincing. Drapery follows gravity and anchor points. This is your first real character illustration.</div></div></details>
+</article>
+
+
+<!-- ─── PHASE 7 ─── -->
+<article class="phase" data-color="mint" id="p7">
+  <div class="phase-header">
+    <div class="phase-num">7</div>
+    <div class="phase-header-top"><span class="phase-badge">Phase 7</span><span class="phase-dur">Weeks 32–37</span></div>
+    <h3 class="phase-title">Colour Theory &amp; Full Digital Painting</h3>
+    <p class="phase-goal">Colour transforms a drawing from competent to emotionally alive. Temperature, saturation, and hue create mood, time, and identity. With 10+ grayscale paintings behind you, you have the prerequisite. Apply first, theorise after.</p>
+  </div>
+  <details class="week"><summary><span class="w-arrow">›</span><span class="w-tag">Week 32</span><span class="w-title">Colour temperature &amp; the grey-to-colour bridge</span></summary><div class="w-body"><h4>Focus</h4><ul><li>Warm light / cool shadow (and when it reverses)</li><li>Recolor your best grayscale study from Phase 4 using the multiply/overlay workflow</li><li>Temperature as the first colour decision, hue second</li></ul><h4>Primary resources</h4><div class="res book"><span class="res-dot"></span><div><span class="name">Gurney - Color and Light</span><span class="what">Chapters 7–9 (Colour Temperature, Colour of Shadows, Complements). One chapter per day.</span></div></div><div class="w-output"><strong>By end of week</strong>One recoloured grayscale painting. Warm/cool distinction visible.</div></div></details>
+  <details class="week"><summary><span class="w-arrow">›</span><span class="w-tag">Week 33</span><span class="w-title">Colour harmony &amp; limited palettes</span></summary><div class="w-body"><h4>Focus</h4><ul><li>Analogous, complementary, split-complementary palettes</li><li>Limited palette painting: 3 hues max, plus black and white</li><li>Saturation as emphasis - not everything saturated, most things desaturated</li></ul><h4>Primary resources</h4><div class="res"><span class="res-dot"></span><div><span class="name">Some Theory Bites: on colors (YouTube)</span><span class="what">Watch 2–3 episodes on palette theory. Short, dense, applicable immediately.</span></div></div><div class="res"><span class="res-dot"></span><div><span class="name">The Drawing Codex (YouTube)</span><span class="what">Color harmony episodes. Watch and apply to a small study each time.</span></div></div><div class="w-output"><strong>By end of week</strong>One painting with a deliberate, named palette (analogous or complementary).</div></div></details>
+  <details class="week"><summary><span class="w-arrow">›</span><span class="w-tag">Week 34</span><span class="w-title">Light colour - time of day &amp; mood</span></summary><div class="w-body"><h4>Focus</h4><ul><li>Golden hour, noon, overcast, moonlight - each as a distinct colour system</li><li>Paint the same simple scene in 3 different lighting conditions</li><li>Atmospheric perspective: cooler, lighter, less saturated with distance</li></ul><h4>Primary resources</h4><div class="res"><span class="res-dot"></span><div><span class="name">Lighting Mentor - Power in the grays (YouTube)</span><span class="what">Watch 2–3 lighting mood studies. Apply each concept to a quick thumbnail.</span></div></div><div class="w-output"><strong>By end of week</strong>3 mood studies of the same scene at different times of day.</div></div></details>
+  <details class="week"><summary><span class="w-arrow">›</span><span class="w-tag">Week 35</span><span class="w-title">Skin tones &amp; colour in portraiture</span></summary><div class="w-body"><h4>Focus</h4><ul><li>Skin as a complex light-scattering surface: SSS (subsurface scattering) visible in ears, nose, lips</li><li>Shadow temperature variation across faces</li><li>Paint 3 portrait studies with full colour - different skin tones, different lighting</li></ul><h4>Primary resources</h4><div class="res"><span class="res-dot"></span><div><span class="name">Tiffanie Mang &amp; Proko (YouTube)</span><span class="what">Skin tone painting series. Watch the entire collaboration; it's colour-focused portrait painting at its best.</span></div></div><div class="w-output"><strong>By end of week</strong>3 colour portrait studies. Skin feels luminous, not painted grey with an orange filter.</div></div></details>
+  <details class="week"><summary><span class="w-arrow">›</span><span class="w-tag">Week 36</span><span class="w-title">Full figure in colour - character painting</span></summary><div class="w-body"><h4>Focus</h4><ul><li>Colour your Phase 6 character illustration</li><li>Costume colour as design decision: hue contrast, saturation hierarchy</li><li>Begin the habit of colour-rough before final painting</li></ul><h4>Primary resources</h4><div class="res"><span class="res-dot"></span><div><span class="name">Your own Phase 6 character + Gurney/Drawing Codex as reference</span><span class="what">Apply everything. This piece should feel like a genuine portfolio item.</span></div></div><div class="w-output"><strong>By end of week</strong>A fully coloured character illustration. Your first genuine portfolio piece.</div></div></details>
+  <details class="week"><summary><span class="w-arrow">›</span><span class="w-tag">Week 37</span><span class="w-title">Colour application week - free study</span></summary><div class="w-body"><h4>Focus</h4><ul><li>One full week of personal, self-directed painting</li><li>Fan art, original characters, environments - whatever you love</li><li>Apply colour theory without a lesson plan</li></ul><h4>Primary resources</h4><div class="res"><span class="res-dot"></span><div><span class="name">Your own imagination + any reference you choose</span><span class="what">This is unstructured creative time. Make something you want to make.</span></div></div><div class="w-output"><strong>Phase 7 milestone</strong>2–3 colour paintings exist that use deliberate colour temperatures, a named palette, and show mood through colour. Colour is now a tool, not a guess.</div></div></details>
+</article>
+
+
+<!-- ─── PHASE 8 ─── -->
+<article class="phase" data-color="slate" id="p8">
+  <div class="phase-header">
+    <div class="phase-num">8</div>
+    <div class="phase-header-top"><span class="phase-badge">Phase 8</span><span class="phase-dur">Weeks 38–41</span></div>
+    <h3 class="phase-title">Composition &amp; Visual Storytelling</h3>
+    <p class="phase-goal">Composition is the architecture of your image. A technically perfect drawing with poor composition always feels flat. This phase makes thumbnailing permanent and gives you a vocabulary for emotional camera-direction.</p>
+  </div>
+  <details class="week"><summary><span class="w-arrow">›</span><span class="w-tag">Week 38</span><span class="w-title">Shape reading &amp; thumbnail habits</span></summary><div class="w-body"><h4>Focus</h4><ul><li>Every strong composition reads clearly as large shapes at thumbnail size</li><li>Iterative thumbnailing: 10 small thumbnails before any large piece</li><li>Positive vs. negative space as tools, not accidents</li></ul><h4>Primary resources</h4><div class="res"><span class="res-dot"></span><div><span class="name">Sycra - Iterative Drawing (YouTube)</span><span class="what">Watch the full iterative drawing video. Apply the method to 10 thumbnails this week.</span></div></div><div class="w-output"><strong>By end of week</strong>10 compositional thumbnails for a piece you want to make. Pick the strongest.</div></div></details>
+  <details class="week"><summary><span class="w-arrow">›</span><span class="w-tag">Week 39</span><span class="w-title">Contrast, focal point &amp; eye path</span></summary><div class="w-body"><h4>Focus</h4><ul><li>Contrast (value, colour, size, detail) directs the eye to the focal point</li><li>Leading lines, framing, and staging</li><li>Design the eye's journey before designing the image</li></ul><h4>Primary resources</h4><div class="res"><span class="res-dot"></span><div><span class="name">moderndayjames - Composition Through Contrast (YouTube)</span><span class="what">Watch the full video. Apply each contrast type to a small study.</span></div></div><div class="res book"><span class="res-dot"></span><div><span class="name">Framed Ink - Marcos Mateu-Mestre</span><span class="what">Chapter 1–3 (Visual Weight, Contrast, Staging). Read slowly; sketch the examples.</span></div></div><div class="w-output"><strong>By end of week</strong>One composition study with a clearly designed focal point and eye path.</div></div></details>
+  <details class="week"><summary><span class="w-arrow">›</span><span class="w-tag">Week 40</span><span class="w-title">Camera angle as emotional language</span></summary><div class="w-body"><h4>Focus</h4><ul><li>Camera height, distance, and lens choice as storytelling decisions</li><li>Low angle: power, threat, awe. High angle: vulnerability, scale.</li><li>Crop: what you cut out is as important as what you include</li></ul><h4>Primary resources</h4><div class="res book"><span class="res-dot"></span><div><span class="name">Framed Ink - Mateu-Mestre</span><span class="what">Chapters 4–7 (Perspective in Storytelling, Staging, Framing). Work through the examples.</span></div></div><h4>Optional</h4><div class="res"><span class="res-dot"></span><div><span class="name">The Matte Dept. (YouTube)</span><span class="what">Browse 2–3 cinematography-applied-to-art videos. Expands the vocabulary quickly.</span></div></div><div class="w-output"><strong>By end of week</strong>3 small scenes, same subject, 3 different camera angles with different emotional reads.</div></div></details>
+  <details class="week"><summary><span class="w-arrow">›</span><span class="w-tag">Week 41</span><span class="w-title">Finished piece - composition applied</span></summary><div class="w-body"><h4>Focus</h4><ul><li>Create one complete, composed illustration using everything from Phase 8</li><li>Thumbnail → value rough → colour rough → final</li><li>Include a character from Phase 5–6 in an environment from Phase 3</li></ul><h4>Primary resources</h4><div class="res"><span class="res-dot"></span><div><span class="name">Your own work - all phases synthesised</span><span class="what">This is an integration piece. Use thumbnails, value grouping, and a deliberate camera angle.</span></div></div><div class="w-output"><strong>Phase 8 milestone</strong>One composed illustration with a clear focal point, intentional eye path, and deliberate camera angle. Thumbnailing is a permanent habit.</div></div></details>
+</article>
+
+
+<!-- ─── PHASE 9 ─── -->
+<article class="phase" data-color="purple" id="p9">
+  <div class="phase-header">
+    <div class="phase-num">9</div>
+    <div class="phase-header-top"><span class="phase-badge">Phase 9</span><span class="phase-dur">Weeks 42–46</span></div>
+    <h3 class="phase-title">Design, Shape Language &amp; Stylization</h3>
+    <p class="phase-goal">Design sense separates artists who copy competently from those who can create. Stylization isn't the absence of fundamentals - it's their intentional modification. This phase introduces deliberate visual identity.</p>
+  </div>
+  <details class="week"><summary><span class="w-arrow">›</span><span class="w-tag">Week 42</span><span class="w-title">Shape language - circles, squares, triangles</span></summary><div class="w-body"><h4>Focus</h4><ul><li>Round = safe, friendly, young. Sharp = dangerous, dynamic. Square = stable, strong.</li><li>Redesign 3 existing characters using one dominant shape language</li><li>Silhouette readability: does it read in under 2 seconds?</li></ul><h4>Primary resources</h4><div class="res"><span class="res-dot"></span><div><span class="name">Sinix Design - Design Fundamentals (YouTube)</span><span class="what">Shape language videos. Watch and apply to character redesign immediately.</span></div></div><div class="w-output"><strong>By end of week</strong>3 character redesigns with clear, intentional shape language.</div></div></details>
+  <details class="week"><summary><span class="w-arrow">›</span><span class="w-tag">Week 43</span><span class="w-title">Stylization analysis - what makes a style</span></summary><div class="w-body"><h4>Focus</h4><ul><li>Analyse 3 artists whose style you love: what did they exaggerate? What did they simplify?</li><li>Pick 5 stylistic variables: line weight, proportion, colour palette, value contrast, detail level</li><li>Write a 1-page "style brief" for your own art</li></ul><h4>Primary resources</h4><div class="res"><span class="res-dot"></span><div><span class="name">Steven Zapata Art - Style &amp; Creative Identity (YouTube)</span><span class="what">Watch the Style series. This is the most important content in Phase 10. Watch twice if needed.</span></div></div><div class="w-output"><strong>By end of week</strong>3 artist analyses. A written style brief for your own work.</div></div></details>
+  <details class="week"><summary><span class="w-arrow">›</span><span class="w-tag">Week 44</span><span class="w-title">Caricature &amp; exaggeration</span></summary><div class="w-body"><h4>Focus</h4><ul><li>Caricature as controlled exaggeration - not mockery, but amplification</li><li>Pick 5 faces: find one dominant feature, push it 50% further</li><li>Exaggeration as a design tool, not just a style</li></ul><h4>Primary resources</h4><div class="res"><span class="res-dot"></span><div><span class="name">Proko + Court Jones - Caricature series (YouTube)</span><span class="what">Full caricature series. Watch, then do 5 caricature studies.</span></div></div><div class="w-output"><strong>By end of week</strong>5 caricature studies. Exaggeration feels intentional, not random.</div></div></details>
+  <details class="week"><summary><span class="w-arrow">›</span><span class="w-tag">Week 45</span><span class="w-title">Original character design</span></summary><div class="w-body"><h4>Focus</h4><ul><li>Design an original character from scratch: personality → silhouette → shapes → details</li><li>Use your style brief as a guide</li><li>Present 3 variations before committing to one</li></ul><h4>Primary resources</h4><div class="res"><span class="res-dot"></span><div><span class="name">Your own style brief + Sinix/Zapata as reference</span><span class="what">This is a pure design week. No step-by-step tutorial; use your acquired tools.</span></div></div><h4>Optional</h4><div class="res paid"><span class="res-dot"></span><div><span class="name">Brooke Eggleston - Character Design Forge (free + paid)</span><span class="what">Browse the free YouTube content for character design process inspiration.</span></div></div><div class="w-output"><strong>By end of week</strong>One original character design with a clear personality and shape language.</div></div></details>
+  <details class="week"><summary><span class="w-arrow">›</span><span class="w-tag">Week 46</span><span class="w-title">Style application - original piece in your style</span></summary><div class="w-body"><h4>Focus</h4><ul><li>Create one finished illustration using your style brief as a constraint</li><li>This is the first piece where personal style is a deliberate design choice</li><li>Revisit the style brief after: did you follow it? What surprised you?</li></ul><h4>Primary resources</h4><div class="res"><span class="res-dot"></span><div><span class="name">Your style brief + your own imagination</span><span class="what">Pure application. No new material this week - only execution.</span></div></div><h4>Optional</h4><div class="res"><span class="res-dot"></span><div><span class="name">Aaron Blaise - Stylisation (YouTube)</span><span class="what">Browse 1–2 videos on stylised character design for further inspiration.</span></div></div><div class="w-output"><strong>Phase 9 milestone</strong>An original character exists. A style brief exists. One illustration made using both. Your visual identity is starting to form.</div></div></details>
+</article>
+
+
+<!-- ─── PHASE 10 ─── -->
+<article class="phase" data-color="red" id="p10">
+  <div class="phase-header">
+    <div class="phase-num">10</div>
+    <div class="phase-header-top"><span class="phase-badge">Phase 10</span><span class="phase-dur">Weeks 47–52</span></div>
+    <h3 class="phase-title">Environment Drawing &amp; World-Building</h3>
+    <p class="phase-goal">Environments turn floating characters into people in places with stories. Even minimal environmental cues transform an illustration. The goal is sketch-and-suggest, not architectural draftsmanship.</p>
+  </div>
+  <details class="week"><summary><span class="w-arrow">›</span><span class="w-tag">Week 47</span><span class="w-title">Environment thumbnail method</span></summary><div class="w-body"><h4>Focus</h4><ul><li>Environment design starts with thumbnail silhouettes - not details</li><li>5 environment thumbnails: interior, exterior, fantasy, sci-fi, natural</li><li>Atmosphere as a design element: fog, haze, depth</li></ul><h4>Primary resources</h4><div class="res"><span class="res-dot"></span><div><span class="name">FZD School - Design Cinema (YouTube)</span><span class="what">Watch 2 environment-focused episodes. Design Cinema is dense; take notes.</span></div></div><div class="w-output"><strong>By end of week</strong>5 environment thumbnails. At least 2 have a strong atmosphere.</div></div></details>
+  <details class="week"><summary><span class="w-arrow">›</span><span class="w-tag">Week 48</span><span class="w-title">Value massing for environments</span></summary><div class="w-body"><h4>Focus</h4><ul><li>3-value blocking for environments: sky, ground, structures</li><li>Atmospheric perspective in practice: background lightens, desaturates, cools</li><li>Paint 3 small environment value studies from reference photos</li></ul><h4>Primary resources</h4><div class="res"><span class="res-dot"></span><div><span class="name">Tyler Edlin - Environment Painting (YouTube)</span><span class="what">Watch the value-massing episodes. Apply to 3 environment studies.</span></div></div><div class="w-output"><strong>By end of week</strong>3 value-massed environment studies. Atmospheric perspective is visible.</div></div></details>
+  <details class="week"><summary><span class="w-arrow">›</span><span class="w-tag">Week 49</span><span class="w-title">Colour in environments - light &amp; weather</span></summary><div class="w-body"><h4>Focus</h4><ul><li>Overcast vs. sunny vs. dramatic light in an environment</li><li>Weather as mood: rain, fog, golden hour, night</li><li>Paint 2 environments with the same scene in different weather</li></ul><h4>Primary resources</h4><div class="res"><span class="res-dot"></span><div><span class="name">Jordan Grimmer - Timelapse Studies (YouTube)</span><span class="what">Watch 3–5 timelapse videos. Pause at early stages to see the construction.</span></div></div><div class="w-output"><strong>By end of week</strong>2 colour environment paintings. Lighting is a mood decision, not a default.</div></div></details>
+  <details class="week"><summary><span class="w-arrow">›</span><span class="w-tag">Week 50</span><span class="w-title">Character-in-environment integration</span></summary><div class="w-body"><h4>Focus</h4><ul><li>Place your Phase 9 original character in a painted environment</li><li>Scale, lighting consistency, atmospheric perspective</li><li>The environment should feel like it belongs to the character</li></ul><h4>Primary resources</h4><div class="res"><span class="res-dot"></span><div><span class="name">Your own work - Phase 9 character + new environment</span><span class="what">Integration week. No new tutorials; only application of everything learned.</span></div></div><div class="w-output"><strong>By end of week</strong>One character-in-environment piece. Your first "scene" illustration.</div></div></details>
+  <details class="week"><summary><span class="w-arrow">›</span><span class="w-tag">Week 51</span><span class="w-title">World-building - location design</span></summary><div class="w-body"><h4>Focus</h4><ul><li>Design a location that belongs to your original character's world</li><li>Interior + exterior views of the same location</li><li>What does this space say about the people who live there?</li></ul><h4>Primary resources</h4><div class="res"><span class="res-dot"></span><div><span class="name">FZD School - Design Cinema (YouTube)</span><span class="what">Watch 1–2 location-design episodes.</span></div></div><div class="w-output"><strong>By end of week</strong>Interior and exterior designs for one original location.</div></div></details>
+  <details class="week"><summary><span class="w-arrow">›</span><span class="w-tag">Week 52</span><span class="w-title">Environment portfolio piece</span></summary><div class="w-body"><h4>Focus</h4><ul><li>Create one polished environment illustration with your character in it</li><li>Thumbnail → composition → value rough → colour rough → final</li><li>This is a portfolio piece; treat it accordingly</li></ul><h4>Primary resources</h4><div class="res"><span class="res-dot"></span><div><span class="name">Your own work + all environment knowledge</span><span class="what">Full pipeline from concept to finish. Take your time.</span></div></div><div class="w-output"><strong>Phase 10 milestone</strong>One polished environment illustration with character exists. You can now create a scene. Your portfolio has depth beyond character alone.</div></div></details>
+</article>
+
+
+<!-- ─── PHASE 11 ─── -->
+<article class="phase" data-color="cream" id="p11">
+  <div class="phase-header">
+    <div class="phase-num">11</div>
+    <div class="phase-header-top"><span class="phase-badge">Phase 11</span><span class="phase-dur">Weeks 53–60</span></div>
+    <h3 class="phase-title">Creature Design, Imagination &amp; Capstone</h3>
+    <p class="phase-goal">The final phase integrates everything. Animal anatomy expands your design vocabulary. Imagination training cements all prior knowledge into genuine visual fluency. The capstone series marks the true end of the core curriculum - and the start of specialisation.</p>
+  </div>
+  <details class="week"><summary><span class="w-arrow">›</span><span class="w-tag">Week 53</span><span class="w-title">Animal anatomy fundamentals</span></summary><div class="w-body"><h4>Focus</h4><ul><li>Quadruped skeleton: same joints as humans, different proportions</li><li>Study 3 animals: cat, horse, bird - simplified construction</li><li>Animals from imagination: guess first, then correct with reference</li></ul><h4>Primary resources</h4><div class="res"><span class="res-dot"></span><div><span class="name">moderndayjames - Animal Construction (YouTube)</span><span class="what">Watch the full animal series. Draw alongside each video.</span></div></div><div class="w-output"><strong>By end of week</strong>3 animals drawn from imagination with believable proportions.</div></div></details>
+  <details class="week"><summary><span class="w-arrow">›</span><span class="w-tag">Week 54</span><span class="w-title">Creature design - hybrid method</span></summary><div class="w-body"><h4>Focus</h4><ul><li>Creature design as animal + context + purpose + adaptation</li><li>Design 3 creatures: one predator, one prey, one symbiotic</li><li>Use shape language and silhouette from Phase 9</li></ul><h4>Primary resources</h4><div class="res"><span class="res-dot"></span><div><span class="name">Aaron Blaise - creatureartteacher.com (free + paid)</span><span class="what">Use the free YouTube videos on creature design process. Focus on the design-first approach.</span></div></div><h4>Optional</h4><div class="res book"><span class="res-dot"></span><div><span class="name">FORCE: Animal Drawing - Mike Mattesi</span><span class="what">If you loved Force for figures, this applies the same concepts to animals.</span></div></div><div class="w-output"><strong>By end of week</strong>3 original creature designs. Each has a clear ecological niche.</div></div></details>
+  <details class="week"><summary><span class="w-arrow">›</span><span class="w-tag">Week 55</span><span class="w-title">Imagination training - drawing without reference</span></summary><div class="w-body"><h4>Focus</h4><ul><li>Draw complex scenes, objects, and characters purely from imagination</li><li>Identify your visual library gaps: what can you not draw yet?</li><li>Daily imagination sketches get longer and more complex this week</li></ul><h4>Primary resources</h4><div class="res"><span class="res-dot"></span><div><span class="name">Your own imagination</span><span class="what">No primary resource this week. One hour of pure imagination drawing each session. No reference allowed.</span></div></div><h4>Optional</h4><div class="res paid"><span class="res-dot"></span><div><span class="name">Terryl Whitlach - Schoolism Creature Design</span><span class="what">If creature design is a passion, this is the elite-level course for the topic.</span></div></div><div class="w-output"><strong>By end of week</strong>5 imagination-only sessions. A list of visual library gaps you want to fill.</div></div></details>
+  <details class="week"><summary><span class="w-arrow">›</span><span class="w-tag">Week 56</span><span class="w-title">Personal style brief - final revision</span></summary><div class="w-body"><h4>Focus</h4><ul><li>Revise your Phase 9 style brief using everything learned since</li><li>Define your 5 core stylistic variables with specifics - not "loose lines" but "3–5px brush, variable pressure"</li><li>What subject matter do you love? What mood? What story?</li></ul><h4>Primary resources</h4><div class="res"><span class="res-dot"></span><div><span class="name">Your own Phase 9 style brief + all work since</span><span class="what">Re-read the old brief. Update every section. This document guides the capstone.</span></div></div><div class="w-output"><strong>By end of week</strong>A revised, specific style brief. The clearest statement yet of who you are as an artist.</div></div></details>
+  <details class="week"><summary><span class="w-arrow">›</span><span class="w-tag">Week 57</span><span class="w-title">Original creature illustration</span></summary><div class="w-body"><h4>Focus</h4><ul><li>Create one polished creature illustration using your best design from Week 54</li><li>Environment + lighting + mood - not a character sheet, a scene</li><li>This is a portfolio piece</li></ul><h4>Primary resources</h4><div class="res"><span class="res-dot"></span><div><span class="name">Your own creature design + all painting knowledge</span><span class="what">Full pipeline. Thumbnail → value → colour → final. Don't skip steps.</span></div></div><div class="w-output"><strong>By end of week</strong>One finished creature illustration.</div></div></details>
+  <details class="week"><summary><span class="w-arrow">›</span><span class="w-tag">Week 58</span><span class="w-title">Personal statement piece</span></summary><div class="w-body"><h4>Focus</h4><ul><li>Design and paint an illustration that is completely yours - no prompt, no brief, no reference constraint</li><li>The subject, mood, character, and palette should all come from you</li><li>This is the first truly personal illustration of the curriculum</li></ul><h4>Primary resources</h4><div class="res"><span class="res-dot"></span><div><span class="name">Your own imagination, your style brief, your visual library</span><span class="what">Everything you know, applied to something you genuinely want to make. Take the full week.</span></div></div><h4>Optional</h4><div class="res paid"><span class="res-dot"></span><div><span class="name">SVSLearn - Jake Parker, Developing Your Illustration Style</span><span class="what">If you want guided reflection on style development, this pairs well with Week 58.</span></div></div><div class="w-output"><strong>By end of week</strong>Your first fully personal illustration. No safety net - pure creative expression.</div></div></details>
+  <details class="week"><summary><span class="w-arrow">›</span><span class="w-tag">Week 59</span><span class="w-title">Cohesive series - begin</span></summary><div class="w-body"><h4>Focus</h4><ul><li>Design a cohesive 3-piece series: same world, same palette, same visual grammar</li><li>Or three character portraits in one unified mood and palette</li><li>Plan all three with thumbnails before starting</li></ul><h4>Primary resources</h4><div class="res"><span class="res-dot"></span><div><span class="name">Your style brief from Week 56</span><span class="what">Re-read it. Let it guide the visual decisions of all three pieces.</span></div></div><h4>Optional</h4><div class="res paid"><span class="res-dot"></span><div><span class="name">SVSLearn - Jake Parker, Developing Your Illustration Style</span><span class="what">If you want guided support during the capstone, this paid course pairs well with these final two weeks.</span></div></div><div class="w-output"><strong>By end of week</strong>Thumbnails + value sketches for all three pieces. One nearly finished.</div></div></details>
+  <details class="week"><summary><span class="w-arrow">›</span><span class="w-tag">Week 60</span><span class="w-title">Cohesive series - finish &amp; capstone</span></summary><div class="w-body"><h4>Focus</h4><ul><li>Complete the remaining two pieces of the series</li><li>Compile all three into a small grid - your portfolio's first cohesive statement</li><li>Look back at week one. Look at your work now. You are no longer who started this.</li></ul><h4>Primary resources</h4><div class="res"><span class="res-dot"></span><div><span class="name">You + every skill from 60 weeks of practice</span><span class="what">Apply everything. This is the curriculum's final test - and its real beginning.</span></div></div><div class="w-output"><strong>Phase 11 milestone - curriculum complete</strong>Three-piece cohesive series complete. Original creature, personal statement, and capstone series all exist. You have a developing artistic voice and a portfolio identity. From here on: pick a specialisation, or simply keep drawing.</div></div></details>
+</article>
+
+
+<!-- ══ RESOURCES ══ -->
+<section id="resources">
+  <div class="section-h"><span class="num">12</span><h2>All resources used</h2></div>
+  <p>Every resource referenced in the schedule. Free unless marked. No affiliate links - these are simply the best resources for each topic.</p>
+
+  <div class="res-legend">
+    <span><span class="dot" style="background:var(--sage)"></span>Free</span>
+    <span><span class="dot" style="background:var(--gold)"></span>Paid</span>
+    <span><span class="dot" style="background:var(--cobalt)"></span>Book</span>
+    <span><span class="dot" style="background:var(--plum)"></span>Tool</span>
+  </div>
+
+  <div class="table-scroll">
+    <table class="res-table">
+      <thead>
+        <tr><th>Resource</th><th>Type</th><th>Used in</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Drawabox - Lessons 0–3</td><td>Free (Website)</td><td>Phase 1</td></tr>
+        <tr><td>Brent Eviston - Art &amp; Science of Drawing</td><td>Paid (Udemy)</td><td>Phase 1 (optional)</td></tr>
+        <tr><td>Proko - Form &amp; Construction</td><td>Free (YouTube)</td><td>Phase 1 (optional)</td></tr>
+        <tr><td>Proko - Figure Drawing Fundamentals: Gesture</td><td>Free (YouTube)</td><td>Phase 2</td></tr>
+        <tr><td>Love Life Drawing - Figuary</td><td>Free (YouTube)</td><td>Phase 2</td></tr>
+        <tr><td>line-of-action.com</td><td>Free (Tool)</td><td>Phase 2</td></tr>
+        <tr><td>Force: Dynamic Life Drawing - Michael Mattesi</td><td>Book</td><td>Phase 2</td></tr>
+        <tr><td>Proko - Figure proportions detail &amp; Critique videos</td><td>Free (YouTube)</td><td>Phase 2 (optional)</td></tr>
+        <tr><td>moderndayjames - Perspective Playlist</td><td>Free (YouTube)</td><td>Phase 3</td></tr>
+        <tr><td>Proko - Foreshortening</td><td>Free (YouTube)</td><td>Phase 3</td></tr>
+        <tr><td>Perspective! for Comic Book Artists - David Chelsea</td><td>Book</td><td>Phase 3 (optional)</td></tr>
+        <tr><td>Marshall Vandruff - Perspective lectures</td><td>Free (YouTube)</td><td>Phase 3 (optional)</td></tr>
+        <tr><td>Scott Robertson - How to Draw (sample chapters)</td><td>Book</td><td>Phase 3 (optional)</td></tr>
+        <tr><td>Marco Bucci - 10 Minutes to Better Painting</td><td>Free (YouTube)</td><td>Phase 4</td></tr>
+        <tr><td>James Gurney - Color and Light</td><td>Book</td><td>Phases 4, 7</td></tr>
+        <tr><td>Asaro head reference (Sketchfab - 3D model)</td><td>Free (Tool)</td><td>Phase 4</td></tr>
+        <tr><td>Marco Bucci - Understanding &amp; Painting the Head</td><td>Paid (Skillshare)</td><td>Phase 4 (optional)</td></tr>
+        <tr><td>Proko - Loomis Method</td><td>Free (YouTube)</td><td>Phase 5</td></tr>
+        <tr><td>Ahmed Aldoori - 100 Head Challenge</td><td>Free (YouTube)</td><td>Phase 5</td></tr>
+        <tr><td>Proko - Features series</td><td>Free (YouTube)</td><td>Phase 5</td></tr>
+        <tr><td>Stephen Bauman - head construction</td><td>Free (YouTube)</td><td>Phase 5 (optional)</td></tr>
+        <tr><td>Proko - Figure Fundamentals: Anatomy</td><td>Free (YouTube)</td><td>Phase 6</td></tr>
+        <tr><td>Proko - Anatomy of the Human Body</td><td>Paid (Course)</td><td>Phase 6 (optional)</td></tr>
+        <tr><td>Proko - Hands &amp; Feet videos</td><td>Free (YouTube)</td><td>Phase 6</td></tr>
+        <tr><td>moderndayjames - Cloth &amp; Drapery</td><td>Paid (Gumroad)</td><td>Phase 6</td></tr>
+        <tr><td>Christophe Young - Draw better clothes from Imagination</td><td>Free (YouTube)</td><td>Phase 6</td></tr>
+        <tr><td>The Drawing Database - NKU Drapery Lecture</td><td>Free (YouTube)</td><td>Phase 6 (optional)</td></tr>
+        <tr><td>Some Theory Bites: on colors</td><td>Free (YouTube)</td><td>Phase 7</td></tr>
+        <tr><td>The Drawing Codex</td><td>Free (YouTube)</td><td>Phase 7</td></tr>
+        <tr><td>Lighting Mentor - Power in the grays</td><td>Free (YouTube)</td><td>Phase 7</td></tr>
+        <tr><td>Tiffanie Mang &amp; Proko</td><td>Free (YouTube)</td><td>Phase 7</td></tr>
+        <tr><td>Sycra - Iterative Drawing</td><td>Free (YouTube)</td><td>Phase 8</td></tr>
+        <tr><td>moderndayjames - Composition Through Contrast</td><td>Free (YouTube)</td><td>Phase 8</td></tr>
+        <tr><td>Framed Ink - Marcos Mateu-Mestre</td><td>Book</td><td>Phase 8</td></tr>
+        <tr><td>The Matte Dept.</td><td>Free (YouTube)</td><td>Phase 8 (optional)</td></tr>
+        <tr><td>Sinix Design - Design Fundamentals</td><td>Free (YouTube)</td><td>Phase 9</td></tr>
+        <tr><td>Steven Zapata Art - Style &amp; Creative Identity</td><td>Free (YouTube)</td><td>Phase 9</td></tr>
+        <tr><td>Proko + Court Jones - Caricature</td><td>Free (YouTube)</td><td>Phase 9</td></tr>
+        <tr><td>Brooke Eggleston - Character Design Forge</td><td>Free + Paid</td><td>Phase 9 (optional)</td></tr>
+        <tr><td>Aaron Blaise - Stylisation</td><td>Free (YouTube)</td><td>Phase 9 (optional)</td></tr>
+        <tr><td>FZD School - Design Cinema</td><td>Free (YouTube)</td><td>Phase 10</td></tr>
+        <tr><td>Tyler Edlin - Environment Painting</td><td>Free (YouTube)</td><td>Phase 10</td></tr>
+        <tr><td>Jordan Grimmer - Timelapse Studies</td><td>Free (YouTube)</td><td>Phase 10</td></tr>
+        <tr><td>moderndayjames - Animal Construction</td><td>Free (YouTube)</td><td>Phase 11</td></tr>
+        <tr><td>Aaron Blaise - creatureartteacher.com</td><td>Free + Paid</td><td>Phase 11</td></tr>
+        <tr><td>FORCE: Animal Drawing - Mike Mattesi</td><td>Book</td><td>Phase 11 (optional)</td></tr>
+        <tr><td>Terryl Whitlach - Schoolism Creature Design</td><td>Paid (Schoolism)</td><td>Phase 11 (optional)</td></tr>
+        <tr><td>SVSLearn - Jake Parker, Style Development</td><td>Paid (SVSLearn)</td><td>Phase 11 (optional)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout good" style="margin-top:32px">
+    <div class="lbl">A final note</div>
+    <p>The point of this curriculum is not to become a professional in 14 months. It is to become a competent, confident, creative digital artist who makes things they're proud of, who understands what they're doing and why, and whose practice is sustainable for years beyond these phases. The fundamentals are not a cage - they are the language you learn so you can finally say what you have always wanted to say. Draw today. Draw tomorrow. Show up for years. That's the entire strategy.</p>
+  </div>
+</section>
+
+</main>
+
+<!-- Back to top -->
+<a href="#top" class="back-to-top" id="backToTop" title="Back to top">↑</a>
+
+<script>
+(function () {
+  'use strict';
+
+  // ── Scroll spy ──
+  const navLinks = document.querySelectorAll('.sidebar a[href^="#"]');
+  const targets = Array.from(navLinks)
+    .map(a => document.getElementById(a.getAttribute('href').slice(1)))
+    .filter(Boolean);
+
+  const setActive = id => {
+    navLinks.forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+    });
+  };
+
+  navLinks.forEach(link => {
+    const id = link.getAttribute('href').slice(1);
+    const el = document.getElementById(id);
+    if (!el) return;
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id); });
+    }, { rootMargin: '-20% 0px -70% 0px' });
+    targets.forEach(t => io.observe(t));
+  }
+
+  // ── Back to top visibility ──
+  const btt = document.getElementById('backToTop');
+  window.addEventListener('scroll', () => {
+    btt.classList.toggle('visible', window.scrollY > 400);
+  }, { passive: true });
+
+  // ── Week open/close persistence ──
+  const OPEN_KEY = 'art-roadmap-open-weeks';
+  let opened;
+  try { opened = new Set(JSON.parse(localStorage.getItem(OPEN_KEY) || '[]')); }
+  catch { opened = new Set(); }
+
+  // ── Week checkbox persistence + progress bar ──
+  const CHECKED_KEY = 'art-roadmap-checked-weeks';
+  let checked;
+  try { checked = new Set(JSON.parse(localStorage.getItem(CHECKED_KEY) || '[]')); }
+  catch { checked = new Set(); }
+
+  const weeks = document.querySelectorAll('details.week');
+  const total = weeks.length;
+
+  const updateProgress = () => {
+    const count = checked.size;
+    const pct = Math.round((count / total) * 100);
+    document.getElementById('progFill').style.width = pct + '%';
+    document.getElementById('progText').textContent = count + ' of ' + total;
+    document.getElementById('progPct').textContent = pct + '%';
+  };
+
+  weeks.forEach((d, i) => {
+    const key = 'w' + i;
+
+    // Restore open/close state
+    if (opened.has(key)) d.open = true;
+    d.addEventListener('toggle', () => {
+      if (d.open) opened.add(key); else opened.delete(key);
+      try { localStorage.setItem(OPEN_KEY, JSON.stringify([...opened])); } catch {}
+    });
+
+    // Inject circular checkbox
+    const summary = d.querySelector('summary');
+    const cb = document.createElement('input');
+    cb.type = 'checkbox';
+    cb.className = 'week-checkbox';
+    cb.checked = checked.has(key);
+    summary.insertBefore(cb, summary.firstChild);
+
+    // Prevent checkbox click from toggling the details element
+    cb.addEventListener('click', e => e.stopPropagation());
+
+    // Persist checkbox state + update progress
+    cb.addEventListener('change', () => {
+      if (cb.checked) checked.add(key); else checked.delete(key);
+      try { localStorage.setItem(CHECKED_KEY, JSON.stringify([...checked])); } catch {}
+      updateProgress();
+    });
+  });
+
+  updateProgress();
+})();
+</script>
+</body>
+</html>
