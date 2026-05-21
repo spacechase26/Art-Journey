@@ -1,0 +1,198 @@
+╔══════════════════════════════════════════════════════════════════════╗
+║  PAGE 4 — ROADMAP  (roadmap.html)  — the learning plan                ║
+╚══════════════════════════════════════════════════════════════════════╝
+
+WHAT IT IS
+  A complete, standalone digital-art learning roadmap: 11 phases spanning
+  60 weeks. Each week is an expandable card with a focus list, resources,
+  and an end-of-week output. Visitors can tick weeks off — a progress bar
+  tracks "X of 60" and the ticks are remembered in their browser. There's a
+  sidebar/drawer to jump between phases.
+
+  This page is its OWN little app. It uses a different look and different
+  fonts (Inter + Playfair Display) from the art pages, and it is fully
+  SELF-CONTAINED: all CSS and JavaScript are inline. It loads no external
+  .js or .css. To edit it you work inside roadmap.html only.
+
+WHERE CONTENT LIVES
+  → All phases and weeks are inline in roadmap.html. No data file.
+
+
+────────────────────────────────────────────────────────────────────────
+PAGE STRUCTURE  (by id / comment)
+────────────────────────────────────────────────────────────────────────
+  TOP BAR ......... fixed bar: ☰ menu (mobile), "Spacechase", page links,
+                    and the PROGRESS BAR (id="progFill" / progText / progPct)
+  SIDEBAR / DRAWER  phase jump-links (a drawer on mobile, behind the ☰)
+  HERO ............ id="top" — the title block
+  HOW ............. id="how"  — how to use the roadmap
+  HABITS .......... id="habits" — daily habits section
+  PHASES .......... 11 of them: <article class="phase" id="p1">…id="p11">
+  RESOURCES ....... id="resources"
+  BACK-TO-TOP ..... the ↑ button (id="backToTop"); jumps to the very top
+
+
+────────────────────────────────────────────────────────────────────────
+ANATOMY OF A PHASE  (the <article class="phase">)
+────────────────────────────────────────────────────────────────────────
+  <article class="phase" data-color="amber" id="p1">
+    <div class="phase-header">
+      <div class="phase-num">1</div>
+      <div class="phase-header-top">
+        <span class="phase-badge">Phase 1</span>
+        <span class="phase-dur">Weeks 1–4</span>
+      </div>
+      <h3 class="phase-title">Mark-Making, Line Control &amp; Construction</h3>
+      <p class="phase-goal">…what this phase is for…</p>
+    </div>
+
+    <details class="week" open>   ← one of these per week (see below)
+      …
+    </details>
+    …more weeks…
+  </article>
+
+  • data-color sets the phase's accent colour. Valid values used on the page:
+        amber  purple  teal  sky  rose  green  mint  slate  red  cream
+  • id="pN" must match the sidebar link href="#pN" (see "Add a phase").
+  • Write "&amp;" instead of a bare "&" in titles/text (it's an HTML rule).
+
+
+────────────────────────────────────────────────────────────────────────
+ANATOMY OF A WEEK  (the <details class="week"> — a native expander)
+────────────────────────────────────────────────────────────────────────
+  <details class="week">                  ← add  open  to start expanded
+    <summary>
+      <span class="w-arrow">›</span>
+      <span class="w-tag">Week 1</span>
+      <span class="w-title">Lines, planes &amp; the ghosting habit</span>
+    </summary>
+    <div class="w-body">
+      <h4>Focus</h4>
+      <ul>
+        <li>bullet…</li>
+      </ul>
+      <h4>Primary resources</h4>
+      <div class="res">
+        <span class="res-dot"></span>
+        <div><span class="name">Resource name</span>
+        <span class="what">What to do with it.</span></div>
+      </div>
+      <h4>Optional</h4>
+      <div class="res paid"> … </div>      ← see resource flavours below
+      <div class="w-output">
+        <strong>By end of week</strong>
+        The deliverable for the week.
+      </div>
+    </div>
+  </details>
+
+  RESOURCE FLAVOURS — the class on the .res box tints its little dot:
+        class="res"          a free / default resource
+        class="res paid"     a paid course (e.g. Udemy / Skillshare)
+        class="res book"     a book
+  The last week of a phase usually ends with <strong>Phase N milestone</strong>
+  inside w-output instead of "By end of week".
+
+  NOTE ON FORMATTING: Phases 1–2 are written "pretty" (one tag per line);
+  phases 3–11 squeeze each week onto a single long line. Both are the exact
+  same structure — don't let the dense lines fool you. Easiest path: copy a
+  whole <details class="week">…</details> block from a phase that's laid out
+  the way you find readable, then edit the text.
+
+
+────────────────────────────────────────────────────────────────────────
+WALKTHROUGHS
+────────────────────────────────────────────────────────────────────────
+
+A) EDIT A PHASE'S TITLE / GOAL / DURATION
+   Jump to its <article id="pN">, edit phase-title, phase-goal, or the
+   phase-dur ("Weeks 1–4"). The big number is phase-num.
+
+B) EDIT A WEEK
+   Find the week's <details>. Edit the w-title, the Focus <li> bullets, the
+   resource .name / .what text, and the w-output deliverable.
+
+C) ADD A WEEK TO A PHASE
+   1. Copy an entire  <details class="week"> … </details>  block.
+   2. Paste it where you want it inside the same <article>.
+   3. Change its w-tag ("Week 5"), w-title, bullets, resources, output.
+   ⚠ READ THE PROGRESS WARNING BELOW before adding/removing/reordering weeks.
+
+D) ADD A WHOLE PHASE
+   1. Copy an entire  <article class="phase" …> … </article>.
+   2. Give it a new  id="p12"  and a  data-color="…"  (a valid colour above).
+   3. Update phase-num, phase-badge, phase-dur, phase-title, phase-goal.
+   4. Add a matching link in the SIDEBAR so it's reachable:
+          <a href="#p12">Phase 12 — Your title</a>
+      (Copy an existing sidebar link; the href MUST equal the article's id.)
+   5. Adjust its weeks.
+
+E) CHANGE A PHASE'S ACCENT COLOUR
+   Change its  data-color="…"  to one of the valid names listed above.
+
+
+────────────────────────────────────────────────────────────────────────
+HOW THE PAGE BEHAVES  (the inline scripts — leave the wiring alone)
+────────────────────────────────────────────────────────────────────────
+  • Sidebar scrollspy: the current phase link highlights as you scroll;
+    clicking a link smooth-scrolls to that phase.
+  • Back-to-top (↑): appears after you scroll ~400px; jumps to the very top.
+  • Week expand/collapse is remembered between visits.
+  • Each week gets a round CHECKBOX (added by the script). Ticking it
+    updates the "X of 60" progress bar. The total (60) is just the number of
+    week cards on the page, counted automatically.
+  • Memory is the visitor's own browser (localStorage), under these keys:
+        art-roadmap-open-weeks      (which weeks are expanded)
+        art-roadmap-checked-weeks   (which weeks are ticked)
+  • Mobile drawer: the ☰ opens the phase sidebar; tapping a link, the
+    backdrop, or Esc closes it.
+
+
+────────────────────────────────────────────────────────────────────────
+⚠ THE PROGRESS-TRACKING GOTCHA  (read before adding/reordering weeks)
+────────────────────────────────────────────────────────────────────────
+  The tick-marks are saved by each week's POSITION (1st week, 2nd week, …),
+  not by its title. So:
+   • ADDING a week in the MIDDLE, or REORDERING weeks, will shift every
+     later week's saved tick by one for anyone who already ticked things —
+     their progress will look "off by one" afterward.
+   • ADDING weeks at the very END is safe (older ticks stay aligned).
+   • The "X of 60" total updates automatically to the new week count.
+  For your own testing you can reset progress: open the browser console
+  (F12) and run:
+        localStorage.removeItem('art-roadmap-checked-weeks');
+        localStorage.removeItem('art-roadmap-open-weeks');
+  then refresh.
+
+
+────────────────────────────────────────────────────────────────────────
+MOBILE
+────────────────────────────────────────────────────────────────────────
+  The top bar becomes two rows (page links on top; ☰ + "Spacechase"
+  below), the hero stats sit in a 2×2 grid, and phases jump-link from the
+  ☰ drawer. All handled by @media blocks in the page's <style>.
+
+
+────────────────────────────────────────────────────────────────────────
+GOTCHAS
+────────────────────────────────────────────────────────────────────────
+  • A new phase needs BOTH a unique id="pN" AND a matching sidebar link
+    href="#pN", or the jump-link won't work.
+  • Keep the <details>/<summary> structure intact — that's what makes weeks
+    expandable and what the checkbox/progress script counts.
+  • Use &amp; for "&" inside text.
+  • data-color must be one of the valid names, or the phase loses its accent.
+  • This page shares no code with the others — editing it can't break them,
+    and editing them can't break it.
+
+
+────────────────────────────────────────────────────────────────────────
+VERIFY AFTER EDITING
+────────────────────────────────────────────────────────────────────────
+  1. Refresh http://138.124.50.18:4324/roadmap.html (hard-refresh).
+  2. New/edited phase shows with the right colour; sidebar link jumps to it.
+  3. Weeks expand/collapse; ticking a week moves the progress bar; the
+     total reads the new count (e.g. "1 of 64").
+  4. On a narrow window: ☰ opens the drawer; back-to-top returns to the top.
+  5. No red errors in the console (F12).

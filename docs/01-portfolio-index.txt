@@ -1,0 +1,126 @@
+╔══════════════════════════════════════════════════════════════════════╗
+║  PAGE 1 — PORTFOLIO  (index.html)  — the home page                    ║
+╚══════════════════════════════════════════════════════════════════════╝
+
+WHAT IT IS
+  The landing page. A scrapbook-style hero (your name, tagline, palette),
+  a one-line artist statement, then three content blocks that are built
+  automatically from a data file: a big FEATURED piece, a small GALLERY
+  grid, and full-width SPOTLIGHT showcases. Ends with a lightbox you can
+  click any piece into.
+
+FILES INVOLVED
+  index.html ............ the page (markup + its own CSS + its own scripts)
+  portfolio-data.js ..... the featured piece, the grid, the spotlights
+  js/cursor.js .......... the shared brush cursor (loaded at the bottom)
+
+THE TWO PLACES CONTENT LIVES
+  • HERO + STATEMENT words → typed directly inside index.html.
+  • FEATURED / GRID / SPOTLIGHTS → portfolio-data.js (edit the lists there).
+
+
+────────────────────────────────────────────────────────────────────────
+PAGE STRUCTURE  (top to bottom, by the <!-- comment --> banners)
+────────────────────────────────────────────────────────────────────────
+  NAV ................. top menu (Portfolio · Gallery · Roadmap · Meet Me)
+  HERO ................ your name, eyebrow, tagline, sticky note, Instagram
+                        button, colour palette, floating badges
+  TICKER .............. the scrolling "Spacechase ✦ Digital Artist…" strip
+  STATEMENT ........... the one big italic sentence
+  PAINT DOT STRIP ..... decorative row of coloured dots
+  FEATURED ............ filled from portfolio-data.js  (id="featuredRoot")
+  GALLERY ............. grid filled from portfolio-data.js (id="galleryRoot")
+  SPOTLIGHTS .......... filled from portfolio-data.js (id="spotlightsRoot")
+  LIGHTBOX ............ the popup when you click a piece
+
+
+────────────────────────────────────────────────────────────────────────
+WALKTHROUGHS
+────────────────────────────────────────────────────────────────────────
+
+A) CHANGE THE HERO TEXT  (edit index.html, find the "HERO" comment)
+   • Name: find  class="hero__name"  →  Space<br><em>chase</em>
+       The <br> is the line break; <em> italicises the second half.
+   • Eyebrow (small line above name): class="hero__eyebrow" → "Digital Artist · 2024"
+   • Tagline under the name: class="hero__sub" → "colour · light · feeling"
+   • Sticky note: class="hero__note" → the "🎨 currently making:" line.
+   • Instagram button: find  class="hero__cta"  and replace the href
+       href="https://instagram.com"  with your real profile URL.
+   • Palette dots are just decoration (class="palette-dot"); change the
+       title="coral" labels/colours only if you want.
+
+B) CHANGE THE ARTIST STATEMENT  (the big italic sentence)
+   Find the "STATEMENT" comment → class="statement__text". Edit the words.
+   Keep the <em>…</em> around a word or two for the italic emphasis, and the
+   <br> for the line break.
+
+C) SWAP THE FEATURED PIECE  (edit portfolio-data.js → the FEATURED block)
+   It's the object near the top:
+       const FEATURED = {
+         number:      "01",
+         title:       "Golden Hour",
+         medium:      "Digital · Procreate",
+         year:        "2024",
+         description: "The last light before dark. …",
+         tags:        ["painting", "landscape", "light"],
+         css:         "a-golden-hour",       ← coloured placeholder
+         // file:     "golden-hour.jpg",     ← swap to a real image (see E)
+       };
+   Change any of the text fields. To use a real image instead of the
+   placeholder, see section E.
+
+D) ADD / REMOVE A GRID PIECE OR A SPOTLIGHT  (portfolio-data.js)
+   • GRID: the GALLERY_PIECES list. Copy one line, change the fields:
+       { title:"Coral Storm", medium:"Digital · Procreate", year:"2024",
+         tags:["abstract","colour"], css:"a-coral-storm" },
+     Add or delete whole lines freely — the count and layout update on
+     their own. Keep the trailing comma after each entry.
+   • SPOTLIGHTS: the SPOTLIGHTS list — big full-width showcases. Same idea,
+     plus an  accentColor: "#3a7a52"  that subtly tints the section.
+
+E) USE A REAL IMAGE INSTEAD OF A COLOURED PLACEHOLDER
+   1. Put the image file in  img/gallery/   (e.g. golden-hour.jpg)
+   2. In the entry, ADD  file: "golden-hour.jpg"  and REMOVE the  css: line.
+   The placeholders (css:) just exist so the page looks full before you
+   have real art. Available placeholder names are listed at the top of
+   portfolio-data.js.
+
+
+────────────────────────────────────────────────────────────────────────
+HOW THE PAGE BEHAVES  (interactions — leave the wiring alone)
+────────────────────────────────────────────────────────────────────────
+  • Brush cursor: the wet-paint cursor (js/cursor.js). Off on touch devices.
+  • Build scripts: an inline <script> reads portfolio-data.js and creates
+    the featured/grid/spotlight markup into the id="…Root" containers.
+    That's why those sections look empty in the raw HTML — JS fills them.
+  • Scroll reveal: elements with class "reveal" fade in as you scroll.
+  • Lightbox: clicking a piece opens it big; ✕ or the backdrop closes it.
+  • Nav: gets a solid background after you scroll down a little.
+
+
+────────────────────────────────────────────────────────────────────────
+MOBILE
+────────────────────────────────────────────────────────────────────────
+  The nav condenses on phones (the "Spacechase" logo hides, links spread
+  out and shrink). Layout is responsive via @media (max-width…) blocks in
+  the page's <style>. You generally won't need to touch this.
+
+
+────────────────────────────────────────────────────────────────────────
+GOTCHAS
+────────────────────────────────────────────────────────────────────────
+  • If the featured/grid/spotlights go blank, it's almost always a typo in
+    portfolio-data.js (a missing comma, quote, or brace). Check the browser
+    console (F12) for a red SyntaxError naming the line.
+  • Each data entry needs a trailing comma. The list is wrapped in [ ].
+  • Don't rename the id's featuredRoot / galleryRoot / spotlightsRoot — the
+    script writes into them by name.
+
+
+────────────────────────────────────────────────────────────────────────
+VERIFY AFTER EDITING
+────────────────────────────────────────────────────────────────────────
+  1. Refresh http://138.124.50.18:4324/ (hard-refresh for CSS/JS).
+  2. Featured / grid / spotlights all render, counts look right.
+  3. Click a piece → lightbox opens and closes.
+  4. No red errors in the console (F12).

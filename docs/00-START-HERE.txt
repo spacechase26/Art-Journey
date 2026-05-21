@@ -1,0 +1,180 @@
+╔══════════════════════════════════════════════════════════════════════╗
+║  ART-JOURNEY — OWNER'S MANUAL  (start here)                            ║
+║  How the site is built, how to change it, how to publish it.          ║
+╚══════════════════════════════════════════════════════════════════════╝
+
+Read this file once. The other four files in this folder are deep-dives,
+one per page. You almost never need to touch anything that isn't named
+below — most edits are "open one file, change some text, save."
+
+
+────────────────────────────────────────────────────────────────────────
+1.  WHAT THIS SITE IS  (the 30-second mental model)
+────────────────────────────────────────────────────────────────────────
+• A plain static website. Just HTML + CSS + a little JavaScript.
+• NO framework, NO build step, NO npm, NO compiling. The files you edit
+  ARE the files that ship. What you see in the file is what goes live.
+• 4 real pages, each a single self-contained .html file:
+      index.html    → "Portfolio"  (the home page)
+      gallery.html  → "Gallery"
+      about.html    → "Meet Me"
+      roadmap.html  → "Roadmap"    (the big learning plan)
+• Two pages pull their content from a small data file so you edit a tidy
+  list instead of HTML:
+      index.html    reads  portfolio-data.js
+      gallery.html  reads  gallery-data.js
+  The other two (about, roadmap) keep their text inline — you edit the
+  words directly in the .html.
+
+Because there's no build, the workflow is the simplest possible:
+      edit a file  →  refresh the browser  →  if happy, push to GitHub.
+
+
+────────────────────────────────────────────────────────────────────────
+2.  PROJECT MAP  (what every file is, and whether you'll touch it)
+────────────────────────────────────────────────────────────────────────
+EDIT THESE — your content lives here:
+  index.html .............. Portfolio page (markup + its own styles/scripts)
+  gallery.html ............ Gallery page
+  about.html .............. Meet Me page  (all text is inline here)
+  roadmap.html ............ Roadmap page  (all text is inline here)
+  portfolio-data.js ....... the featured piece + grid + spotlights for index
+  gallery-data.js ......... every artwork shown in the gallery, by year
+
+SUPPORTING FILES — edit rarely:
+  js/cursor.js ............ the shared "wet paint brush" cursor
+                            (used by index + about only; self-installing)
+  icon.png ................ the little browser-tab icon (favicon)
+  img/gallery/ ............ where your real artwork image files go
+                            (currently EMPTY — the site uses coloured
+                             placeholders until you drop images in)
+  README.md ............... one-line repo description
+  docs/ ................... this manual (these .txt files)
+
+LEAVE THESE ALONE — leftover / not used by the live site:
+  index2.html ............. an old experiment. Nothing links to it, and it
+                            points to a "schedule.html" that doesn't exist.
+  css/schedule.css ........ unused (old "schedule" feature)
+  js/schedule.js .......... unused (old "schedule" feature, large file)
+  → Safe to ignore. If you ever want them deleted to tidy the repo, ask —
+    don't delete blindly in case you reuse them.
+
+
+────────────────────────────────────────────────────────────────────────
+3.  WHERE EACH PAGE'S CONTENT LIVES  (the cheat sheet)
+────────────────────────────────────────────────────────────────────────
+  PAGE          TO CHANGE THE WORDS / PIECES, EDIT…
+  ───────────   ──────────────────────────────────────────────
+  Portfolio     hero text → inside index.html
+                featured piece, grid, spotlights → portfolio-data.js
+  Gallery       everything → gallery-data.js
+  Meet Me       everything → inside about.html (it's all inline text)
+  Roadmap       everything → inside roadmap.html (phases & weeks inline)
+
+Full step-by-step for each is in:
+  01-portfolio-index.txt
+  02-gallery.txt
+  03-about-meetme.txt
+  04-roadmap.txt
+
+
+────────────────────────────────────────────────────────────────────────
+4.  PREVIEW YOUR CHANGES LOCALLY  (before publishing)
+────────────────────────────────────────────────────────────────────────
+This is a static site, so any tiny web server can serve the folder.
+
+The dev preview for this project runs at:
+      http://138.124.50.18:4324/
+
+If it's not running, start a static server from inside the project folder:
+      cd /home/coder/art-journey
+      python3 -m http.server 4324
+…then open http://138.124.50.18:4324/ and add /gallery.html etc.
+
+WHY A SERVER (and not just double-clicking the .html)?
+Because the JS loads sibling files (portfolio-data.js, gallery-data.js,
+js/cursor.js). Opening the file directly (file://) blocks those loads and
+the gallery/portfolio will look empty. Always preview through the server.
+
+Edits are live on refresh — there's no build to wait for. Hard-refresh
+(Ctrl/Cmd+Shift+R) if a CSS/JS change doesn't show.
+
+
+────────────────────────────────────────────────────────────────────────
+5.  PUBLISH IT LIVE  (GitHub → GitHub Pages)
+────────────────────────────────────────────────────────────────────────
+  Repo:   git@github.com:spacechase26/art-journey.git   (remote "origin")
+  Branch: main
+  Live:   https://spacechase26.github.io/art-journey/
+
+There is NO GitHub Actions build for this repo — Pages serves the files
+straight off the main branch. So publishing = pushing to main:
+
+      cd /home/coder/art-journey
+      git add -A
+      git commit -m "describe what you changed"
+      git push
+
+Give Pages ~30–60 seconds, then hard-refresh the live URL.
+
+IMPORTANT — links are RELATIVE (e.g. href="gallery.html"), and the live
+site lives under /art-journey/. Keep links relative. Never write a link
+that starts with a leading slash ("/gallery.html") — it would break on the
+live site (it'd point at the domain root, not the /art-journey/ folder).
+
+
+────────────────────────────────────────────────────────────────────────
+6.  COMMITTING — the house rules for this repo
+────────────────────────────────────────────────────────────────────────
+• Author name/email must be:
+      Spacechase  <harendra12912@gmail.com>
+  If your machine is set to something else, commit with an override:
+      git -c user.name=Spacechase -c user.email=harendra12912@gmail.com \
+          commit -m "your message"
+• Do NOT add "Co-Authored-By:" lines to commit messages.
+• Commit in small, described steps so you can roll back easily.
+
+ROLL BACK a change you don't like:
+  • Not committed yet?   git checkout -- <file>      (discard edits to file)
+  • Already committed?   git revert <commit>          (safe undo, keeps history)
+  • See recent commits:  git log --oneline -10
+  Tip: before a risky change, commit the working version first so you
+  always have a clean point to return to.
+
+
+────────────────────────────────────────────────────────────────────────
+7.  GOLDEN RULES  (so you don't break the site)
+────────────────────────────────────────────────────────────────────────
+1. Edit a COPY of a line you understand. To add a piece/week/card, copy an
+   existing block and change its text — don't write structure from memory.
+2. Keep quotes and brackets balanced. In the data files every entry ends
+   with a comma and is wrapped in { }. A missing comma or quote makes the
+   gallery/portfolio show up blank. (See the per-page "if it's blank" note.)
+3. Don't rename CSS classes or element id's unless you mean to — the
+   JavaScript and animations find elements by those names.
+4. Keep links relative (rule in section 5).
+5. Preview locally, THEN push. Pushing publishes immediately.
+6. Real images go in img/gallery/ and are referenced by filename only.
+
+
+────────────────────────────────────────────────────────────────────────
+8.  QUICK TROUBLESHOOTING
+────────────────────────────────────────────────────────────────────────
+Gallery / portfolio is BLANK:
+  → You opened the file via file:// instead of the server (section 4), OR
+  → there's a typo in the data file (missing comma / quote / brace). Open
+    the browser console (F12) — a red "SyntaxError" points to the line.
+
+A change doesn't show:
+  → Hard-refresh (Ctrl/Cmd+Shift+R). The browser cached the old CSS/JS.
+
+Live site didn't update:
+  → Wait a minute and hard-refresh. Confirm the push landed: git log.
+
+Images don't appear:
+  → File must be inside img/gallery/, and the data entry's "file:" must
+    match the filename EXACTLY (case-sensitive, including .jpg/.png).
+
+Custom cursor missing:
+  → It's intentionally off on touchscreens and is page-specific. Index &
+    about share js/cursor.js; gallery has its own; roadmap uses none.

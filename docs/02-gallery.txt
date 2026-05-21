@@ -1,0 +1,151 @@
+╔══════════════════════════════════════════════════════════════════════╗
+║  PAGE 2 — GALLERY  (gallery.html)                                     ║
+╚══════════════════════════════════════════════════════════════════════╝
+
+WHAT IT IS
+  The full body of work, grouped by year (newest first), shown as
+  sketchbook/Polaroid-style cards in a Pinterest-style masonry wall. A tab
+  switch lets visitors flip between "Artwork" and "Studies & Sketches" so
+  the wall stays manageable. Click any card to open it big (lightbox).
+
+FILES INVOLVED
+  gallery.html ......... the page (markup + its own CSS + its own scripts)
+  gallery-data.js ...... EVERYTHING you see — every piece, every year
+  img/gallery/ ......... where real artwork files go (empty for now)
+
+THE ONE PLACE CONTENT LIVES
+  → gallery-data.js.  You will almost never open gallery.html itself.
+    That file already has a friendly how-to comment block at the top —
+    this doc expands on it.
+
+
+────────────────────────────────────────────────────────────────────────
+PAGE STRUCTURE  (by the comment banners / id's)
+────────────────────────────────────────────────────────────────────────
+  NAV ............. top menu
+  YEAR NAV ........ the row of year tabs (auto-built from your data)
+  HERO ............ the gallery title block
+  GALLERY MAIN .... the per-year sections (id="galleryRoot", JS fills it)
+  MODE SWITCH ..... the Artwork / Studies tabs (+ a live count)
+  LIGHTBOX ........ the click-to-enlarge popup
+  FOOTER
+
+
+────────────────────────────────────────────────────────────────────────
+THE DATA: gallery-data.js
+────────────────────────────────────────────────────────────────────────
+Two things live in this file:
+
+  1) YEAR_DESC — a short caption per year:
+        const YEAR_DESC = {
+          2023: "Where it all began",
+          2024: "Finding a direction",
+          2025: "Growing confidence",
+          2026: "Work in progress",
+        };
+
+  2) GALLERY — the array of every piece, NEWEST YEAR FIRST:
+        const GALLERY = [
+          { year:2026, title:"Chromatic Shift", medium:"Digital · Procreate",
+            ratio:"portrait", css:"a-exp-acid", mode:"art",
+            note:"Pushed the colours past comfortable…" },
+          …
+        ];
+
+
+────────────────────────────────────────────────────────────────────────
+WALKTHROUGHS
+────────────────────────────────────────────────────────────────────────
+
+A) ADD A REAL ARTWORK
+   1. Drop the image into  img/gallery/   (e.g. storm-season.jpg)
+   2. Add one entry to the GALLERY array, using  file:  (not css:):
+        { year:2026, title:"Storm Season", medium:"Digital · Procreate",
+          ratio:"square", file:"storm-season.jpg" },
+   The filename must match EXACTLY (case + extension).
+
+B) ADD A PLACEHOLDER (no image yet)
+   Use  css:  with one of the placeholder names instead of  file: :
+        { year:2026, title:"WIP Sketch", medium:"Pencil on Paper",
+          ratio:"tall", css:"a-sketch-ink" },
+   Placeholder names are listed at the top of gallery-data.js (a-coral-storm,
+   a-aqua-garden, a-figure-one … a-exp-duotone, etc.).
+
+C) RATIO (the card's shape) — pick one:
+        "tall"      vertical, very tall   (2:3)
+        "portrait"  vertical              (3:4)
+        "square"    square                (1:1)
+        "wide"      horizontal            (4:3)
+        "landscape" horizontal, cinematic (16:9)
+
+D) WHICH TAB IT SHOWS UNDER — the optional  mode:  field
+        mode:"art"    → shows under "Artwork"
+        mode:"study"  → shows under "Studies & Sketches"
+   If you omit mode, it's auto-sorted: titles containing study / sketch /
+   gesture (etc.), or a medium like "… on Paper", go to Studies; everything
+   else goes to Artwork. Set mode explicitly to override that guess.
+
+E) ADD A HANDWRITTEN CAPTION — the optional  note:  field
+        note:"Third try this year. Still fighting the nose."
+   2–3 short lines that appear on the card in a handwritten font. Optional.
+
+F) ADD A NEW YEAR  (e.g. 2027)
+   1. Add a line to YEAR_DESC:   2027: "Your caption",
+   2. Add pieces with  year:2027  at the TOP of the GALLERY array (newest
+      first). The year section AND the year-nav tab appear automatically.
+
+G) EDIT A YEAR'S CAPTION → change its text in YEAR_DESC.
+
+
+────────────────────────────────────────────────────────────────────────
+HOW THE PAGE BEHAVES  (interactions — leave the wiring alone)
+────────────────────────────────────────────────────────────────────────
+  • Cursor: a soft "gallery spotlight" glow (different from the brush on
+    index/about). Off on touch devices — phones keep the native cursor.
+  • Masonry: a Pinterest-style packer fills the shortest column first so
+    there are no gaps, regardless of card ratios.
+  • Mode switch: the Artwork / Studies tabs filter the wall; the count next
+    to them updates live.
+  • Year-nav scrollspy: the active year tab highlights as you scroll.
+  • Nav hides when you scroll down, returns when you scroll up.
+  • Stagger reveal: cards fade/rise in as they enter view.
+  • Lightbox: click a card to enlarge; ✕ or backdrop closes.
+
+
+────────────────────────────────────────────────────────────────────────
+PERFORMANCE  (why it stays smooth with lots of images)
+────────────────────────────────────────────────────────────────────────
+  The page was tuned for large galleries: images decode asynchronously, the
+  masonry batches its measure/relayout work (so adding many images doesn't
+  stutter), and the scroll handler is throttled. You don't need to do
+  anything — just keep adding pieces. If it ever feels heavy on a huge wall,
+  that's the moment to consider real images + lazy-loading rather than
+  dozens of CSS placeholders.
+
+
+────────────────────────────────────────────────────────────────────────
+MOBILE
+────────────────────────────────────────────────────────────────────────
+  Columns reduce on smaller screens; the year-nav and mode tabs stay
+  reachable. Handled by @media blocks in the page's <style>.
+
+
+────────────────────────────────────────────────────────────────────────
+GOTCHAS
+────────────────────────────────────────────────────────────────────────
+  • Right now img/gallery/ is empty, so every piece is a coloured
+    placeholder (css:). That's expected until you add real files.
+  • Newest year goes at the TOP of the array.
+  • Every entry needs a trailing comma; the array is wrapped in [ ].
+  • Blank wall = a typo in gallery-data.js (missing comma/quote/brace) or
+    you opened the file via file:// instead of the server. Check console (F12).
+  • Don't rename id="galleryRoot" — the script fills it by name.
+
+
+────────────────────────────────────────────────────────────────────────
+VERIFY AFTER EDITING
+────────────────────────────────────────────────────────────────────────
+  1. Refresh http://138.124.50.18:4324/gallery.html (hard-refresh).
+  2. New piece appears under the right year and the right tab.
+  3. Year-nav shows the right years; clicking a year jumps to it.
+  4. Click a card → lightbox opens/closes. No red console errors.

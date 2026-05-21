@@ -1,0 +1,133 @@
+╔══════════════════════════════════════════════════════════════════════╗
+║  PAGE 3 — MEET ME  (about.html)                                       ║
+╚══════════════════════════════════════════════════════════════════════╝
+
+WHAT IT IS
+  Your personal "about" page — an honest, diary-style introduction. Hero
+  greeting, "Who I Am", a pull-quote, "Why I Create", "The Journey" (three
+  honest admissions), "What Moves Me" (inspiration cards), "Right Now" (a
+  living list), and a closing with your social links.
+
+FILES INVOLVED
+  about.html ........... the whole page — markup, styles, AND the text
+  js/cursor.js ......... the shared brush cursor (loaded at the bottom)
+
+WHERE CONTENT LIVES
+  → ALL of it is typed directly inside about.html. There is NO data file.
+    To change the words, you edit the HTML text between the tags. Don't be
+    nervous — you're just replacing sentences, not structure.
+
+GENERAL RULE FOR EDITING TEXT HERE
+  Change the words BETWEEN the tags, keep the tags themselves:
+       <p>old sentence</p>      →   <p>your new sentence</p>
+  Keep any <strong>…</strong> (bold) and <em>…</em> (italic) wrappers where
+  you want emphasis, and <br> where you want a line break.
+
+
+────────────────────────────────────────────────────────────────────────
+PAGE STRUCTURE  (each section is labelled with a <!-- comment --> and a
+small "00X /" number on screen)
+────────────────────────────────────────────────────────────────────────
+  HERO ............ "Hello." + "I'm Spacechase —" + four role tags
+  WHO I AM ........ 001 — a few paragraphs about you
+  QUOTE BREAK ..... a single pull-quote
+  WHY I CREATE .... 002
+  THE JOURNEY ..... 003 — the three "admit" cards
+  INSPIRATIONS .... 004 — six "What Moves Me" cards
+  CURRENTLY ....... 005 — the "Right Now" bullet list
+  CLOSING ......... final quote, note, social links, buttons, credit
+
+
+────────────────────────────────────────────────────────────────────────
+WALKTHROUGHS
+────────────────────────────────────────────────────────────────────────
+
+A) HERO  (find the "HERO" comment)
+   • "Hello." → class="hero__greeting"
+   • "I'm Spacechase —" → class="hero__intro"
+   • The four tags → class="role-tag …": Student / Artist-in-progress /
+     Endlessly Curious / Always Learning. Change the words inside each
+     <span>. (The rt--terra / rt--sage / rt--cobalt / rt--gold suffixes
+     just set each tag's colour.)
+
+B) WHO I AM  (001)
+   Find <section class="who">. Replace the text inside the <p>…</p>
+   paragraphs. There are four. Keep the <strong>/<em> emphasis where it
+   reads well.
+
+C) THE PULL-QUOTE
+   Find class="quote-break". Edit the <blockquote> and the <cite> under it.
+
+D) WHY I CREATE  (002)
+   Find <section class="why">. Edit the heading (class="why__big", note the
+   <br> and <em>) and the paragraphs in class="why__body".
+
+E) THE JOURNEY — the three honest admissions  (003)
+   Find <section class="journey">. Each card is class="admit …":
+       <span class="admit__label">I procrastinate.</span>
+       <p>…the explanation…</p>
+   Edit the label and the paragraph. There are three (admit--1/2/3). You can
+   edit the lead sentence (journey__lead) and the closing (journey__close) too.
+
+F) WHAT MOVES ME — inspiration cards  (004)
+   Find <section class="inspirations">. Six cards, each:
+       <div class="insp-card reveal-child …">
+         <div class="insp-art ia-cinema"></div>     ← the coloured artwork box
+         <div class="insp-info">
+           <p class="insp-name">Cinema</p>
+           <p class="insp-note">Films that linger…</p>
+         </div>
+       </div>
+   • Change the name + note text freely.
+   • The "ia-cinema / ia-games / ia-sketch / ia-atmosphere / ia-story /
+     ia-music" class on insp-art picks the card's coloured artwork style.
+     Reuse those names if you add/swap a card.
+   • To add a card, copy a whole insp-card block and bump the "delay-N"
+     class so it animates in sequence.
+
+G) RIGHT NOW — the living list  (005)
+   Find <section class="currently">. Each bullet is a class="now-item" with
+   a "—" dash and a now-text span. Edit, add, or remove whole now-item
+   lines. This is the section to keep fresh over time.
+
+H) CLOSING — quote, socials, buttons, credit
+   Find <section class="closing">.
+   • Closing quote → class="closing__quote"; note → class="closing__note".
+   • SOCIAL LINKS (important!): the three class="social-link" anchors have
+     placeholder  href="#"  — replace each "#" with your real profile URL
+     (Instagram, Twitter/X, ArtStation). Until you do, they go nowhere.
+   • Buttons → class="c-btn …" (link to your work / the roadmap).
+   • Credit line → class="closing__credit" ("Spacechase · always learning · 2024").
+
+
+────────────────────────────────────────────────────────────────────────
+HOW THE PAGE BEHAVES  (interactions — leave the wiring alone)
+────────────────────────────────────────────────────────────────────────
+  • Brush cursor (js/cursor.js), off on touch devices.
+  • Scroll reveal: elements with class "reveal" fade in; "reveal-child"
+    items fade in as a group, and "delay-1 / delay-2 …" stagger them.
+    → If you ADD a block and want it to animate in, give it class "reveal"
+      (or "reveal-child" inside a group). If you forget, it just shows
+      immediately — not a bug, just no animation.
+  • Nav gains a solid background after a little scrolling.
+
+
+────────────────────────────────────────────────────────────────────────
+GOTCHAS
+────────────────────────────────────────────────────────────────────────
+  • Keep tags balanced — every <p> needs its </p>, every <section> its
+    </section>. A dropped closing tag can visually break everything below it.
+  • Don't delete the "reveal"/"reveal-child"/"delay-N" classes unless you
+    want that element to stop animating.
+  • Social links ship as "#": remember to put your real URLs in (section H).
+  • The role tags, admit cards, inspiration cards and now-list items are all
+    safe to add/remove — just copy an existing sibling and edit its text.
+
+
+────────────────────────────────────────────────────────────────────────
+VERIFY AFTER EDITING
+────────────────────────────────────────────────────────────────────────
+  1. Refresh http://138.124.50.18:4324/about.html (hard-refresh).
+  2. Read top to bottom — text reads right, nothing overlaps or spills.
+  3. Sections fade in as you scroll.
+  4. Social links and buttons go to the right places.
