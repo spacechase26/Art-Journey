@@ -14,7 +14,7 @@ below — most edits are "open one file, change some text, save."
 • A plain static website. Just HTML + CSS + a little JavaScript.
 • NO framework, NO build step, NO npm, NO compiling. The files you edit
   ARE the files that ship. What you see in the file is what goes live.
-• 4 real pages, each a single self-contained .html file:
+• 4 real pages, each its own .html file (its CSS lives in css/, its JS in js/):
       index.html    → "Portfolio"  (the home page)
       gallery.html  → "Gallery"
       about.html    → "Meet Me"
@@ -34,16 +34,22 @@ Because there's no build, the workflow is the simplest possible:
 2.  PROJECT MAP  (what every file is, and whether you'll touch it)
 ────────────────────────────────────────────────────────────────────────
 EDIT THESE — your content lives here:
-  index.html .............. Portfolio page (markup + its own styles/scripts)
-  gallery.html ............ Gallery page
-  about.html .............. Meet Me page  (all text is inline here)
-  roadmap.html ............ Roadmap page  (all text is inline here)
+  index.html .............. Portfolio page (structure + hero/statement text)
+  gallery.html ............ Gallery page (structure)
+  about.html .............. Meet Me page  (all the text is inline here)
+  roadmap.html ............ Roadmap page  (all the phases/weeks inline here)
   portfolio-data.js ....... the featured piece + grid + spotlights for index
   gallery-data.js ......... every artwork shown in the gallery, by year
 
-SUPPORTING FILES — edit rarely:
+STYLES — one stylesheet per page (edit to change the LOOK):
+  css/index.css   css/gallery.css   css/about.css   css/roadmap.css
+
+SCRIPTS — one script per page (edit to change BEHAVIOUR):
+  js/index.js     js/gallery.js     js/about.js     js/roadmap.js
   js/cursor.js ............ the shared "wet paint brush" cursor
                             (used by index + about only; self-installing)
+
+OTHER:
   icon.png ................ the little browser-tab icon (favicon)
   img/gallery/ ............ where your real artwork image files go
                             (currently EMPTY — the site uses coloured
@@ -51,13 +57,10 @@ SUPPORTING FILES — edit rarely:
   README.md ............... one-line repo description
   docs/ ................... this manual (these .txt files)
 
-LEAVE THESE ALONE — leftover / not used by the live site:
-  index2.html ............. an old experiment. Nothing links to it, and it
-                            points to a "schedule.html" that doesn't exist.
-  css/schedule.css ........ unused (old "schedule" feature)
-  js/schedule.js .......... unused (old "schedule" feature, large file)
-  → Safe to ignore. If you ever want them deleted to tidy the repo, ask —
-    don't delete blindly in case you reuse them.
+(Each page links its own CSS in the <head> and its own JS at the end of
+ <body>. A page's data file loads just BEFORE the page script that uses it
+ — keep that order if you ever reorder the <script> tags. The site no
+ longer ships any unused files.)
 
 
 ────────────────────────────────────────────────────────────────────────

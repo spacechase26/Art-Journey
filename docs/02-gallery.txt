@@ -9,7 +9,9 @@ WHAT IT IS
   the wall stays manageable. Click any card to open it big (lightbox).
 
 FILES INVOLVED
-  gallery.html ......... the page (markup + its own CSS + its own scripts)
+  gallery.html ......... the page structure
+  css/gallery.css ...... all of this page's styling (the LOOK)
+  js/gallery.js ........ this page's behaviour (masonry, tabs, lightbox)
   gallery-data.js ...... EVERYTHING you see — every piece, every year
   img/gallery/ ......... where real artwork files go (empty for now)
 

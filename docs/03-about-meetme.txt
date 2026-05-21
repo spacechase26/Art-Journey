@@ -9,13 +9,16 @@ WHAT IT IS
   living list), and a closing with your social links.
 
 FILES INVOLVED
-  about.html ........... the whole page — markup, styles, AND the text
+  about.html ........... the page structure AND all the text you edit
+  css/about.css ........ all of this page's styling (the LOOK)
+  js/about.js .......... this page's behaviour (scroll reveal, nav)
   js/cursor.js ......... the shared brush cursor (loaded at the bottom)
 
 WHERE CONTENT LIVES
-  → ALL of it is typed directly inside about.html. There is NO data file.
-    To change the words, you edit the HTML text between the tags. Don't be
-    nervous — you're just replacing sentences, not structure.
+  → ALL the words are typed directly inside about.html. There is NO data
+    file. To change the words, you edit the HTML text between the tags.
+    Don't be nervous — you're just replacing sentences, not structure.
+    (The styling moved out to css/about.css, but the TEXT stays in about.html.)
 
 GENERAL RULE FOR EDITING TEXT HERE
   Change the words BETWEEN the tags, keep the tags themselves:

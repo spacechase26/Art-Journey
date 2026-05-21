@@ -10,7 +10,9 @@ WHAT IT IS
   click any piece into.
 
 FILES INVOLVED
-  index.html ............ the page (markup + its own CSS + its own scripts)
+  index.html ............ the page structure + your hero/statement text
+  css/index.css ......... all of this page's styling (the LOOK)
+  js/index.js ........... this page's behaviour (builds featured/grid/spotlights)
   portfolio-data.js ..... the featured piece, the grid, the spotlights
   js/cursor.js .......... the shared brush cursor (loaded at the bottom)
 
@@ -90,7 +92,7 @@ E) USE A REAL IMAGE INSTEAD OF A COLOURED PLACEHOLDER
 HOW THE PAGE BEHAVES  (interactions — leave the wiring alone)
 ────────────────────────────────────────────────────────────────────────
   • Brush cursor: the wet-paint cursor (js/cursor.js). Off on touch devices.
-  • Build scripts: an inline <script> reads portfolio-data.js and creates
+  • Build scripts: js/index.js reads portfolio-data.js and creates
     the featured/grid/spotlight markup into the id="…Root" containers.
     That's why those sections look empty in the raw HTML — JS fills them.
   • Scroll reveal: elements with class "reveal" fade in as you scroll.

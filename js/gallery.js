@@ -1,0 +1,196 @@
+/* ── BUILD GALLERY FROM DATA ── */
+(function(){
+  const RATIO = {
+    tall:'ar-tall', portrait:'ar-portrait',
+    square:'ar-square', wide:'ar-wide', landscape:'ar-landscape'
+  };
+  /* A piece is a "study" if tagged (mode:'study') OR it reads like practice
+     (study/sketch/etc. in the title, or a traditional "on paper" medium).
+     Set mode:'art' or mode:'study' in gallery-data.js to control it explicitly. */
+  const STUDY_RX = /stud(y|ies)|sketch|gesture|\bform\b|anatomy|\bline\b|speed|theory|exercise|practice/i;
+  const MODE = it => it.mode || ((STUDY_RX.test(it.title) || /on paper/i.test(it.medium)) ? 'study' : 'art');
+  const root  = document.getElementById('galleryRoot');
+  const years = [...new Set(GALLERY.map(g=>g.year))].sort((a,b)=>b-a);  // newest first
+
+  years.forEach(year=>{
+    const items = GALLERY.filter(g=>g.year===year);
+    const sec   = document.createElement('section');
+    sec.className='year-section'; sec.id=`y${year}`;
+
+    sec.innerHTML=`
+      <div class="year-label">
+        <span class="year-number">${year}</span>
+        <span class="year-desc">${YEAR_DESC[year]||''}</span>
+      </div>
+      <div class="masonry">
+        ${items.map(item=>{
+          const rc = RATIO[item.ratio]||'ar-portrait';
+          const frame = item.file
+            ? `<img class="art-frame ${rc}" src="img/gallery/${item.file}" alt="${item.title}" loading="lazy" decoding="async">`
+            : `<div class="art-frame ${rc} ${item.css||''}"></div>`;
+          return `<article class="art-item" data-mode="${MODE(item)}"
+            data-title="${item.title}"
+            data-medium="${item.medium}"
+            data-year="${item.year}"
+            ${item.file?`data-file="${item.file}"`:''}
+            ${item.css?`data-art="${item.css}"`:''}>${frame}
+            <div class="art-caption">
+              <span class="cap-title">${item.title}</span>
+              <span class="cap-meta">${item.medium.split('·')[0].trim()} · ${item.year}</span>
+              ${item.note?`<p class="art-note">${item.note}</p>`:''}
+            </div></article>`;
+        }).join('')}
+      </div>`;
+    root.appendChild(sec);
+  });
+})();
+
+/* ── PINTEREST MASONRY — row-first fill, shortest-column packing, no gaps ── */
+(function(){
+  const colSpec = () => {
+    const w = innerWidth;
+    return { gap: w < 600 ? 12 : 18, min: w < 600 ? 150 : (w < 1000 ? 196 : 224) };
+  };
+  function layout(grid){
+    const w = grid.clientWidth;
+    if(!w) return;
+    const items = [...grid.children].filter(el => el.classList.contains('art-item') && el.offsetParent);
+    const { gap, min } = colSpec();
+    const cols = Math.max(1, Math.floor((w + gap) / (min + gap)));
+    const colW = (w - (cols - 1) * gap) / cols;
+    /* batch writes → batch reads → batch writes, so we never force a reflow per card */
+    items.forEach(it => { it.style.width = colW + 'px'; });
+    const heights = items.map(it => it.offsetHeight);   // one reflow to apply widths, then cached reads
+    const colH = new Array(cols).fill(0);
+    items.forEach((it, i) => {                           // each card → currently-shortest column, in order
+      let c = 0; for(let k = 1; k < cols; k++) if(colH[k] < colH[c] - 0.5) c = k;
+      it.style.left = (c * (colW + gap)) + 'px';
+      it.style.top  = colH[c] + 'px';
+      colH[c] += heights[i] + gap;
+    });
+    grid.style.height = Math.max(0, ...colH) + 'px';
+  }
+  const layoutAll = () => document.querySelectorAll('.masonry').forEach(layout);
+  /* coalesce bursts of triggers (many lazy images finishing at once) into ONE layout per frame */
+  let pending = false;
+  const scheduleLayout = () => {
+    if(pending) return;
+    pending = true;
+    requestAnimationFrame(() => { pending = false; layoutAll(); });
+  };
+  window.__galleryLayout = layoutAll;
+  layoutAll();
+  requestAnimationFrame(layoutAll);
+  if(document.fonts && document.fonts.ready) document.fonts.ready.then(layoutAll);
+  addEventListener('load', layoutAll);
+  let t; addEventListener('resize', () => { clearTimeout(t); t = setTimeout(layoutAll, 120); }, { passive:true });
+  document.querySelectorAll('img.art-frame').forEach(img =>
+    img.addEventListener('load', scheduleLayout));   // was a full sync layout per image → O(n²) while scrolling
+})();
+
+/* ── MODE SWITCH — Artwork / Studies, so the wall stays manageable ── */
+(function(){
+  const tabs=document.querySelectorAll('.mode-tab');
+  const countEl=document.getElementById('modeCount');
+  const chrome=mode=>{
+    document.querySelectorAll('.yn-pill').forEach(p=>{
+      const sec=document.getElementById(p.dataset.year);
+      p.style.display=(sec && sec.querySelector(`.art-item[data-mode="${mode}"]`))?'':'none';
+    });
+    const n=document.querySelectorAll(`.art-item[data-mode="${mode}"]`).length;
+    if(countEl) countEl.textContent=`· ${n} ${mode==='study'?'studies & sketches':'finished pieces'}`;
+  };
+  const setMode=mode=>{
+    document.body.dataset.gmode=mode;
+    tabs.forEach(t=>{const on=t.dataset.mode===mode; t.classList.toggle('active',on); t.setAttribute('aria-selected',on);});
+    document.querySelectorAll(`.art-item[data-mode="${mode}"]`).forEach(el=>el.classList.add('visible'));
+    chrome(mode);
+    if(window.__galleryLayout){ window.__galleryLayout(); requestAnimationFrame(window.__galleryLayout); }
+    scrollTo({top:0,behavior:'smooth'});
+  };
+  tabs.forEach(t=>t.addEventListener('click',()=>setMode(t.dataset.mode)));
+  chrome('art');
+})();
+
+/* ── CURSOR — soft gallery spotlight (touch devices keep the native cursor) ── */
+(function(){
+  if(!matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+  const spot=document.getElementById('spotlight');
+  const dot =document.getElementById('spotDot');
+  let mx=innerWidth/2,my=innerHeight/2,sx=mx,sy=my;
+  addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;},{passive:true});
+  (function loop(){
+    sx+=(mx-sx)*.18; sy+=(my-sy)*.18;
+    spot.style.transform=`translate(calc(${sx}px - 50%),calc(${sy}px - 50%))`;
+    dot.style.transform =`translate(calc(${mx}px - 50%),calc(${my}px - 50%))`;
+    requestAnimationFrame(loop);
+  })();
+  document.addEventListener('mouseover',e=>{
+    document.body.classList.toggle('cursor-hover', !!e.target.closest('a,button,.art-frame,.yn-pill'));
+  },{passive:true});
+})();
+
+/* ── NAV HIDE ON SCROLL DOWN ── */
+let lastY=0, navTick=false;
+const navEl=document.getElementById('nav');
+window.addEventListener('scroll',()=>{          // throttle to one transform write per frame
+  if(navTick) return; navTick=true;
+  requestAnimationFrame(()=>{
+    const y=window.scrollY;
+    navEl.style.transform=(y>lastY&&y>80)?'translateY(-100%)':'translateY(0)';
+    lastY=y; navTick=false;
+  });
+},{passive:true});
+
+/* ── YEAR NAV SCROLLSPY ── */
+const pills = document.querySelectorAll('.yn-pill');
+const spyObs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting)
+      pills.forEach(p=>p.classList.toggle('active',p.dataset.year===e.target.id));
+  });
+},{rootMargin:'-30% 0px -60% 0px'});
+document.querySelectorAll('.year-section').forEach(s=>spyObs.observe(s));
+pills.forEach(p=>p.addEventListener('click',()=>{
+  document.getElementById(p.dataset.year)?.scrollIntoView({behavior:'smooth'});
+}));
+
+/* ── STAGGER REVEAL ── */
+const revObs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(!e.isIntersecting) return;
+    const item=e.target;
+    const idx=[...item.closest('.masonry').querySelectorAll('.art-item')].indexOf(item);
+    item.style.setProperty('--i',idx%6);
+    item.classList.add('visible');
+    revObs.unobserve(item);
+  });
+},{rootMargin:'0px 0px -40px 0px',threshold:0.05});
+document.querySelectorAll('.art-item').forEach(el=>revObs.observe(el));
+
+/* ── LIGHTBOX ── */
+const lightbox=document.getElementById('lightbox');
+const lbArt   =document.getElementById('lbArt');
+const lbTitle =document.getElementById('lbTitle');
+const lbMeta  =document.getElementById('lbMeta');
+
+document.getElementById('galleryRoot').addEventListener('click',e=>{
+  const frame=e.target.closest('.art-frame');
+  if(!frame) return;
+  const item=frame.closest('.art-item');
+  const file=item.dataset.file, art=item.dataset.art;
+  lbArt.className='lb-art';
+  lbArt.innerHTML=file
+    ? `<img src="img/gallery/${file}" alt="${item.dataset.title}" style="width:100%;height:100%;object-fit:contain;border-radius:2px;">`
+    : '';
+  if(!file && art) lbArt.classList.add(art);
+  lbTitle.textContent=item.dataset.title;
+  lbMeta.textContent=`${item.dataset.medium} · ${item.dataset.year}`;
+  lightbox.classList.add('open');
+  document.body.style.overflow='hidden';
+});
+
+function closeLb(){lightbox.classList.remove('open');document.body.style.overflow='';}
+document.getElementById('lbClose').addEventListener('click',closeLb);
+lightbox.addEventListener('click',e=>{if(e.target===lightbox)closeLb();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLb();});

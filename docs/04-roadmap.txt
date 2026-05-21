@@ -10,12 +10,14 @@ WHAT IT IS
   sidebar/drawer to jump between phases.
 
   This page is its OWN little app. It uses a different look and different
-  fonts (Inter + Playfair Display) from the art pages, and it is fully
-  SELF-CONTAINED: all CSS and JavaScript are inline. It loads no external
-  .js or .css. To edit it you work inside roadmap.html only.
+  fonts (Inter + Playfair Display) from the art pages. Its styling lives in
+  css/roadmap.css and its behaviour in js/roadmap.js; the phases and weeks
+  (the actual text) are inline in roadmap.html. It shares no code with the
+  other pages, so editing it can't break them and vice-versa.
 
 WHERE CONTENT LIVES
-  → All phases and weeks are inline in roadmap.html. No data file.
+  → All phases and weeks (the text) are inline in roadmap.html. No data file.
+    The styling is in css/roadmap.css; the scripts in js/roadmap.js.
 
 
 ────────────────────────────────────────────────────────────────────────
@@ -133,7 +135,7 @@ E) CHANGE A PHASE'S ACCENT COLOUR
 
 
 ────────────────────────────────────────────────────────────────────────
-HOW THE PAGE BEHAVES  (the inline scripts — leave the wiring alone)
+HOW THE PAGE BEHAVES  (the scripts in js/roadmap.js — leave the wiring alone)
 ────────────────────────────────────────────────────────────────────────
   • Sidebar scrollspy: the current phase link highlights as you scroll;
     clicking a link smooth-scrolls to that phase.
