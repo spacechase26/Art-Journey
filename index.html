@@ -906,8 +906,10 @@ img { display: block; max-width: 100%; }
 }
 @media (max-width: 600px) {
   .hero__name { font-size: clamp(3.8rem, 17vw, 7rem); }
-  .nav { padding: 1.1rem 5vw; }
-  .nav__links { gap: 1.4rem; }
+  .nav { padding: .95rem 5vw; }
+  .nav__logo { display: none; }                  /* phones: links take the full width */
+  .nav__links { flex: 1; justify-content: space-between; gap: .4rem; }
+  .nav__link { font-size: .66rem; letter-spacing: .06em; }
   /* single column grid on mobile */
   .portfolio-grid { column-count: 1; }
   body { cursor: auto; }

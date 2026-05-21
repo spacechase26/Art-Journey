@@ -43,7 +43,14 @@ const YEAR_DESC = {
   2026: "Work in progress",
 };
 
-/* ─── YOUR ART — newest year first ─────────────────── */
+/* ─── YOUR ART — newest year first ───────────────────
+   Two optional fields per piece:
+     mode: "art"   → shows under the Artwork tab
+     mode: "study" → shows under the Studies & Sketches tab
+        (omit it and it's auto-sorted: titles with study/sketch/gesture/…,
+         or an "on Paper" medium, go to Studies; everything else to Artwork)
+     note: "…"     → 2–3 handwritten lines on the card (optional)
+─────────────────────────────────────────────────── */
 
 const GALLERY = [
 
@@ -51,8 +58,8 @@ const GALLERY = [
      Replace css: with file: once you have real images
      Example: file: "storm-season.jpg"
   ─────────────────────────────────────────────────── */
-  { year:2026, title:"Chromatic Shift",   medium:"Digital · Procreate",  ratio:"portrait",  css:"a-exp-acid"       },
-  { year:2026, title:"Self Portrait 2026",medium:"Digital · Procreate",  ratio:"tall",      css:"a-figure-four"    },
+  { year:2026, title:"Chromatic Shift",   medium:"Digital · Procreate",  ratio:"portrait",  css:"a-exp-acid",     mode:"art",   note:"Pushed the colours way past comfortable. Learned a lot about hue balance here." },
+  { year:2026, title:"Self Portrait 2026",medium:"Digital · Procreate",  ratio:"tall",      css:"a-figure-four",  mode:"art",   note:"Third try this year. Still fighting the nose — but the eyes finally feel like mine." },
   { year:2026, title:"Night Grid",        medium:"Digital · Procreate",  ratio:"landscape", css:"a-abs-neon"       },
   { year:2026, title:"Horizon",           medium:"Digital · Procreate",  ratio:"portrait",  css:"a-land-sunset"    },
   { year:2026, title:"Storm Season",      medium:"Digital · Procreate",  ratio:"square",    css:"a-coral-storm"    },
