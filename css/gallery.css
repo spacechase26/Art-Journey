@@ -609,3 +609,18 @@ img.art-frame { display: block; width: 100%; height: auto; aspect-ratio: auto; }
   .gallery-hero, .gallery-main { padding-left: clamp(100px, 10vw, 140px); }
 }
   
+
+
+/* ════════════════════════════════════════
+   ACCESSIBILITY & CROSS-DEVICE  (optimization pass)
+════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+* { -webkit-tap-highlight-color: transparent; }

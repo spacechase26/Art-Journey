@@ -1477,3 +1477,15 @@ table.res-table th {
 body::before {
   opacity: 0.04;
 }
+
+
+/* ════════════════════════════════════════
+   RENDER PERF & CROSS-DEVICE  (optimization pass)
+════════════════════════════════════════ */
+/* Skip rendering off-screen phases (and their backdrop-filter blur) until
+   near the viewport — a real scroll/paint win on this long page, all devices.
+   contain-intrinsic-size reserves an approximate height so the scrollbar stays
+   stable; the browser remembers each phase's true size after first render. */
+.phase { content-visibility: auto; contain-intrinsic-size: auto 1200px; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+* { -webkit-tap-highlight-color: transparent; }
