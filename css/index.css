@@ -170,12 +170,6 @@ img { display: block; max-width: 100%; }
   opacity: 0; transform: translateY(12px);
   animation: fadeUp .8s var(--ease) .6s forwards;
 }
-.hero__tagline {
-  font-size: clamp(.88rem, 1.2vw, 1rem); font-weight: 300;
-  color: var(--ink-m); line-height: 1.7; margin-top: .7rem;
-  opacity: 0; transform: translateY(12px);
-  animation: fadeUp .8s var(--ease) .74s forwards;
-}
 /* .hero__cta styles now live under DOODLES section */
 
 /* right: circle + badges */
