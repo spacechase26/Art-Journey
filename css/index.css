@@ -607,7 +607,7 @@ img { display: block; max-width: 100%; }
   color: #6c8c6c; transition: color .3s;
 }
 .footer__nav a:hover { color: #e8f5e0; }
-.footer__credit { font-family: var(--sans), system-ui, sans-serif; font-weight: 500; font-size: .78rem; color: #88a889; letter-spacing: .06em; }
+.footer__credit { font-family: var(--sans), system-ui, sans-serif; font-weight: 500; font-size: .9rem; color: #88a889; letter-spacing: .05em; }
 
 /* ════════════════════════════════
    LIGHTBOX

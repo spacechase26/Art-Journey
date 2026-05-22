@@ -595,7 +595,7 @@ button { background: none; border: none; cursor: none; padding: 0; }
 }
 .closing__credit {
   margin-top: 3rem;
-  font-family: var(--sans), system-ui, sans-serif; font-weight: 500; font-size: .8rem; letter-spacing: .06em;
+  font-family: var(--sans), system-ui, sans-serif; font-weight: 500; font-size: .9rem; letter-spacing: .05em;
   color: rgba(250,246,239,.5);
 }
 .social-links { display: flex; justify-content: center; gap: 1rem; margin-bottom: 2.5rem; }
