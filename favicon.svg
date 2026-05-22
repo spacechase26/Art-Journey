@@ -1,40 +1,59 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Spacechase">
   <defs>
-    <radialGradient id="sky" cx="50%" cy="46%" r="64%">
-      <stop offset="0" stop-color="#2a1d11"/>
-      <stop offset="1" stop-color="#14100a"/>
+    <radialGradient id="sky" cx="50%" cy="44%" r="66%">
+      <stop offset="0" stop-color="#33240f"/><stop offset=".55" stop-color="#1d150c"/><stop offset="1" stop-color="#120d07"/>
     </radialGradient>
-    <radialGradient id="exglow" cx="50%" cy="50%" r="50%">
-      <stop offset="0" stop-color="#ff9646" stop-opacity=".55"/>
-      <stop offset="1" stop-color="#ff9646" stop-opacity="0"/>
+    <linearGradient id="body" x1="210" y1="150" x2="300" y2="300" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff8ea"/><stop offset=".5" stop-color="#efe3c9"/><stop offset="1" stop-color="#ccb78f"/>
+    </linearGradient>
+    <linearGradient id="nose" x1="220" y1="110" x2="290" y2="200" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ff8a52"/><stop offset="1" stop-color="#d6451d"/>
+    </linearGradient>
+    <linearGradient id="fin" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f4a64a"/><stop offset="1" stop-color="#c9781f"/>
+    </linearGradient>
+    <radialGradient id="win" cx="40%" cy="36%" r="70%">
+      <stop offset="0" stop-color="#e3f0ff"/><stop offset=".5" stop-color="#5aa0e6"/><stop offset="1" stop-color="#255aa8"/>
     </radialGradient>
-    <radialGradient id="win" cx="42%" cy="38%" r="68%">
-      <stop offset="0" stop-color="#d4e8ff"/>
-      <stop offset="1" stop-color="#2f74cc"/>
+    <radialGradient id="exg" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#ffb060" stop-opacity=".75"/><stop offset="1" stop-color="#ff7a30" stop-opacity="0"/>
     </radialGradient>
+    <filter id="soft" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="10"/></filter>
+    <filter id="smear" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="2.4"/></filter>
+    <clipPath id="tile"><rect width="512" height="512" rx="116"/></clipPath>
   </defs>
-  <rect width="512" height="512" rx="116" fill="url(#sky)"/>
-  <g fill="#fff3d6">
-    <path d="M410 92 l6 16 16 6 -16 6 -6 16 -6 -16 -16 -6 16 -6 z"/>
-    <path d="M104 142 l5 13 13 5 -13 5 -5 13 -5 -13 -13 -5 13 -5 z"/>
-    <path d="M380 312 l4 11 11 4 -11 4 -4 11 -4 -11 -11 -4 11 -4 z"/>
-  </g>
-  <g transform="rotate(37 256 248)">
-    <ellipse cx="256" cy="384" rx="86" ry="128" fill="url(#exglow)"/>
-    <g opacity=".92">
-      <path d="M235 290 L253 290 L136 452 Z" fill="#4aa6ff"/>
-      <path d="M241 290 L259 290 L196 452 Z" fill="#5fcf92"/>
-      <path d="M247 290 L265 290 L256 452 Z" fill="#ffb450"/>
-      <path d="M253 290 L271 290 L316 452 Z" fill="#ff6a2a"/>
-      <path d="M259 290 L277 290 L376 452 Z" fill="#c470e2"/>
+  <g clip-path="url(#tile)">
+    <rect width="512" height="512" fill="url(#sky)"/>
+    <g fill="#ffe9bf">
+      <circle cx="410" cy="96" r="9" filter="url(#soft)" opacity=".55"/>
+      <circle cx="104" cy="150" r="7" filter="url(#soft)" opacity=".45"/>
     </g>
-    <g fill="#e8973a">
-      <path d="M290 253 L346 326 L290 330 Z"/>
-      <path d="M222 253 L166 326 L222 330 Z"/>
+    <g fill="#fff3d6">
+      <path d="M410 84 l6 16 16 6 -16 6 -6 16 -6 -16 -16 -6 16 -6 z"/>
+      <path d="M104 140 l5 13 13 5 -13 5 -5 13 -5 -13 -13 -5 13 -5 z"/>
+      <path d="M380 314 l4 11 11 4 -11 4 -4 11 -4 -11 -11 -4 11 -4 z"/>
     </g>
-    <rect x="215" y="189" width="82" height="104" rx="41" fill="#f1e7cf"/>
-    <path d="M215 193 L297 193 L256 96 Z" fill="#e85830"/>
-    <circle cx="256" cy="222" r="21" fill="url(#win)"/>
-    <circle cx="249" cy="215" r="7" fill="#eaf4ff" opacity=".75"/>
+    <g transform="rotate(37 256 248)">
+      <ellipse cx="256" cy="392" rx="92" ry="140" fill="url(#exg)" filter="url(#soft)"/>
+      <g filter="url(#smear)">
+        <path d="M236 292 L252 292 L132 454 Z" fill="#4aa6ff" opacity=".9"/>
+        <path d="M242 292 L258 292 L194 458 Z" fill="#5fcf92" opacity=".9"/>
+        <path d="M248 292 L264 292 L256 462 Z" fill="#ffb450" opacity=".95"/>
+        <path d="M254 292 L270 292 L318 458 Z" fill="#ff6a2a" opacity=".9"/>
+        <path d="M260 292 L276 292 L380 454 Z" fill="#c470e2" opacity=".9"/>
+        <path d="M250 290 L262 290 L256 362 Z" fill="#fff2cf" opacity=".92"/>
+      </g>
+      <path d="M236 286 L276 286 L270 300 L242 300 Z" fill="#5b4a30"/>
+      <path d="M290 252 L348 327 L290 331 Z" fill="url(#fin)"/>
+      <path d="M222 252 L164 327 L222 331 Z" fill="url(#fin)"/>
+      <rect x="215" y="189" width="82" height="104" rx="41" fill="url(#body)"/>
+      <ellipse cx="236" cy="226" rx="12" ry="46" fill="#ffffff" opacity=".35" filter="url(#smear)"/>
+      <ellipse cx="289" cy="240" rx="9" ry="42" fill="#7a6038" opacity=".28" filter="url(#smear)"/>
+      <path d="M216 194 L296 194 L256 96 Z" fill="url(#nose)"/>
+      <path d="M226 190 L246 190 L256 112 Z" fill="#ffd0ad" opacity=".5"/>
+      <circle cx="256" cy="222" r="22" fill="#16100a"/>
+      <circle cx="256" cy="222" r="19" fill="url(#win)"/>
+      <circle cx="249" cy="214" r="6" fill="#f2f8ff" opacity=".85"/>
+    </g>
   </g>
 </svg>
