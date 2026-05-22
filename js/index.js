@@ -166,11 +166,11 @@ const lbCanvas = document.getElementById('lbCanvas');
 function openLb(src) {
   lbCanvas.innerHTML = '';
   lbCanvas.className = 'lightbox__canvas';
+  lb.classList.toggle('lb-photo', !!src.file);   // real image → fit whole image to screen
   if (src.file) {
     const img = document.createElement('img');
     img.src = `../img/gallery/${src.file}`;
-    img.alt = ''; img.className = 'lightbox__canvas'; img.decoding = 'async';
-    img.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover;';
+    img.alt = ''; img.decoding = 'async';
     lbCanvas.appendChild(img);
   } else if (src.css) {
     lbCanvas.classList.add(src.css);
