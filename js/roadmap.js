@@ -5,6 +5,9 @@
   if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
   addEventListener('load', () => scrollTo(0, 0));
 
+  // auto-extend the copyright year: shows 2026, then 2026–YYYY in later years
+  document.querySelectorAll('[data-yr]').forEach(e=>{const y=new Date().getFullYear();if(y>2026)e.textContent='2026–'+y;});
+
   // ── Scroll spy ──
   const navLinks = document.querySelectorAll('.sidebar a[href^="#"]');
   const targets = Array.from(navLinks)

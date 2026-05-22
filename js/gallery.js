@@ -2,6 +2,9 @@
 if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
 addEventListener('load', () => scrollTo(0, 0));
 
+/* auto-extend the copyright year: shows 2026, then 2026–YYYY in later years */
+document.querySelectorAll('[data-yr]').forEach(e=>{const y=new Date().getFullYear();if(y>2026)e.textContent='2026–'+y;});
+
 /* ── DATE FORMATTER → "01 Jan 2026" (accepts "2026-01-01" or any parseable date) ── */
 function fmtDate(d){
   d = String(d).trim();
