@@ -204,7 +204,7 @@ img { display: block; max-width: 100%; }
   height: clamp(200px, 28vw, 440px);
   border-radius: 50%; overflow: hidden;
   border: 5px solid rgba(28,16,8,.07);
-  box-shadow: 0 22px 40px -10px rgba(28,16,8,.42);   /* lift the avatar off the page */
+  box-shadow: 0 24px 44px -4px rgba(18,11,4,.52);   /* lift the avatar off the page */
   flex-shrink: 0;
   opacity: 0;
   animation: heroCircleIn .9s var(--ease) .9s forwards, heroFloat 7s ease-in-out 1.8s infinite;
@@ -404,7 +404,7 @@ img { display: block; max-width: 100%; }
 .artwork--featured {
   aspect-ratio: 4/5;
   /* scrapbook coral offset + a soft realistic shadow so it lifts off the page */
-  box-shadow: 16px 16px 0 var(--coral), 0 26px 44px -8px rgba(28,16,8,.5);
+  box-shadow: 16px 16px 0 var(--coral), 0 28px 48px -4px rgba(18,11,4,.6);
 }
 .featured__info { padding: .5rem 0; }
 .featured__num {
@@ -465,7 +465,7 @@ img { display: block; max-width: 100%; }
   position: relative; overflow: hidden; border-radius: 4px;
   width: 100%;
   aspect-ratio: 4 / 5;          /* default box for placeholders */
-  box-shadow: 0 16px 28px -8px rgba(28,16,8,.42);   /* soft resting depth */
+  box-shadow: 0 18px 32px -4px rgba(18,11,4,.52);   /* soft resting depth */
   transition: transform .5s var(--ease), box-shadow .5s var(--ease);
 }
 .portfolio-card:hover .pc-frame {
@@ -553,7 +553,7 @@ img { display: block; max-width: 100%; }
   letter-spacing: -.04em;
 }
 .spotlight > * { position: relative; z-index: 1; }
-.artwork--spotlight { aspect-ratio: 3/4; border-radius: 4px; box-shadow: 0 28px 50px -12px rgba(28,16,8,.5); }
+.artwork--spotlight { aspect-ratio: 3/4; border-radius: 4px; box-shadow: 0 30px 54px -6px rgba(18,11,4,.58); }
 .spotlight__text { padding: .5rem 0; }
 .spotlight__num {
   display: block; font-size: .66rem; font-weight: 600;
@@ -885,7 +885,7 @@ img { display: block; max-width: 100%; }
   .hero-badge { display: none; }
   .hero__scroll { display: none; }
   .featured-inner { grid-template-columns: 1fr; gap: 3rem; }
-  .artwork--featured { max-width: 480px; box-shadow: 12px 12px 0 var(--coral), 0 18px 32px -8px rgba(28,16,8,.45); }
+  .artwork--featured { max-width: 480px; box-shadow: 12px 12px 0 var(--coral), 0 20px 36px -4px rgba(18,11,4,.55); }
   .featured-section::before { font-size: 14rem; }
   .spotlight { grid-template-columns: 1fr; gap: 3rem; padding: 5rem 6vw; }
   .spotlight::before { font-size: 10rem; }
