@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spacechase — Portfolio</title>
+  <link rel="icon" href="../icon.png">
+  <meta name="description" content="Spacechase — Digital Art Portfolio. Vibrant digital paintings and visual explorations.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Hanken+Grotesk:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/index.css">
+</head>
+<body>
+
+<div class="page-bg" aria-hidden="true"></div>
+
+<!-- brush cursor installs itself from js/cursor.js -->
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <a href="./" class="nav__logo">Spacechase</a>
+  <div class="nav__links">
+    <a href="./"   class="nav__link nav__link--active">Portfolio</a>
+    <a href="../gallery/" class="nav__link">Gallery</a>
+    <a href="../roadmap/" class="nav__link">Roadmap</a>
+    <a href="../about/"   class="nav__link">Meet Me</a>
+  </div>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <div class="hero__bg"></div>
+
+  <!-- colorful doodle elements across hero -->
+  <span class="d-star"  style="--x:6%;--y:22%;--sz:1.2rem;--clr:var(--coral);--op:.45;--dur:6s;--del:0s">✦</span>
+  <span class="d-star"  style="--x:48%;--y:8%;--sz:0.9rem;--clr:var(--plum);--op:.38;--dur:8s;--del:1.3s">✧</span>
+  <span class="d-star"  style="--x:5%;--y:74%;--sz:1rem;--clr:var(--sage);--op:.4;--dur:5s;--del:.6s">✶</span>
+  <span class="d-star"  style="--x:52%;--y:82%;--sz:0.8rem;--clr:var(--amber);--op:.35;--dur:7s;--del:1.8s">✦</span>
+  <!-- big soft color blobs in background of hero -->
+  <span class="d-big" style="--x:2%;--y:38%;--sz:5rem;--clr:var(--coral);--op:.06;--dur:12s">●</span>
+  <span class="d-big" style="--x:40%;--y:5%;--sz:3.5rem;--clr:var(--plum);--op:.07;--dur:15s;--del:3s">●</span>
+
+  <!-- left: text -->
+  <div class="hero__content">
+    <p class="hero__eyebrow">Digital Artist · 2024</p>
+    <h1 class="hero__name">Space<br><em>chase</em></h1>
+    <p class="hero__sub">colour · light · feeling</p>
+    <!-- sticky note — now sits where the tagline was -->
+    <div class="hero__note">
+      <span class="hero__note-icon">🎨</span>
+      currently making: something with colour
+    </div>
+
+    <!-- CTA with hand-drawn arrow doodle -->
+    <div class="doodle-cta-wrap">
+      <a href="https://instagram.com" class="hero__cta" target="_blank" rel="noopener">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor" stroke="none"/></svg>
+        Follow on Instagram
+      </a>
+      <svg class="doodle-arrow-svg" width="40" height="28" viewBox="0 0 40 28" fill="none">
+        <path d="M2,20 C10,18 20,14 32,10" stroke="var(--ink-m)" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M26,4 L34,10 L26,17" stroke="var(--ink-m)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+
+    <!-- colour palette -->
+    <div class="hero__palette">
+      <span class="hero__palette-label">palette →</span>
+      <span class="palette-dot" style="--c:#e85830" title="coral"></span>
+      <span class="palette-dot" style="--c:#d48030" title="amber"></span>
+      <span class="palette-dot" style="--c:#3a7a52" title="sage"></span>
+      <span class="palette-dot" style="--c:#8844c0" title="plum"></span>
+      <span class="palette-dot" style="--c:#2268d8" title="cobalt"></span>
+    </div>
+  </div>
+
+  <!-- right: floating circle + badges -->
+  <div class="hero__visual">
+    <div class="hero-badge hb-1">✦ Digital</div>
+    <div class="hero-badge hb-2">Procreate</div>
+    <div class="hero-badge hb-3">2024</div>
+    <div class="hero-badge hb-4">Always Learning</div>
+    <div class="hero-badge hb-5">Colour · Light</div>
+    <div class="hero__circle">
+      <div class="art-canvas a-coral-storm"></div>
+    </div>
+  </div>
+
+  <div class="hero__scroll">
+    <span class="scroll-line"></span>
+    <span class="scroll-text">Scroll</span>
+  </div>
+</section>
+
+<!-- TICKER 1 -->
+<div class="ticker">
+  <div class="ticker__track">
+    <span>Spacechase</span><span>✦</span><span>Digital Artist</span><span>✦</span>
+    <span>2024</span><span>○</span><span>Original Works</span><span>✦</span>
+    <span>Procreate</span><span>○</span><span>Colour Study</span><span>✦</span>
+    <span>Spacechase</span><span>✦</span><span>Digital Artist</span><span>✦</span>
+    <span>2024</span><span>○</span><span>Original Works</span><span>✦</span>
+    <span>Procreate</span><span>○</span><span>Colour Study</span><span>✦</span>
+  </div>
+</div>
+
+<!-- ══ STATEMENT ══ -->
+<section class="statement reveal">
+  <p class="statement__text">
+    "I make images that feel like <em>memories</em> —<br>
+    of places I've never been, emotions I can't name."
+  </p>
+</section>
+
+<!-- ══ PAINT DOT STRIP ══ -->
+<div class="paint-strip" aria-hidden="true">
+  <span class="ps-label">✦</span>
+  <span class="ps-dot sm"  style="--c:#e85830;--del:0s"></span>
+  <span class="ps-dot"     style="--c:#d48030;--del:.14s"></span>
+  <span class="ps-dot big" style="--c:#3a7a52;--del:.28s"></span>
+  <span class="ps-dot"     style="--c:#8844c0;--del:.42s"></span>
+  <span class="ps-dot big" style="--c:#e85830;--del:.56s"></span>
+  <span class="ps-dot sm"  style="--c:#2268d8;--del:.7s"></span>
+  <span class="ps-dot"     style="--c:#d48030;--del:.84s"></span>
+  <span class="ps-dot big" style="--c:#8844c0;--del:.98s"></span>
+  <span class="ps-dot"     style="--c:#e85830;--del:1.12s"></span>
+  <span class="ps-dot sm"  style="--c:#3a7a52;--del:1.26s"></span>
+  <span class="ps-dot"     style="--c:#2268d8;--del:1.4s"></span>
+  <span class="ps-dot big" style="--c:#d48030;--del:1.54s"></span>
+  <span class="ps-label">✦</span>
+</div>
+
+<!-- ══ FEATURED (filled by JS) ══ -->
+<section class="featured-section reveal" id="featuredRoot">
+  <span class="ft-sparkle" style="--x:2%;--y:15%;--sz:1.5rem;--clr:var(--coral);--op:.4;--dur:5s">✦</span>
+  <span class="ft-sparkle" style="--x:4%;--y:65%;--sz:0.9rem;--clr:var(--amber);--op:.35;--dur:7s;--del:.8s">✦</span>
+  <span class="ft-sparkle" style="--x:96%;--y:20%;--sz:1.1rem;--clr:var(--plum);--op:.3;--dur:6s;--del:.4s">✧</span>
+  <span class="ft-sparkle" style="--x:94%;--y:75%;--sz:0.8rem;--clr:var(--sage);--op:.35;--dur:8s;--del:1.2s">✶</span>
+</section>
+
+<!-- ══ GALLERY ══ -->
+<section class="gallery-section" id="gallery">
+  <p class="gallery-intro reveal">selected pieces from the journey so far</p>
+  <div class="section-mark reveal">
+    <div class="sm-dot"></div>
+    <div style="display:flex;flex-direction:column;gap:.1rem;flex-shrink:0;">
+      <span class="sm-label">The Work</span>
+      <svg class="sm-squiggle" width="72" height="8" viewBox="0 0 72 8" fill="none">
+        <path d="M0,5 Q9,1 18,5 Q27,9 36,5 Q45,1 54,5 Q63,9 72,5" stroke="var(--coral)" stroke-width="2" stroke-linecap="round" fill="none"/>
+      </svg>
+    </div>
+    <div class="sm-rule"></div>
+    <span class="sm-count" id="galleryCount"></span>
+  </div>
+  <div class="portfolio-grid" id="galleryRoot"></div>
+</section>
+
+<!-- ══ PAINT DOT STRIP 2 ══ -->
+<div class="paint-strip" aria-hidden="true">
+  <span class="ps-label">○</span>
+  <span class="ps-dot big" style="--c:#8844c0;--del:0s"></span>
+  <span class="ps-dot sm"  style="--c:#e85830;--del:.18s"></span>
+  <span class="ps-dot"     style="--c:#2268d8;--del:.36s"></span>
+  <span class="ps-dot big" style="--c:#d48030;--del:.54s"></span>
+  <span class="ps-dot"     style="--c:#3a7a52;--del:.72s"></span>
+  <span class="ps-dot sm"  style="--c:#8844c0;--del:.9s"></span>
+  <span class="ps-dot"     style="--c:#e85830;--del:1.08s"></span>
+  <span class="ps-dot big" style="--c:#2268d8;--del:1.26s"></span>
+  <span class="ps-dot sm"  style="--c:#3a7a52;--del:1.44s"></span>
+  <span class="ps-dot"     style="--c:#d48030;--del:1.62s"></span>
+  <span class="ps-label">○</span>
+</div>
+
+<!-- TICKER 2 -->
+<div class="ticker ticker--plum">
+  <div class="ticker__track">
+    <span>Selected Works</span><span>✦</span><span>Digital Paintings</span><span>○</span>
+    <span>Colour Studies</span><span>✦</span><span>Atmosphere</span><span>○</span>
+    <span>Light</span><span>✦</span><span>Feeling</span><span>○</span>
+    <span>Selected Works</span><span>✦</span><span>Digital Paintings</span><span>○</span>
+    <span>Colour Studies</span><span>✦</span><span>Atmosphere</span><span>○</span>
+    <span>Light</span><span>✦</span><span>Feeling</span><span>○</span>
+  </div>
+</div>
+
+<!-- ══ SPOTLIGHTS (filled by JS) ══ -->
+<div id="spotlightsRoot"></div>
+
+<!-- ══ FOOTER ══ -->
+<footer class="footer reveal">
+  <div class="footer__inner">
+    <p class="footer__name">Spacechase</p>
+    <p class="footer__tagline">Digital Artist · Always Learning</p>
+    <div class="social-links">
+      <a href="#" class="social-link" title="Instagram" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor" stroke="none"/></svg>
+      </a>
+      <a href="#" class="social-link" title="Twitter / X" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      </a>
+      <a href="#" class="social-link" title="ArtStation" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M0 17.723l2.027 3.505h.001a2.424 2.424 0 0 0 2.164 1.333h13.457l-2.792-4.838H0zm24 .025c0-.484-.143-.935-.388-1.314L15.728 2.728a2.424 2.424 0 0 0-2.142-1.289H9.419L21.598 22.54l1.92-3.325c.378-.637.482-.919.482-1.467zm-11.129-3.462L7.428 4.858l-5.444 9.428h10.887z"/></svg>
+      </a>
+    </div>
+    <nav class="footer__nav">
+      <a href="./">Portfolio</a>
+      <a href="../gallery/">Gallery</a>
+      <a href="../roadmap/">Roadmap</a>
+      <a href="../about/">Meet Me</a>
+    </nav>
+    <p class="footer__credit">Made with intention · 2024</p>
+  </div>
+</footer>
+
+<!-- ══ LIGHTBOX ══ -->
+<div class="lightbox" id="lightbox">
+  <div class="lightbox__back" id="lbBack"></div>
+  <div class="lightbox__frame">
+    <div class="lightbox__canvas" id="lbCanvas"></div>
+  </div>
+  <button class="lightbox__close" id="lbClose">✕</button>
+</div>
+
+<script src="../portfolio-data.js"></script>
+<script src="../js/index.js"></script>
+
+<script src="../js/cursor.js"></script>
+
+</body>
+</html>

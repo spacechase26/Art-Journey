@@ -14,17 +14,19 @@ below — most edits are "open one file, change some text, save."
 • A plain static website. Just HTML + CSS + a little JavaScript.
 • NO framework, NO build step, NO npm, NO compiling. The files you edit
   ARE the files that ship. What you see in the file is what goes live.
-• 4 real pages. The home page is index.html at the root; the other three
-  each live in their OWN FOLDER as index.html, which is what gives the clean
-  ".html-free" URLs (its CSS lives in css/, its JS in js/):
-      index.html          → "Portfolio"  (the home page)        URL: /
-      gallery/index.html  → "Gallery"                           URL: /gallery/
-      about/index.html    → "Meet Me"                           URL: /about/
-      roadmap/index.html  → "Roadmap"  (the big learning plan)  URL: /roadmap/
+• 4 real pages. Each one lives in its OWN FOLDER as index.html, which is what
+  gives the clean ".html-free" URLs (its CSS lives in css/, its JS in js/):
+      portfolio/index.html → "Portfolio" (the home page)        URL: /portfolio/
+      gallery/index.html   → "Gallery"                          URL: /gallery/
+      about/index.html     → "Meet Me"                          URL: /about/
+      roadmap/index.html   → "Roadmap"  (the big learning plan) URL: /roadmap/
+  There is ALSO a tiny index.html at the root: it's just a redirect that sends
+  the bare site address (…/art-journey/) to …/art-journey/portfolio/. You
+  rarely touch it — only if you ever rename the home folder.
 • Two pages pull their content from a small data file so you edit a tidy
   list instead of HTML:
-      index.html          reads  portfolio-data.js
-      gallery/index.html  reads  gallery-data.js
+      portfolio/index.html reads  portfolio-data.js
+      gallery/index.html   reads  gallery-data.js
   The other two (about, roadmap) keep their text inline — you edit the
   words directly in the page's index.html.
 
@@ -36,17 +38,18 @@ Because there's no build, the workflow is the simplest possible:
 2.  PROJECT MAP  (what every file is, and whether you'll touch it)
 ────────────────────────────────────────────────────────────────────────
 EDIT THESE — your content lives here:
-  index.html .............. Portfolio page (structure + hero/statement text)
+  portfolio/index.html .... Portfolio / home page (structure + hero/statement)
   gallery/index.html ...... Gallery page (structure)
   about/index.html ........ Meet Me page  (all the text is inline here)
   roadmap/index.html ...... Roadmap page  (all the phases/weeks inline here)
-  portfolio-data.js ....... the featured piece + grid + spotlights for index
+  portfolio-data.js ....... the featured piece + grid + spotlights for portfolio
   gallery-data.js ......... every artwork shown in the gallery, by year
+  index.html (at root) .... a 1-screen redirect to portfolio/ — rarely touched
 
-  ⚠ The three folder pages reference shared files with a "../" prefix
-    (e.g. ../css/gallery.css, ../js/gallery.js) because they sit one level
-    deep. The root index.html does NOT use "../". If you copy a <link>/<script>
-    line between the home page and a folder page, add or drop the "../" to match.
+  ⚠ All four pages live one folder deep, so they reference shared files with a
+    "../" prefix (e.g. ../css/gallery.css, ../js/gallery.js, ../portfolio-data.js).
+    The root redirect index.html is the only file at the top level. Cross-page
+    links are folder-style: ../portfolio/  ../gallery/  ../about/  ../roadmap/.
 
 STYLES — one stylesheet per page (edit to change the LOOK):
   css/index.css   css/gallery.css   css/about.css   css/roadmap.css
@@ -78,7 +81,7 @@ OTHER:
 ────────────────────────────────────────────────────────────────────────
   PAGE          TO CHANGE THE WORDS / PIECES, EDIT…
   ───────────   ──────────────────────────────────────────────
-  Portfolio     hero text → inside index.html
+  Portfolio     hero text → inside portfolio/index.html
                 featured piece, grid, spotlights → portfolio-data.js
   Gallery       everything → gallery-data.js
   Meet Me       everything → inside about/index.html (it's all inline text)
@@ -102,9 +105,9 @@ The dev preview for this project runs at:
 If it's not running, start a static server from inside the project folder:
       cd /home/coder/art-journey
       python3 -m http.server 4324
-…then open http://138.124.50.18:4324/ and add /gallery/ , /about/ , or
-/roadmap/ (clean URLs — no ".html"). The trailing "/" matters: it tells the
-server to serve that folder's index.html.
+…then open http://138.124.50.18:4324/ — it redirects to /portfolio/ (the home
+page). The other clean URLs are /gallery/ , /about/ , /roadmap/ (no ".html").
+The trailing "/" matters: it tells the server to serve that folder's index.html.
 
 WHY A SERVER (and not just double-clicking the .html)?
 Because the JS loads sibling files (portfolio-data.js, gallery-data.js,
@@ -133,10 +136,10 @@ straight off the main branch. So publishing = pushing to main:
 Give Pages ~30–60 seconds, then hard-refresh the live URL.
 
 IMPORTANT — links are RELATIVE and folder-style (no ".html"), and the live
-site lives under /art-journey/. From the home page, link to a page with its
-folder: href="gallery/" , href="about/" , href="roadmap/" (and href="./" for
-home). From INSIDE a folder page, step up first: href="../gallery/" ,
-href="../about/" , href="../" for home. In-page jumps stay as href="#section".
+site lives under /art-journey/. Every page sits one folder deep, so to link
+from one page to another you step up a level first:
+      href="../portfolio/"   href="../gallery/"   href="../about/"   href="../roadmap/"
+(A page may link to itself with href="./".) In-page jumps stay as href="#section".
 Keep links relative. Never write a link that starts with a leading slash
 ("/gallery/") — it would break on the live site (it'd point at the domain
 root, not the /art-journey/ folder).

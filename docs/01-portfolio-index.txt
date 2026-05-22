@@ -1,5 +1,5 @@
 ╔══════════════════════════════════════════════════════════════════════╗
-║  PAGE 1 — PORTFOLIO  (index.html)  — the home page                    ║
+║  PAGE 1 — PORTFOLIO  (portfolio/index.html → /portfolio/) — home page ║
 ╚══════════════════════════════════════════════════════════════════════╝
 
 WHAT IT IS
@@ -10,14 +10,15 @@ WHAT IT IS
   click any piece into.
 
 FILES INVOLVED
-  index.html ............ the page structure + your hero/statement text
+  portfolio/index.html .. the page structure + your hero/statement text (in its
+                          own folder for the clean URL; shared files use "../")
   css/index.css ......... all of this page's styling (the LOOK)
   js/index.js ........... this page's behaviour (builds featured/grid/spotlights)
   portfolio-data.js ..... the featured piece, the grid, the spotlights
   js/cursor.js .......... the shared brush cursor (loaded at the bottom)
 
 THE TWO PLACES CONTENT LIVES
-  • HERO + STATEMENT words → typed directly inside index.html.
+  • HERO + STATEMENT words → typed directly inside portfolio/index.html.
   • FEATURED / GRID / SPOTLIGHTS → portfolio-data.js (edit the lists there).
 
 
@@ -40,7 +41,7 @@ PAGE STRUCTURE  (top to bottom, by the <!-- comment --> banners)
 WALKTHROUGHS
 ────────────────────────────────────────────────────────────────────────
 
-A) CHANGE THE HERO TEXT  (edit index.html, find the "HERO" comment)
+A) CHANGE THE HERO TEXT  (edit portfolio/index.html, find the "HERO" comment)
    • Name: find  class="hero__name"  →  Space<br><em>chase</em>
        The <br> is the line break; <em> italicises the second half.
    • Eyebrow (small line above name): class="hero__eyebrow" → "Digital Artist · 2024"
@@ -122,7 +123,7 @@ GOTCHAS
 ────────────────────────────────────────────────────────────────────────
 VERIFY AFTER EDITING
 ────────────────────────────────────────────────────────────────────────
-  1. Refresh http://138.124.50.18:4324/ (hard-refresh for CSS/JS).
+  1. Refresh http://138.124.50.18:4324/portfolio/ (hard-refresh for CSS/JS).
   2. Featured / grid / spotlights all render, counts look right.
   3. Click a piece → lightbox opens and closes.
   4. No red errors in the console (F12).

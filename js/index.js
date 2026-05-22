@@ -11,7 +11,7 @@ function buildFeatured() {
   root.dataset.num = f.number;
 
   const artHtml = f.file
-    ? `<img src="img/gallery/${f.file}" alt="${f.title}" class="art-canvas" decoding="async" fetchpriority="high">`
+    ? `<img src="../img/gallery/${f.file}" alt="${f.title}" class="art-canvas" decoding="async" fetchpriority="high">`
     : `<div class="art-canvas ${f.css || ''}"></div>`;
 
   root.innerHTML = `
@@ -43,7 +43,7 @@ function buildGallery() {
 
   GALLERY_PIECES.forEach((p, i) => {
     const artHtml = p.file
-      ? `<img src="img/gallery/${p.file}" alt="${p.title}" class="art-canvas" loading="lazy" decoding="async">`
+      ? `<img src="../img/gallery/${p.file}" alt="${p.title}" class="art-canvas" loading="lazy" decoding="async">`
       : `<div class="art-canvas ${p.css || ''}"></div>`;
 
     const card = document.createElement('article');
@@ -79,7 +79,7 @@ function buildSpotlights() {
 
   SPOTLIGHTS.forEach((s, i) => {
     const artHtml = s.file
-      ? `<img src="img/gallery/${s.file}" alt="${s.title}" class="art-canvas" loading="lazy" decoding="async">`
+      ? `<img src="../img/gallery/${s.file}" alt="${s.title}" class="art-canvas" loading="lazy" decoding="async">`
       : `<div class="art-canvas ${s.css || ''}"></div>`;
 
     const artBlock = `
@@ -161,7 +161,7 @@ function openLb(src) {
   lbCanvas.className = 'lightbox__canvas';
   if (src.file) {
     const img = document.createElement('img');
-    img.src = `img/gallery/${src.file}`;
+    img.src = `../img/gallery/${src.file}`;
     img.alt = ''; img.className = 'lightbox__canvas'; img.decoding = 'async';
     img.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover;';
     lbCanvas.appendChild(img);

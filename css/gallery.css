@@ -75,32 +75,32 @@ button { background: none; border: none; cursor: none; padding: 0; }
 
 /* ── CURSOR — a soft gallery spotlight (different from the brush) ── */
 .spotlight {
-  position: fixed; left: 0; top: 0; width: 110px; height: 110px;
+  position: fixed; left: 0; top: 0; width: 160px; height: 160px;
   border-radius: 50%; pointer-events: none; z-index: 9998;
   will-change: transform;
   /* closest-side + alpha 0 at 80% → the glow is fully transparent before the circular clip, so no visible edge */
-  background: radial-gradient(circle closest-side, rgba(255,224,150,.5) 0%, rgba(255,190,90,.32) 12%, rgba(255,160,70,.16) 32%, rgba(255,140,55,.06) 56%, rgba(255,130,50,0) 80%);
+  background: radial-gradient(circle closest-side, rgba(255,226,155,.62) 0%, rgba(255,192,92,.42) 12%, rgba(255,162,72,.23) 32%, rgba(255,142,56,.09) 56%, rgba(255,132,50,0) 80%);
   mix-blend-mode: screen;
   transition: width .45s var(--ease), height .45s var(--ease);
 }
 body.cursor-hover .spotlight {        /* over a link/card: grow + glow brighter, still edgeless */
-  width: 180px; height: 180px;
-  background: radial-gradient(circle closest-side, rgba(255,230,170,.74) 0%, rgba(255,196,100,.5) 12%, rgba(255,165,75,.26) 32%, rgba(255,145,60,.1) 56%, rgba(255,135,50,0) 80%);
+  width: 240px; height: 240px;
+  background: radial-gradient(circle closest-side, rgba(255,232,172,.84) 0%, rgba(255,198,102,.6) 12%, rgba(255,167,77,.33) 32%, rgba(255,147,62,.13) 56%, rgba(255,137,52,0) 80%);
 }
-.spot-dot {                           /* firefly ember — warm torch bead, readable on any background */
-  position: fixed; left: 0; top: 0; width: 10px; height: 10px;
+.spot-dot {                           /* firefly ember — big, bright warm torch bead, readable on any background */
+  position: fixed; left: 0; top: 0; width: 16px; height: 16px;
   border-radius: 50%; pointer-events: none; z-index: 9999;
   will-change: transform;
   /* warm-white core → amber → saturated ember edge: the ember edge reads on white/yellow, the glowing core on black (normal blend, never inverted) */
-  background: radial-gradient(circle, #fff4d6 0%, #ffb24d 45%, #f0641e 100%);
-  box-shadow: 0 0 6px 2px rgba(240,100,30,.95), 0 0 16px 6px rgba(255,150,50,.6), 0 0 30px 12px rgba(255,120,40,.32);
+  background: radial-gradient(circle, #fff6e0 0%, #ffc15e 42%, #f56a1c 100%);
+  box-shadow: 0 0 12px 4px rgba(245,110,30,1), 0 0 28px 10px rgba(255,150,50,.82), 0 0 52px 20px rgba(255,125,40,.5), 0 0 86px 36px rgba(255,115,38,.26);
   animation: firefly 2.6s ease-in-out infinite;
 }
-@keyframes firefly {                  /* torchlight breathing — min opacity stays high so it's always locatable */
-  0%, 100% { opacity: .8;
-    box-shadow: 0 0 5px 2px rgba(240,100,30,.8), 0 0 13px 5px rgba(255,140,45,.5), 0 0 24px 9px rgba(255,120,40,.24); }
+@keyframes firefly {                  /* torchlight breathing — big bright aura, min opacity stays high so it's always locatable */
+  0%, 100% { opacity: .85;
+    box-shadow: 0 0 10px 3px rgba(245,110,30,.9), 0 0 24px 9px rgba(255,150,50,.62), 0 0 46px 18px rgba(255,125,40,.36), 0 0 78px 32px rgba(255,115,38,.2); }
   50%      { opacity: 1;
-    box-shadow: 0 0 8px 3px rgba(245,110,35,1), 0 0 20px 8px rgba(255,160,55,.72), 0 0 34px 13px rgba(255,130,45,.42); }
+    box-shadow: 0 0 14px 5px rgba(250,120,35,1), 0 0 34px 13px rgba(255,165,60,.88), 0 0 62px 26px rgba(255,135,45,.56), 0 0 100px 42px rgba(255,120,40,.32); }
 }
 
 /* ── NAV ── */
