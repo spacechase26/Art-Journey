@@ -61,11 +61,14 @@ WALKTHROUGHS
 ────────────────────────────────────────────────────────────────────────
 
 A) ADD A REAL ARTWORK
-   1. Drop the image into  img/gallery/   (e.g. storm-season.jpg)
+   1. Drop the image into  img/gallery/  named like:
+        YYYY-MM-DD-kebab-title.webp   →   e.g.  2026-05-31-storm-season.webp
+      • all lowercase, hyphens between words (no spaces / underscores / symbols)
+      • date first (folder stays sorted) · prefer .webp, .jpg ok, .png for transparency
    2. Add one entry to the GALLERY array, using  file:  (not css:):
         { year:2026, title:"Storm Season", medium:"Digital · Procreate",
-          ratio:"square", file:"storm-season.jpg" },
-   The filename must match EXACTLY (case + extension).
+          ratio:"square", file:"2026-05-31-storm-season.webp", date:"2026-05-31" },
+   The  file:  value must match the filename EXACTLY (case + extension).
 
 B) ADD A PLACEHOLDER (no image yet)
    Use  css:  with one of the placeholder names instead of  file: :

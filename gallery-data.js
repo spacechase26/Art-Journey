@@ -15,10 +15,15 @@
        on their own — nothing else to wire up.
 
   ADD A REAL PIECE (replacing a placeholder):
-    1. Put the image file in the  img/gallery/  folder.
-    2. Give the entry a  file:  and remove its  css:  line:
-         { year: 2026, title: "My Drawing", medium: "Digital · Procreate",
-           ratio: "portrait", file: "my-drawing.jpg", date: "2026-06-01" },
+    1. Put the image in  img/gallery/  named:  YYYY-MM-DD-kebab-title.webp
+         e.g.  2026-05-31-storm-season.webp
+       • all lowercase, hyphens between words (NO spaces / underscores / symbols)
+       • date first so the folder stays sorted; prefer .webp (.jpg ok; .png only
+         if you need transparency)
+    2. Give the entry a  file:  and remove its  css:  line — the  file:  value
+       must match the filename EXACTLY (case + extension):
+         { year: 2026, title: "Storm Season", medium: "Digital · Procreate",
+           ratio: "portrait", file: "2026-05-31-storm-season.webp", date: "2026-05-31" },
 
   USE A PLACEHOLDER (no image yet) — use  css:  instead of  file: :
          { year: 2026, title: "WIP Sketch", medium: "Pencil on Paper",
