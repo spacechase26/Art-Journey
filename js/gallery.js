@@ -26,7 +26,7 @@
         ${items.map(item=>{
           const rc = RATIO[item.ratio]||'ar-portrait';
           const frame = item.file
-            ? `<img class="art-frame ${rc}" src="img/gallery/${item.file}" alt="${item.title}" loading="lazy" decoding="async">`
+            ? `<img class="art-frame ${rc}" src="../img/gallery/${item.file}" alt="${item.title}" loading="lazy" decoding="async">`
             : `<div class="art-frame ${rc} ${item.css||''}"></div>`;
           return `<article class="art-item" data-mode="${MODE(item)}"
             data-title="${item.title}"
@@ -120,7 +120,7 @@
   let mx=innerWidth/2,my=innerHeight/2,sx=mx,sy=my;
   addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;},{passive:true});
   (function loop(){
-    sx+=(mx-sx)*.18; sy+=(my-sy)*.18;
+    sx+=(mx-sx)*.45; sy+=(my-sy)*.45;
     spot.style.transform=`translate(calc(${sx}px - 50%),calc(${sy}px - 50%))`;
     dot.style.transform =`translate(calc(${mx}px - 50%),calc(${my}px - 50%))`;
     requestAnimationFrame(loop);
@@ -181,7 +181,7 @@ document.getElementById('galleryRoot').addEventListener('click',e=>{
   const file=item.dataset.file, art=item.dataset.art;
   lbArt.className='lb-art';
   lbArt.innerHTML=file
-    ? `<img src="img/gallery/${file}" alt="${item.dataset.title}" style="width:100%;height:100%;object-fit:contain;border-radius:2px;">`
+    ? `<img src="../img/gallery/${file}" alt="${item.dataset.title}" style="width:100%;height:100%;object-fit:contain;border-radius:2px;">`
     : '';
   if(!file && art) lbArt.classList.add(art);
   lbTitle.textContent=item.dataset.title;

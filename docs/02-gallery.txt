@@ -1,5 +1,5 @@
 ╔══════════════════════════════════════════════════════════════════════╗
-║  PAGE 2 — GALLERY  (gallery.html)                                     ║
+║  PAGE 2 — GALLERY  (gallery/index.html  →  URL /gallery/)             ║
 ╚══════════════════════════════════════════════════════════════════════╝
 
 WHAT IT IS
@@ -9,14 +9,15 @@ WHAT IT IS
   the wall stays manageable. Click any card to open it big (lightbox).
 
 FILES INVOLVED
-  gallery.html ......... the page structure
+  gallery/index.html ... the page structure (in its own folder for the clean
+                         URL; references shared files with a "../" prefix)
   css/gallery.css ...... all of this page's styling (the LOOK)
   js/gallery.js ........ this page's behaviour (masonry, tabs, lightbox)
   gallery-data.js ...... EVERYTHING you see — every piece, every year
   img/gallery/ ......... where real artwork files go (empty for now)
 
 THE ONE PLACE CONTENT LIVES
-  → gallery-data.js.  You will almost never open gallery.html itself.
+  → gallery-data.js.  You will almost never open gallery/index.html itself.
     That file already has a friendly how-to comment block at the top —
     this doc expands on it.
 
@@ -147,7 +148,7 @@ GOTCHAS
 ────────────────────────────────────────────────────────────────────────
 VERIFY AFTER EDITING
 ────────────────────────────────────────────────────────────────────────
-  1. Refresh http://138.124.50.18:4324/gallery.html (hard-refresh).
+  1. Refresh http://138.124.50.18:4324/gallery/ (hard-refresh).
   2. New piece appears under the right year and the right tab.
   3. Year-nav shows the right years; clicking a year jumps to it.
   4. Click a card → lightbox opens/closes. No red console errors.

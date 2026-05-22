@@ -1,5 +1,5 @@
 ╔══════════════════════════════════════════════════════════════════════╗
-║  PAGE 4 — ROADMAP  (roadmap.html)  — the learning plan                ║
+║  PAGE 4 — ROADMAP  (roadmap/index.html → /roadmap/) — the learning plan ║
 ╚══════════════════════════════════════════════════════════════════════╝
 
 WHAT IT IS
@@ -12,11 +12,11 @@ WHAT IT IS
   This page is its OWN little app. It uses a different look and different
   fonts (Inter + Playfair Display) from the art pages. Its styling lives in
   css/roadmap.css and its behaviour in js/roadmap.js; the phases and weeks
-  (the actual text) are inline in roadmap.html. It shares no code with the
+  (the actual text) are inline in roadmap/index.html. It shares no code with the
   other pages, so editing it can't break them and vice-versa.
 
 WHERE CONTENT LIVES
-  → All phases and weeks (the text) are inline in roadmap.html. No data file.
+  → All phases and weeks (the text) are inline in roadmap/index.html. No data file.
     The styling is in css/roadmap.css; the scripts in js/roadmap.js.
 
 
@@ -192,7 +192,7 @@ GOTCHAS
 ────────────────────────────────────────────────────────────────────────
 VERIFY AFTER EDITING
 ────────────────────────────────────────────────────────────────────────
-  1. Refresh http://138.124.50.18:4324/roadmap.html (hard-refresh).
+  1. Refresh http://138.124.50.18:4324/roadmap/ (hard-refresh).
   2. New/edited phase shows with the right colour; sidebar link jumps to it.
   3. Weeks expand/collapse; ticking a week moves the progress bar; the
      total reads the new count (e.g. "1 of 64").

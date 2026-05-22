@@ -1,5 +1,5 @@
 ╔══════════════════════════════════════════════════════════════════════╗
-║  PAGE 3 — MEET ME  (about.html)                                       ║
+║  PAGE 3 — MEET ME  (about/index.html  →  URL /about/)                 ║
 ╚══════════════════════════════════════════════════════════════════════╝
 
 WHAT IT IS
@@ -9,16 +9,17 @@ WHAT IT IS
   living list), and a closing with your social links.
 
 FILES INVOLVED
-  about.html ........... the page structure AND all the text you edit
+  about/index.html ..... the page structure AND all the text you edit (in its
+                         own folder for the clean URL; shared files use "../")
   css/about.css ........ all of this page's styling (the LOOK)
   js/about.js .......... this page's behaviour (scroll reveal, nav)
   js/cursor.js ......... the shared brush cursor (loaded at the bottom)
 
 WHERE CONTENT LIVES
-  → ALL the words are typed directly inside about.html. There is NO data
+  → ALL the words are typed directly inside about/index.html. There is NO data
     file. To change the words, you edit the HTML text between the tags.
     Don't be nervous — you're just replacing sentences, not structure.
-    (The styling moved out to css/about.css, but the TEXT stays in about.html.)
+    (The styling lives in css/about.css, but the TEXT stays in about/index.html.)
 
 GENERAL RULE FOR EDITING TEXT HERE
   Change the words BETWEEN the tags, keep the tags themselves:
@@ -130,7 +131,7 @@ GOTCHAS
 ────────────────────────────────────────────────────────────────────────
 VERIFY AFTER EDITING
 ────────────────────────────────────────────────────────────────────────
-  1. Refresh http://138.124.50.18:4324/about.html (hard-refresh).
+  1. Refresh http://138.124.50.18:4324/about/ (hard-refresh).
   2. Read top to bottom — text reads right, nothing overlaps or spills.
   3. Sections fade in as you scroll.
   4. Social links and buttons go to the right places.

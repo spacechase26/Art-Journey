@@ -79,27 +79,28 @@ button { background: none; border: none; cursor: none; padding: 0; }
   border-radius: 50%; pointer-events: none; z-index: 9998;
   will-change: transform;
   /* closest-side + alpha 0 at 80% → the glow is fully transparent before the circular clip, so no visible edge */
-  background: radial-gradient(circle closest-side, rgba(255,242,185,.5) 0%, rgba(255,228,120,.3) 12%, rgba(255,216,92,.14) 32%, rgba(255,206,72,.05) 56%, rgba(255,200,60,0) 80%);
+  background: radial-gradient(circle closest-side, rgba(255,224,150,.5) 0%, rgba(255,190,90,.32) 12%, rgba(255,160,70,.16) 32%, rgba(255,140,55,.06) 56%, rgba(255,130,50,0) 80%);
   mix-blend-mode: screen;
   transition: width .45s var(--ease), height .45s var(--ease);
 }
 body.cursor-hover .spotlight {        /* over a link/card: grow + glow brighter, still edgeless */
   width: 180px; height: 180px;
-  background: radial-gradient(circle closest-side, rgba(255,246,200,.72) 0%, rgba(255,232,134,.48) 12%, rgba(255,220,100,.24) 32%, rgba(255,210,80,.09) 56%, rgba(255,200,60,0) 80%);
+  background: radial-gradient(circle closest-side, rgba(255,230,170,.74) 0%, rgba(255,196,100,.5) 12%, rgba(255,165,75,.26) 32%, rgba(255,145,60,.1) 56%, rgba(255,135,50,0) 80%);
 }
-.spot-dot {                           /* firefly bead — warm-yellow glow */
-  position: fixed; left: 0; top: 0; width: 8px; height: 8px;
+.spot-dot {                           /* firefly ember — warm torch bead, readable on any background */
+  position: fixed; left: 0; top: 0; width: 10px; height: 10px;
   border-radius: 50%; pointer-events: none; z-index: 9999;
   will-change: transform;
-  background: radial-gradient(circle, #fff7c2 0%, #ffe45c 55%, #ffb938 100%);
-  box-shadow: 0 0 6px 2px rgba(255,224,90,.9), 0 0 14px 5px rgba(255,206,60,.6), 0 0 26px 10px rgba(255,196,50,.32);
+  /* warm-white core → amber → saturated ember edge: the ember edge reads on white/yellow, the glowing core on black (normal blend, never inverted) */
+  background: radial-gradient(circle, #fff4d6 0%, #ffb24d 45%, #f0641e 100%);
+  box-shadow: 0 0 6px 2px rgba(240,100,30,.95), 0 0 16px 6px rgba(255,150,50,.6), 0 0 30px 12px rgba(255,120,40,.32);
   animation: firefly 2.6s ease-in-out infinite;
 }
-@keyframes firefly {
-  0%, 100% { opacity: .72;
-    box-shadow: 0 0 5px 2px rgba(255,224,90,.7), 0 0 12px 4px rgba(255,206,60,.45), 0 0 22px 8px rgba(255,196,50,.22); }
+@keyframes firefly {                  /* torchlight breathing — min opacity stays high so it's always locatable */
+  0%, 100% { opacity: .8;
+    box-shadow: 0 0 5px 2px rgba(240,100,30,.8), 0 0 13px 5px rgba(255,140,45,.5), 0 0 24px 9px rgba(255,120,40,.24); }
   50%      { opacity: 1;
-    box-shadow: 0 0 8px 3px rgba(255,230,110,1), 0 0 18px 7px rgba(255,210,70,.7), 0 0 30px 12px rgba(255,198,52,.4); }
+    box-shadow: 0 0 8px 3px rgba(245,110,35,1), 0 0 20px 8px rgba(255,160,55,.72), 0 0 34px 13px rgba(255,130,45,.42); }
 }
 
 /* ── NAV ── */
