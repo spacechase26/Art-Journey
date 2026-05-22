@@ -31,7 +31,11 @@ function fmtDate(d){
   const years = [...new Set(GALLERY.map(g=>g.year))].sort((a,b)=>b-a);  // newest first
 
   years.forEach(year=>{
-    const items = GALLERY.filter(g=>g.year===year);
+    const items = GALLERY.filter(g=>g.year===year).sort((a,b)=>{
+      const da=a.date?Date.parse(a.date):-Infinity, db=b.date?Date.parse(b.date):-Infinity;
+      if(db!==da) return db-da;                                          // newest date on top
+      return (b.file||b.title||'').localeCompare(a.file||a.title||'');   // then name, descending
+    });
     const sec   = document.createElement('section');
     sec.className='year-section'; sec.id=`y${year}`;
 

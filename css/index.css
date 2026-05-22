@@ -204,6 +204,7 @@ img { display: block; max-width: 100%; }
   height: clamp(200px, 28vw, 440px);
   border-radius: 50%; overflow: hidden;
   border: 5px solid rgba(28,16,8,.07);
+  box-shadow: 0 22px 45px -18px rgba(28,16,8,.45);   /* lift the avatar off the page */
   flex-shrink: 0;
   opacity: 0;
   animation: heroCircleIn .9s var(--ease) .9s forwards, heroFloat 7s ease-in-out 1.8s infinite;
@@ -402,7 +403,8 @@ img { display: block; max-width: 100%; }
 }
 .artwork--featured {
   aspect-ratio: 4/5;
-  box-shadow: 22px 22px 0 var(--coral);
+  /* scrapbook coral offset + a soft realistic shadow so it lifts off the page */
+  box-shadow: 18px 18px 0 var(--coral), 0 30px 55px -22px rgba(28,16,8,.5);
 }
 .featured__info { padding: .5rem 0; }
 .featured__num {
@@ -463,6 +465,7 @@ img { display: block; max-width: 100%; }
   position: relative; overflow: hidden; border-radius: 4px;
   width: 100%;
   aspect-ratio: 4 / 5;          /* default box for placeholders */
+  box-shadow: 0 14px 28px -18px rgba(28,16,8,.45);   /* soft resting depth */
   transition: transform .5s var(--ease), box-shadow .5s var(--ease);
 }
 .portfolio-card:hover .pc-frame {
@@ -550,7 +553,7 @@ img { display: block; max-width: 100%; }
   letter-spacing: -.04em;
 }
 .spotlight > * { position: relative; z-index: 1; }
-.artwork--spotlight { aspect-ratio: 3/4; border-radius: 4px; }
+.artwork--spotlight { aspect-ratio: 3/4; border-radius: 4px; box-shadow: 0 32px 60px -28px rgba(28,16,8,.5); }
 .spotlight__text { padding: .5rem 0; }
 .spotlight__num {
   display: block; font-size: .66rem; font-weight: 600;
