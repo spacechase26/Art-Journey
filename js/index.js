@@ -1,5 +1,9 @@
 /* ── CURSOR: the shared brush cursor lives in js/cursor.js (loaded below) ── */
 
+/* ── ALWAYS LAND AT THE TOP ON (RE)LOAD ── */
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+addEventListener('load', () => scrollTo(0, 0));
+
 /* ── NAV ── */
 const nav = document.getElementById('nav');
 window.addEventListener('scroll',()=>nav.classList.toggle('solid',window.scrollY>50),{passive:true});
