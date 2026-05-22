@@ -1,29 +1,40 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Spacechase">
   <defs>
-    <radialGradient id="sky" cx="310" cy="205" r="300" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#3a2814"/>
-      <stop offset="1" stop-color="#160f08"/>
+    <radialGradient id="sky" cx="50%" cy="46%" r="64%">
+      <stop offset="0" stop-color="#2a1d11"/>
+      <stop offset="1" stop-color="#14100a"/>
     </radialGradient>
-    <radialGradient id="glow" cx="310" cy="205" r="185" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#ff9646" stop-opacity=".8"/>
+    <radialGradient id="exglow" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#ff9646" stop-opacity=".55"/>
       <stop offset="1" stop-color="#ff9646" stop-opacity="0"/>
     </radialGradient>
-    <radialGradient id="head" cx="296" cy="190" r="88" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#fff3d6"/>
-      <stop offset=".45" stop-color="#ffb24d"/>
-      <stop offset="1" stop-color="#f0641e"/>
+    <radialGradient id="win" cx="42%" cy="38%" r="68%">
+      <stop offset="0" stop-color="#d4e8ff"/>
+      <stop offset="1" stop-color="#2f74cc"/>
     </radialGradient>
-    <linearGradient id="tail" x1="356" y1="252" x2="131" y2="381" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#ff8737"/>
-      <stop offset="1" stop-color="#e85830" stop-opacity="0"/>
-    </linearGradient>
   </defs>
   <rect width="512" height="512" rx="116" fill="url(#sky)"/>
-  <rect width="512" height="512" rx="116" fill="url(#glow)"/>
-  <path d="M356 252 Q 240 342 131 381 Q 198 250 264 158 Z" fill="url(#tail)"/>
-  <circle cx="310" cy="205" r="72" fill="url(#head)"/>
-  <g fill="#fff7e0">
-    <path d="M381 121 l8 20 20 8 -20 8 -8 20 -8 -20 -20 -8 20 -8 z"/>
-    <path d="M335 291 l6 16 16 6 -16 6 -6 16 -6 -16 -16 -6 16 -6 z"/>
+  <g fill="#fff3d6">
+    <path d="M410 92 l6 16 16 6 -16 6 -6 16 -6 -16 -16 -6 16 -6 z"/>
+    <path d="M104 142 l5 13 13 5 -13 5 -5 13 -5 -13 -13 -5 13 -5 z"/>
+    <path d="M380 312 l4 11 11 4 -11 4 -4 11 -4 -11 -11 -4 11 -4 z"/>
+  </g>
+  <g transform="rotate(37 256 248)">
+    <ellipse cx="256" cy="384" rx="86" ry="128" fill="url(#exglow)"/>
+    <g opacity=".92">
+      <path d="M235 290 L253 290 L136 452 Z" fill="#4aa6ff"/>
+      <path d="M241 290 L259 290 L196 452 Z" fill="#5fcf92"/>
+      <path d="M247 290 L265 290 L256 452 Z" fill="#ffb450"/>
+      <path d="M253 290 L271 290 L316 452 Z" fill="#ff6a2a"/>
+      <path d="M259 290 L277 290 L376 452 Z" fill="#c470e2"/>
+    </g>
+    <g fill="#e8973a">
+      <path d="M290 253 L346 326 L290 330 Z"/>
+      <path d="M222 253 L166 326 L222 330 Z"/>
+    </g>
+    <rect x="215" y="189" width="82" height="104" rx="41" fill="#f1e7cf"/>
+    <path d="M215 193 L297 193 L256 96 Z" fill="#e85830"/>
+    <circle cx="256" cy="222" r="21" fill="url(#win)"/>
+    <circle cx="249" cy="215" r="7" fill="#eaf4ff" opacity=".75"/>
   </g>
 </svg>

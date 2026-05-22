@@ -645,7 +645,9 @@ button { background: none; border: none; cursor: none; padding: 0; }
   .hero__roles { gap: .45rem; }
   .role-tag { font-size: .66rem; padding: .38rem .9rem; }
   .insp-grid { grid-template-columns: 1fr; }
-  .nav { gap: .4rem; padding: 1rem 4vw 1.4rem; justify-content: space-between; }
+  .nav { padding: 1rem 4vw 1.4rem; }
+  .nav__logo { display: none; }                 /* phones: links take the full width */
+  .nav__links { flex: 1; justify-content: space-between; gap: .4rem; }
   .nav__link { font-size: .66rem; letter-spacing: .06em; }
   .statement { padding: 6rem 6vw; }
   .statement__text { font-size: clamp(1.1rem, 4.5vw, 1.5rem); }
