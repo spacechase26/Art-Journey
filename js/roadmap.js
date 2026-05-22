@@ -1,6 +1,10 @@
 (function () {
   'use strict';
 
+  // ── Always land at the top on (re)load ──
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  addEventListener('load', () => scrollTo(0, 0));
+
   // ── Scroll spy ──
   const navLinks = document.querySelectorAll('.sidebar a[href^="#"]');
   const targets = Array.from(navLinks)

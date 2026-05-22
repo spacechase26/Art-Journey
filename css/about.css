@@ -82,13 +82,17 @@ button { background: none; border: none; cursor: none; padding: 0; }
   z-index: 200;
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 3rem;
-  padding: 1.5rem 2rem 2.2rem;
+  justify-content: space-between;
+  padding: 1.5rem 4vw 2.2rem;
   background: linear-gradient(to bottom, rgba(250,246,239,.92) 0%, transparent 100%);
   transition: background .4s ease;
 }
 .nav.solid { background: rgba(250,246,239,.97); box-shadow: 0 1px 0 rgba(26,42,26,.06); }
+.nav__logo {
+  font-family: var(--serif); font-weight: 900; font-size: 1.05rem;
+  letter-spacing: -.01em; color: var(--ink); transition: color .3s;
+}
+.nav__links { display: flex; gap: 3rem; }
 .nav__link {
   font-size: .7rem; font-weight: 500;
   letter-spacing: .18em; text-transform: uppercase;

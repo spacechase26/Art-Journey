@@ -94,7 +94,8 @@
   --dark-background: #2a2d2a;
 
   --serif: 'Playfair Display', Georgia, serif;
-  --sans:  'Inter', system-ui, sans-serif;
+  --sans:  'Hanken Grotesk', system-ui, sans-serif;
+  --hand:  'Caveat', 'Segoe Script', cursive;
 
   --shadow-sm: 0 8px 24px rgba(74, 54, 45, 0.08);
   --shadow-md: 0 18px 42px rgba(74, 54, 45, 0.12);
@@ -105,7 +106,7 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; font-size: 16px; }
+html { scroll-behavior: smooth; font-size: 16px; scroll-padding-top: 70px; }  /* clear the fixed top nav on #anchor jumps */
 
 body {
   background: linear-gradient(135deg, #1a2a1a 0%, #2a2d2a 40%, #1e2a22 100%);
@@ -398,7 +399,7 @@ main {
 ═══════════════════════════════════════════════════════ */
 section {
   margin-bottom: 72px;
-  scroll-margin-top: 32px;
+  scroll-margin-top: 0;   /* offset handled centrally by html scroll-padding-top */
 }
 
 .section-h {
@@ -526,7 +527,7 @@ p:last-child { margin-bottom: 0; }
   overflow: hidden;
   margin-bottom: 48px;
   backdrop-filter: blur(24px);
-  scroll-margin-top: 32px;
+  scroll-margin-top: 0;   /* offset handled centrally by html scroll-padding-top */
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   border: 2px solid;
   position: relative;
@@ -1252,6 +1253,7 @@ hr {
     padding-top: 90px;             /* clear the taller two-row mobile bar */
   }
   /* two stacked rows: page links on top, ☰ + brand below (column-reverse keeps links on top) */
+  html { scroll-padding-top: 100px; }   /* taller stacked top bar on mobile */
   .mobile-nav { flex-direction: column-reverse; height: auto; padding: 0; align-items: stretch; }
   .mobile-nav__toggle { display: flex; }
   .mobile-nav__bar { height: 48px; padding: 0 16px; border-top: 1px solid rgba(212,168,74,.14); }
