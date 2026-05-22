@@ -1,3 +1,18 @@
+/* ── ALWAYS LAND AT THE TOP ON (RE)LOAD ── */
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+addEventListener('load', () => scrollTo(0, 0));
+
+/* ── DATE FORMATTER → "01 Jan 2026" (accepts "2026-01-01" or any parseable date) ── */
+function fmtDate(d){
+  d = String(d).trim();
+  const MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const iso = d.match(/^(\d{4})-(\d{2})-(\d{2})/);
+  if(iso) return `${iso[3]} ${MON[+iso[2]-1]} ${iso[1]}`;
+  const t = new Date(d);
+  if(!isNaN(t)) return `${String(t.getDate()).padStart(2,'0')} ${MON[t.getMonth()]} ${t.getFullYear()}`;
+  return d;   // unrecognised → show as typed
+}
+
 /* ── BUILD GALLERY FROM DATA ── */
 (function(){
   const RATIO = {
@@ -32,11 +47,13 @@
             data-title="${item.title}"
             data-medium="${item.medium}"
             data-year="${item.year}"
+            ${item.date?`data-date="${item.date}"`:''}
             ${item.file?`data-file="${item.file}"`:''}
             ${item.css?`data-art="${item.css}"`:''}>${frame}
             <div class="art-caption">
               <span class="cap-title">${item.title}</span>
               <span class="cap-meta">${item.medium.split('·')[0].trim()} · ${item.year}</span>
+              ${item.date?`<span class="art-date">${fmtDate(item.date)}</span>`:''}
               ${item.note?`<p class="art-note">${item.note}</p>`:''}
             </div></article>`;
         }).join('')}
@@ -112,22 +129,48 @@
   chrome('art');
 })();
 
-/* ── CURSOR — soft gallery spotlight (touch devices keep the native cursor) ── */
+/* ── CURSOR — "viewfinder" framing brackets (touch devices keep the native cursor) ── */
+/* #spotlight is a small box with 4 corner brackets that trail the mouse; on hovering a photo it
+   morphs to that photo's rect ("focusing the shot"). #spotDot is a tiny tick at the exact mouse. */
 (function(){
   if(!matchMedia('(hover: hover) and (pointer: fine)').matches) return;
-  const spot=document.getElementById('spotlight');
-  const dot =document.getElementById('spotDot');
-  let mx=innerWidth/2,my=innerHeight/2,sx=mx,sy=my;
-  addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;},{passive:true});
+  const frame=document.getElementById('spotlight');
+  const tick =document.getElementById('spotDot');
+  const body=document.body;
+  ['tl','tr','bl','br'].forEach(p=>{                 // build the 4 corner brackets
+    const c=document.createElement('i');
+    c.className='cf-corner cf-'+p;
+    frame.appendChild(c);
+  });
+  const IDLE=36;                                     // idle reticle size (px)
+  let mx=innerWidth/2,my=innerHeight/2,framed=null,active=false;
+  addEventListener('mousemove',e=>{
+    mx=e.clientX; my=e.clientY;
+    if(!active){ active=true; body.classList.add('spot-active'); }   // fade in on first move
+  },{passive:true});
+  // fade out when the pointer leaves the window (no element it moved into)
+  document.addEventListener('mouseout',e=>{
+    if(!e.relatedTarget){ active=false; body.classList.remove('spot-active'); }
+  },{passive:true});
+  document.addEventListener('mouseover',e=>{
+    framed = e.target.closest('.art-frame');                        // brackets frame the photo
+    body.classList.toggle('cf-framing', !!framed);                  // black outline ONLY on photos
+    body.classList.toggle('cf-hot', !!e.target.closest('a,button,.art-frame,.yn-pill'));  // green on ANY clickable
+  },{passive:true});
   (function loop(){
-    sx+=(mx-sx)*.45; sy+=(my-sy)*.45;
-    spot.style.transform=`translate(calc(${sx}px - 50%),calc(${sy}px - 50%))`;
-    dot.style.transform =`translate(calc(${mx}px - 50%),calc(${my}px - 50%))`;
+    if(framed){                                      // morph to the hovered photo's rect
+      const r=framed.getBoundingClientRect();
+      frame.style.width = r.width +'px';
+      frame.style.height= r.height+'px';
+      frame.style.transform=`translate(${r.left}px,${r.top}px)`;
+    } else {                                          // small reticle centred on the cursor
+      frame.style.width = IDLE+'px';
+      frame.style.height= IDLE+'px';
+      frame.style.transform=`translate(${mx-IDLE/2}px,${my-IDLE/2}px)`;
+    }
+    tick.style.transform=`translate(calc(${mx}px - 50%),calc(${my}px - 50%))`;
     requestAnimationFrame(loop);
   })();
-  document.addEventListener('mouseover',e=>{
-    document.body.classList.toggle('cursor-hover', !!e.target.closest('a,button,.art-frame,.yn-pill'));
-  },{passive:true});
 })();
 
 /* ── NAV HIDE ON SCROLL DOWN ── */
@@ -180,12 +223,24 @@ document.getElementById('galleryRoot').addEventListener('click',e=>{
   const item=frame.closest('.art-item');
   const file=item.dataset.file, art=item.dataset.art;
   lbArt.className='lb-art';
-  lbArt.innerHTML=file
-    ? `<img src="../img/gallery/${file}" alt="${item.dataset.title}" style="width:100%;height:100%;object-fit:contain;border-radius:2px;">`
-    : '';
-  if(!file && art) lbArt.classList.add(art);
+  lbArt.style.width=''; lbArt.style.height=''; lbArt.style.aspectRatio='';
+  if(file){                                                   // real photo → show it whole at natural aspect (CSS sizes it)
+    lbArt.classList.add('lb-art--photo');
+    lbArt.innerHTML=`<img src="../img/gallery/${file}" alt="${item.dataset.title}">`;
+  } else {                                                    // placeholder → box in the card's ratio, fitted to the viewport (any aspect)
+    lbArt.innerHTML='';
+    if(art) lbArt.classList.add(art);
+    const m=(getComputedStyle(frame).aspectRatio||'').match(/([\d.]+)\s*\/\s*([\d.]+)/);
+    const rw=m?+m[1]:3, rh=m?+m[2]:4;
+    const maxW=Math.min(innerWidth*0.86,560), maxH=innerHeight*0.80;
+    let w=maxW, h=w*rh/rw;
+    if(h>maxH){ h=maxH; w=h*rw/rh; }                          // tall/portrait → bound by height instead
+    lbArt.style.width=w+'px'; lbArt.style.height=h+'px';
+  }
   lbTitle.textContent=item.dataset.title;
-  lbMeta.textContent=`${item.dataset.medium} · ${item.dataset.year}`;
+  lbMeta.textContent=item.dataset.date
+    ? `${item.dataset.medium} · ${fmtDate(item.dataset.date)}`
+    : `${item.dataset.medium} · ${item.dataset.year}`;
   lightbox.classList.add('open');
   document.body.style.overflow='hidden';
 });

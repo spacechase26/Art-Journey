@@ -44,12 +44,15 @@ const YEAR_DESC = {
 };
 
 /* ─── YOUR ART — newest year first ───────────────────
-   Two optional fields per piece:
+   Optional fields per piece:
      mode: "art"   → shows under the Artwork tab
      mode: "study" → shows under the Studies & Sketches tab
         (omit it and it's auto-sorted: titles with study/sketch/gesture/…,
          or an "on Paper" medium, go to Studies; everything else to Artwork)
      note: "…"     → 2–3 handwritten lines on the card (optional)
+     date: "2026-01-01"  → a handwritten date on the Polaroid + in the popup.
+        Write it as YEAR-MONTH-DAY; it shows as "01 Jan 2026". (Optional —
+        omit it and the card just shows the year.)
 ─────────────────────────────────────────────────── */
 
 const GALLERY = [
@@ -58,18 +61,18 @@ const GALLERY = [
      Replace css: with file: once you have real images
      Example: file: "storm-season.jpg"
   ─────────────────────────────────────────────────── */
-  { year:2026, title:"Chromatic Shift",   medium:"Digital · Procreate",  ratio:"portrait",  css:"a-exp-acid",     mode:"art",   note:"Pushed the colours way past comfortable. Learned a lot about hue balance here." },
-  { year:2026, title:"Self Portrait 2026",medium:"Digital · Procreate",  ratio:"tall",      css:"a-figure-four",  mode:"art",   note:"Third try this year. Still fighting the nose — but the eyes finally feel like mine." },
-  { year:2026, title:"Night Grid",        medium:"Digital · Procreate",  ratio:"landscape", css:"a-abs-neon"       },
-  { year:2026, title:"Horizon",           medium:"Digital · Procreate",  ratio:"portrait",  css:"a-land-sunset"    },
-  { year:2026, title:"Storm Season",      medium:"Digital · Procreate",  ratio:"square",    css:"a-coral-storm"    },
-  { year:2026, title:"Ink Study IV",      medium:"Ink on Paper",         ratio:"tall",      css:"a-sketch-ink"     },
-  { year:2026, title:"Split Tone",        medium:"Digital · Procreate",  ratio:"landscape", css:"a-exp-duotone"    },
-  { year:2026, title:"New Energy",        medium:"Digital · Procreate",  ratio:"portrait",  css:"a-abs-burst"      },
-  { year:2026, title:"Study 2026",        medium:"Digital · Procreate",  ratio:"square",    css:"a-figure-one"     },
-  { year:2026, title:"First Light 2026",  medium:"Digital · Procreate",  ratio:"tall",      css:"a-land-dawn"      },
-  { year:2026, title:"Clean Break",       medium:"Digital · Procreate",  ratio:"landscape", css:"a-abs-split"      },
-  { year:2026, title:"Still Waters",      medium:"Digital · Procreate",  ratio:"portrait",  css:"a-aqua-garden"    },
+  { year:2026, title:"Chromatic Shift",   medium:"Digital · Procreate",  ratio:"portrait",  css:"a-exp-acid",     mode:"art", date:"2026-01-18", note:"Pushed the colours way past comfortable. Learned a lot about hue balance here." },
+  { year:2026, title:"Self Portrait 2026",medium:"Digital · Procreate",  ratio:"tall",      css:"a-figure-four",  mode:"art", date:"2026-02-03", note:"Third try this year. Still fighting the nose — but the eyes finally feel like mine." },
+  { year:2026, title:"Night Grid",        medium:"Digital · Procreate",  ratio:"landscape", css:"a-abs-neon",     date:"2026-02-21" },
+  { year:2026, title:"Horizon",           medium:"Digital · Procreate",  ratio:"portrait",  css:"a-land-sunset",  date:"2026-03-09" },
+  { year:2026, title:"Storm Season",      medium:"Digital · Procreate",  ratio:"square",    css:"a-coral-storm",  date:"2026-03-27" },
+  { year:2026, title:"Ink Study IV",      medium:"Ink on Paper",         ratio:"tall",      css:"a-sketch-ink",   date:"2026-04-12" },
+  { year:2026, title:"Split Tone",        medium:"Digital · Procreate",  ratio:"landscape", css:"a-exp-duotone",  date:"2026-04-30" },
+  { year:2026, title:"New Energy",        medium:"Digital · Procreate",  ratio:"portrait",  css:"a-abs-burst",    date:"2026-05-15" },
+  { year:2026, title:"Study 2026",        medium:"Digital · Procreate",  ratio:"square",    css:"a-figure-one",   date:"2026-01-05" },
+  { year:2026, title:"First Light 2026",  medium:"Digital · Procreate",  ratio:"tall",      css:"a-land-dawn",    date:"2026-02-14" },
+  { year:2026, title:"Clean Break",       medium:"Digital · Procreate",  ratio:"landscape", css:"a-abs-split",    date:"2026-03-19" },
+  { year:2026, title:"Still Waters",      medium:"Digital · Procreate",  ratio:"portrait",  css:"a-aqua-garden",  date:"2026-04-22" },
 
   /* ── 2025 ─────────────────────────────────────────── */
   { year:2025, title:"Hue Shift",         medium:"Digital · Procreate",  ratio:"landscape", css:"a-exp-acid"       },
