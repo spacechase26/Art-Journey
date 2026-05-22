@@ -1,37 +1,35 @@
 /*
   ╔═══════════════════════════════════════════════════════╗
-  ║  PORTFOLIO DATA — edit this to manage your portfolio  ║
+  ║  PORTFOLIO DATA — edit this to manage your home page  ║
   ╚═══════════════════════════════════════════════════════╝
 
-  HOW TO SWAP IN A REAL IMAGE:
-  → Add  file: "my-piece.jpg"  and remove  css:
-  → Put the image in  img/gallery/
+  This is the curated "best of" shown on the home page (a Featured piece,
+  a small grid, and big Spotlights). The full set lives in the Gallery
+  (gallery-data.js).
 
-  CSS PLACEHOLDERS:
-    a-coral-storm   a-aqua-garden   a-golden-hour
-    a-purple-haze   a-forest-dream  a-ocean-pulse
+  Each piece points at an image with  file:  (path relative to img/gallery/).
+  Naming: img/gallery/[subfolder/]YYYY-MM-DD-kebab-title.webp
+  To use a coloured placeholder instead of an image, use  css:  instead of file:.
 */
 
 /* ── THE BIG FEATURED PIECE (top showcase) ─────────── */
 const FEATURED = {
   number:      "01",
-  title:       "Golden Hour",
-  medium:      "Digital · Procreate",
+  title:       "Downstream",
+  medium:      "Digital · Krita",
   year:        "2026",
-  description: "The last light before dark. A study in warm tones and the feeling of a moment slipping away.",
-  tags:        ["painting", "landscape", "light"],
-  css:         "a-golden-hour",
-  // file:     "golden-hour.jpg",   ← swap in when real image is ready
+  description: "A small boat on a long, winding river — my favourite from this first stretch. Mostly an excuse to play with value and a lot of empty space.",
+  tags:        ["original", "landscape", "value"],
+  file:        "2026-art/2026-05-03-boat-on-river-value.webp",
 };
 
 /* ── GALLERY GRID ───────────────────────────────────── */
 // Add / remove entries freely — count and layout update automatically.
 const GALLERY_PIECES = [
-  { title:"Coral Storm",  medium:"Digital · Procreate", year:"2026", tags:["abstract","colour"],     css:"a-coral-storm"  },
-  { title:"Aqua Garden",  medium:"Digital · Procreate", year:"2026", tags:["landscape","water"],     css:"a-aqua-garden"  },
-  { title:"Purple Haze",  medium:"Digital · Procreate", year:"2026", tags:["atmosphere","abstract"], css:"a-purple-haze"  },
-  { title:"Forest Dream", medium:"Digital · Procreate", year:"2026", tags:["environment","green"],   css:"a-forest-dream" },
-  { title:"Ocean Pulse",  medium:"Digital · Procreate", year:"2026", tags:["landscape","blue"],      css:"a-ocean-pulse"  },
+  { title:"Spidey & Cat", medium:"Digital · Krita", year:"2026", tags:["fan art","character"],  file:"2026-art/2026-05-01-spiderman-cat.webp" },
+  { title:"Value Study",  medium:"Digital · Krita", year:"2026", tags:["study","portrait"],     file:"2026-art/2026-05-02-tom-holland-value.webp" },
+  { title:"Happy Sun",    medium:"Digital · Krita", year:"2026", tags:["cartoon","colour"],      file:"2026-art/2026-04-30-cartoony-sun.webp" },
+  { title:"Little Bear",  medium:"Digital · Krita", year:"2026", tags:["cartoon","first piece"], file:"2026-art/2026-04-29-bear-avatar.webp" },
 ];
 
 /* ── SPOTLIGHT SECTIONS (big full-width showcases) ─── */
@@ -39,22 +37,22 @@ const GALLERY_PIECES = [
 const SPOTLIGHTS = [
   {
     number:      "02",
-    title:       "Aqua Garden",
-    medium:      "Digital · Procreate",
+    title:       "Hollow Knight",
+    medium:      "Digital · Krita",
     year:        "2026",
-    description: "Still water, moving light. A meditation on cool colours and the quiet of nature.",
-    tags:        ["landscape", "water", "calm"],
-    css:         "a-aqua-garden",
-    accentColor: "#3a7a52",
+    description: "Fan art of the Knight under a quiet, starry sky — drawn out of love, not for sale. Hollow Knight © Team Cherry.",
+    tags:        ["fan art", "atmosphere", "painting"],
+    file:        "2026-art/2026-05-01-hollow-knight.webp",
+    accentColor: "#3a5c8c",
   },
   {
     number:      "03",
-    title:       "Purple Haze",
-    medium:      "Digital · Procreate",
+    title:       "Charcoal Portrait",
+    medium:      "Digital · Krita",
     year:        "2026",
-    description: "Purple bleeds into dark. An atmospheric study in mystery and depth.",
-    tags:        ["atmosphere", "abstract", "mood"],
-    css:         "a-purple-haze",
-    accentColor: "#6a28a8",
+    description: "A charcoal-style portrait study — chasing soft edges, hard shadows, and a little bit of feeling.",
+    tags:        ["portrait", "charcoal", "study"],
+    file:        "2026-art/2026-05-06-sad-greekguy-charcoal.webp",
+    accentColor: "#6a6356",
   },
 ];
