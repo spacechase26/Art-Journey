@@ -575,7 +575,7 @@ img.art-frame { display: block; width: 100%; height: auto; aspect-ratio: auto; }
 .footer__nav { display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem; }
 .footer__nav a { font-size: .68rem; letter-spacing: .16em; text-transform: uppercase; color: #6c8c6c; transition: color .3s; }
 .footer__nav a:hover { color: #e8f5e0; }
-.footer__credit { font-family: var(--hand); font-weight: 600; font-size: 1.05rem; color: #7ba07b; letter-spacing: .01em; }
+.footer__credit { font-family: var(--sans), system-ui, sans-serif; font-weight: 500; font-size: .78rem; color: #88a889; letter-spacing: .06em; }
 
 /* ── RESPONSIVE ── */
 @media (max-width: 768px) {

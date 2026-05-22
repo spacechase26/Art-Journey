@@ -39,19 +39,19 @@ THE DATA: gallery-data.js
 ────────────────────────────────────────────────────────────────────────
 Two things live in this file:
 
-  1) YEAR_DESC — a short caption per year:
+  1) YEAR_DESC — a short caption per year. Right now it's just year one:
         const YEAR_DESC = {
-          2023: "Where it all began",
-          2024: "Finding a direction",
-          2025: "Growing confidence",
-          2026: "Work in progress",
+          2026: "Year one — where it begins",
         };
+     Each NEW year, add one line here (newest stays at the top), e.g.:
+          2027: "Finding my footing",
+     The year tab + section appear automatically — no HTML to touch.
 
   2) GALLERY — the array of every piece, NEWEST YEAR FIRST:
         const GALLERY = [
-          { year:2026, title:"Chromatic Shift", medium:"Digital · Procreate",
-            ratio:"portrait", css:"a-exp-acid", mode:"art",
-            note:"Pushed the colours past comfortable…" },
+          { year:2026, title:"First Marks", medium:"Pencil on Paper",
+            ratio:"portrait", css:"a-sketch-ink", mode:"study",
+            date:"2026-01-09", note:"The very first page…" },
           …
         ];
 

@@ -92,6 +92,7 @@ Full step-by-step for each is in:
   02-gallery.txt
   03-about-meetme.txt
   04-roadmap.txt
+  05-copyright-and-licensing.txt   ← how copyright/licensing works + yearly upkeep
 
 
 ────────────────────────────────────────────────────────────────────────

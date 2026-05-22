@@ -63,6 +63,15 @@ function fmtDate(d){
       </div>`;
     root.appendChild(sec);
   });
+
+  /* build the year-nav pills from the same years — add a year in gallery-data.js
+     and its tab appears here automatically (no HTML to edit) */
+  const yearNav = document.getElementById('yearNav');
+  if (yearNav) {
+    yearNav.innerHTML = years.map((y,i)=>
+      `<button class="yn-pill${i===0?' active':''}" data-year="y${y}">${y}</button>`
+    ).join('');
+  }
 })();
 
 /* ── PINTEREST MASONRY — row-first fill, shortest-column packing, no gaps ── */

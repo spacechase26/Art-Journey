@@ -17,7 +17,7 @@ const FEATURED = {
   number:      "01",
   title:       "Golden Hour",
   medium:      "Digital · Procreate",
-  year:        "2024",
+  year:        "2026",
   description: "The last light before dark. A study in warm tones and the feeling of a moment slipping away.",
   tags:        ["painting", "landscape", "light"],
   css:         "a-golden-hour",
@@ -27,11 +27,11 @@ const FEATURED = {
 /* ── GALLERY GRID ───────────────────────────────────── */
 // Add / remove entries freely — count and layout update automatically.
 const GALLERY_PIECES = [
-  { title:"Coral Storm",  medium:"Digital · Procreate", year:"2024", tags:["abstract","colour"],     css:"a-coral-storm"  },
-  { title:"Aqua Garden",  medium:"Digital · Procreate", year:"2023", tags:["landscape","water"],     css:"a-aqua-garden"  },
-  { title:"Purple Haze",  medium:"Digital · Procreate", year:"2024", tags:["atmosphere","abstract"], css:"a-purple-haze"  },
-  { title:"Forest Dream", medium:"Digital · Procreate", year:"2023", tags:["environment","green"],   css:"a-forest-dream" },
-  { title:"Ocean Pulse",  medium:"Digital · Procreate", year:"2023", tags:["landscape","blue"],      css:"a-ocean-pulse"  },
+  { title:"Coral Storm",  medium:"Digital · Procreate", year:"2026", tags:["abstract","colour"],     css:"a-coral-storm"  },
+  { title:"Aqua Garden",  medium:"Digital · Procreate", year:"2026", tags:["landscape","water"],     css:"a-aqua-garden"  },
+  { title:"Purple Haze",  medium:"Digital · Procreate", year:"2026", tags:["atmosphere","abstract"], css:"a-purple-haze"  },
+  { title:"Forest Dream", medium:"Digital · Procreate", year:"2026", tags:["environment","green"],   css:"a-forest-dream" },
+  { title:"Ocean Pulse",  medium:"Digital · Procreate", year:"2026", tags:["landscape","blue"],      css:"a-ocean-pulse"  },
 ];
 
 /* ── SPOTLIGHT SECTIONS (big full-width showcases) ─── */
@@ -41,7 +41,7 @@ const SPOTLIGHTS = [
     number:      "02",
     title:       "Aqua Garden",
     medium:      "Digital · Procreate",
-    year:        "2023",
+    year:        "2026",
     description: "Still water, moving light. A meditation on cool colours and the quiet of nature.",
     tags:        ["landscape", "water", "calm"],
     css:         "a-aqua-garden",
@@ -51,7 +51,7 @@ const SPOTLIGHTS = [
     number:      "03",
     title:       "Purple Haze",
     medium:      "Digital · Procreate",
-    year:        "2024",
+    year:        "2026",
     description: "Purple bleeds into dark. An atmospheric study in mystery and depth.",
     tags:        ["atmosphere", "abstract", "mood"],
     css:         "a-purple-haze",

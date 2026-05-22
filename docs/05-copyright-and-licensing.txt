@@ -1,0 +1,104 @@
+╔══════════════════════════════════════════════════════════════════════╗
+║  COPYRIGHT & LICENSING — how it works, and how to manage it over time ║
+╚══════════════════════════════════════════════════════════════════════╝
+
+THE SHORT VERSION
+  Everything on this site is YOURS, "all rights reserved" — both the artwork
+  and the code. People can look; they can't copy, repost, edit, sell, or feed
+  it to AI without your written permission. You don't need to do anything each
+  year — the copyright year updates itself.
+
+
+────────────────────────────────────────────────────────────────────────
+WHERE THE COPYRIGHT SHOWS UP  (so you know what's where)
+────────────────────────────────────────────────────────────────────────
+  1. FOOTERS — every page has a line like:
+        © 2026 Spacechase · All rights reserved
+     (Portfolio & Gallery also add: "Artwork © Spacechase — not for
+     reproduction, reposting, or reuse without permission.")
+  2. <meta name="copyright"> in each page's <head> (machine-readable).
+  3. <meta name="robots" content="… noai, noimageai"> — asks AI image
+     scrapers not to use your art.
+  4. LICENSE  (repo root) — the full, plain-English legal terms.
+  5. robots.txt (repo root) — tells AI/dataset crawlers to stay out.
+
+
+────────────────────────────────────────────────────────────────────────
+THE YEAR UPDATES ITSELF  (nothing to do)
+────────────────────────────────────────────────────────────────────────
+  The footer year is auto-extending. It shows "© 2026" this year, and from
+  next year on it shows a range automatically: "© 2026–2027", "© 2026–2028", …
+  • How: each footer has  © <span data-yr>2026</span> Spacechase …  and a tiny
+    line in each page's JS bumps it to "2026–<this year>" once the year > 2026.
+  • If a visitor has JavaScript off, it simply shows "2026" — still correct.
+  • So: you never have to edit the year. (The <meta> tag and LICENSE keep the
+    plain "© 2026" start year — that's fine; the visible footer is the one that
+    grows.)
+
+  Want to HARD-SET or change the start year? Search the repo for  2026  and
+  edit: the  data-yr  spans (the "2026" inside them), the  >2026  check in the
+  4 files in  js/  (index.js, gallery.js, about.js, roadmap.js), the
+  <meta name="copyright"> lines, and line 2 of  LICENSE .
+
+
+────────────────────────────────────────────────────────────────────────
+ADDING A NEW YEAR OF WORK  (each year, as you grow)
+────────────────────────────────────────────────────────────────────────
+  The gallery is data-driven, so a new year is two small edits in
+  gallery-data.js (full walkthrough in 02-gallery.txt):
+    1. Add a caption to YEAR_DESC:        2027: "Finding my footing",
+    2. Add pieces with  year: 2027  at the TOP of the GALLERY array.
+  The new year's section and its nav tab appear automatically.
+
+
+────────────────────────────────────────────────────────────────────────
+SWAPPING PLACEHOLDERS FOR REAL ART
+────────────────────────────────────────────────────────────────────────
+  Right now the gallery shows coloured PLACEHOLDERS (the  css:  field). For a
+  real piece: drop the image in  img/gallery/ , then give the entry a  file:
+  and remove its  css:  line. (See 02-gallery.txt, "ADD A REAL PIECE".)
+  Your copyright/licensing covers real images automatically — no extra steps.
+
+
+────────────────────────────────────────────────────────────────────────
+IF YOU EVER CHANGE YOUR NAME / HANDLE
+────────────────────────────────────────────────────────────────────────
+  Search the repo for  Spacechase  and replace it. It appears in: the footers,
+  the <meta> tags, the LICENSE, the manifest (site.webmanifest), and page text.
+
+
+────────────────────────────────────────────────────────────────────────
+SOMEONE WANTS TO USE YOUR ART  (granting permission)
+────────────────────────────────────────────────────────────────────────
+  Your LICENSE says "ask first." If you say yes to someone, do it IN WRITING
+  (email/DM) and keep it specific: which piece, what use, how long, credit
+  required, etc. Saying yes once doesn't change the site's terms for everyone.
+  Tip: add your real contact / social links on the About page so people can
+  actually reach you (they're placeholder "#" until you fill them in).
+
+
+────────────────────────────────────────────────────────────────────────
+IF YOU EVER WANT TO LOOSEN THE TERMS  (optional, later)
+────────────────────────────────────────────────────────────────────────
+  Right now it's the strictest setting (all rights reserved). If one day you'd
+  rather let people reshare with credit (but not sell or edit), that's a
+  "Creative Commons BY-NC-ND" license. Just ask and it's a quick swap of the
+  LICENSE text + the footer wording. Don't change it casually — stricter is
+  safer while you're building a name.
+
+
+────────────────────────────────────────────────────────────────────────
+HONEST LIMITS  (what these protections can and can't do)
+────────────────────────────────────────────────────────────────────────
+  • The LICENSE makes your rights explicit and is what you'd point to if
+    someone misuses your work — that's its real value.
+  • robots.txt and the "noai" meta are REQUESTS. Well-behaved crawlers obey
+    them; bad actors can ignore them. They're worth having, not bulletproof.
+  • IMPORTANT about robots.txt: search/AI crawlers only read robots.txt at a
+    domain's ROOT. On  spacechase26.github.io/art-journey/  the root is
+    github.io's, not yours, so this file is only fully effective if you later
+    use a custom domain (e.g. spacechase.art) where you control the root. The
+    per-page "noai" <meta> tags work regardless of the path.
+  • Nothing stops a determined person from screenshotting. Watermarking real
+    images (a small signature) is the practical extra layer if you want it —
+    just say and we can add it when you upload real art.

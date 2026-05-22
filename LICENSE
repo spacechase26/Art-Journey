@@ -1,24 +1,88 @@
+PROPRIETARY LICENSE — ALL RIGHTS RESERVED
 Copyright © 2026 Spacechase. All rights reserved.
 
-This repository contains two kinds of material, and BOTH are protected.
+This is NOT an open-source license. The file is named "LICENSE" only because
+that is where people look; nothing here grants you a license to reuse anything.
 
-1. ARTWORK & CONTENT
-   All images, artworks, designs, text, and other creative content —
-   including every piece shown in the gallery and portfolio — are the
-   original work of Spacechase. They may be viewed on this website only.
-   You may NOT copy, download, reproduce, repost, redistribute, modify,
-   create derivative works from, use to train AI / machine-learning models,
-   or use commercially — in whole or in part — without the prior written
-   permission of the author.
 
-2. SOURCE CODE
-   The HTML, CSS, and JavaScript of this website are also © Spacechase,
-   all rights reserved. No license to reuse the code is granted. You may
-   view it on GitHub, but you may not copy or reuse it in your own projects
-   without prior written permission.
+1. DEFINITIONS
+   "Author"   = Spacechase, the creator and copyright holder.
+   "Artwork"  = every image, drawing, painting, illustration, sketch, design,
+                graphic, icon, logo, and the written text on this website —
+                including every piece shown (or to be shown) in the gallery
+                and portfolio, and including placeholder/work-in-progress art.
+   "Code"     = the HTML, CSS, JavaScript, configuration, and other source
+                files of this website.
+   "Materials" = the Artwork and the Code, together.
+   "You"      = any person or entity (or any automated agent or software)
+                that accesses the Materials.
 
-No rights are granted by the mere public availability of this repository.
-For permission requests, please contact the author.
 
-THE MATERIAL IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED.
+2. THE ONLY THING YOU MAY DO
+   You may view this website in a standard web browser for your own personal,
+   non-commercial enjoyment. The temporary copy your browser makes in order to
+   display a page is the ONLY copy you are permitted to make. No other rights
+   of any kind are granted, expressly or by implication, estoppel, or otherwise.
+
+
+3. WHAT YOU MAY NOT DO (without the Author's prior written permission)
+   Without limiting the above, You may NOT, in whole or in part:
+   (a) copy, save, download, screenshot, scrape, crawl, harvest, cache (beyond
+       the transient browser cache in §2), or otherwise reproduce the Materials;
+   (b) republish, repost, mirror, distribute, transmit, share, sell, rent,
+       lease, sublicense, or make the Materials available to any third party;
+   (c) publicly display, perform, or communicate the Materials to the public;
+   (d) modify, adapt, translate, remix, crop, recolor, or create derivative
+       works from the Materials;
+   (e) use the Materials, in any form, to develop, train, fine-tune, evaluate,
+       prompt, or ground any artificial-intelligence, machine-learning,
+       generative, or large-language-model system or dataset;
+   (f) perform text or data mining (TDM) on the Materials, or include them in
+       any corpus, index, or training/benchmark dataset;
+   (g) use the Materials for any commercial purpose, or to imply the Author's
+       endorsement;
+   (h) remove, obscure, or alter any copyright, authorship, or other notice;
+   (i) reuse the Code (or any substantial part of it) in another project,
+       template, or product.
+
+
+4. RESERVATION OF RIGHTS
+   All rights are reserved to the Author under applicable copyright law
+   (including the Berne Convention) and any related or sui-generis rights.
+   The Author expressly reserves all rights to text and data mining and to
+   AI/ML training under Article 4 of EU Directive 2019/790 and any equivalent
+   law — this notice is a machine-readable and human-readable reservation /
+   opt-out. The Author asserts their moral rights, including the right to be
+   identified as the author of the Artwork. The public availability of this
+   repository or website does NOT place the Materials in the public domain and
+   does NOT grant any license.
+
+
+5. TRADEMARKS
+   "Spacechase", the Spacechase name, and the site logo/icon are marks of the
+   Author. Nothing here grants any right to use them.
+
+
+6. PERMISSIONS
+   Want to use something? Ask. Licenses and permissions are available only by
+   the Author's prior written agreement. Contact the Author (see the website's
+   contact / social links) with your request.
+
+
+7. ENFORCEMENT
+   Any use not expressly permitted above is copyright (and/or trademark)
+   infringement and a breach of this notice. The Author reserves the right to
+   pursue all available remedies. Failure to enforce any provision is not a
+   waiver of it.
+
+
+8. NO WARRANTY
+   THE MATERIALS ARE PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+   IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+   FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+
+
+9. SEVERABILITY
+   If any provision of this notice is held unenforceable, the remaining
+   provisions stay in full force, and the unenforceable provision is limited to
+   the minimum extent necessary rather than struck entirely.
