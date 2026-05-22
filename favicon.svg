@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Spacechase">
+  <defs>
+    <radialGradient id="sky" cx="310" cy="205" r="300" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#3a2814"/>
+      <stop offset="1" stop-color="#160f08"/>
+    </radialGradient>
+    <radialGradient id="glow" cx="310" cy="205" r="185" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ff9646" stop-opacity=".8"/>
+      <stop offset="1" stop-color="#ff9646" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="head" cx="296" cy="190" r="88" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff3d6"/>
+      <stop offset=".45" stop-color="#ffb24d"/>
+      <stop offset="1" stop-color="#f0641e"/>
+    </radialGradient>
+    <linearGradient id="tail" x1="356" y1="252" x2="131" y2="381" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ff8737"/>
+      <stop offset="1" stop-color="#e85830" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="116" fill="url(#sky)"/>
+  <rect width="512" height="512" rx="116" fill="url(#glow)"/>
+  <path d="M356 252 Q 240 342 131 381 Q 198 250 264 158 Z" fill="url(#tail)"/>
+  <circle cx="310" cy="205" r="72" fill="url(#head)"/>
+  <g fill="#fff7e0">
+    <path d="M381 121 l8 20 20 8 -20 8 -8 20 -8 -20 -20 -8 20 -8 z"/>
+    <path d="M335 291 l6 16 16 6 -16 6 -6 16 -6 -16 -16 -6 16 -6 z"/>
+  </g>
+</svg>
