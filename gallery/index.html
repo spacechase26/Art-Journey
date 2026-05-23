@@ -48,18 +48,18 @@
 </header>
 
 <div class="mode-switch" role="tablist" aria-label="What to show">
-  <button class="mode-tab active" data-mode="art"   role="tab" aria-selected="true">Artwork</button>
-  <button class="mode-tab"        data-mode="study" role="tab" aria-selected="false">Studies &amp; Sketches</button>
+  <button class="mode-tab active" data-mode="art"   role="tab" aria-selected="true"  aria-controls="galleryRoot">Artwork</button>
+  <button class="mode-tab"        data-mode="study" role="tab" aria-selected="false" aria-controls="galleryRoot">Studies &amp; Sketches</button>
   <span class="mode-count" id="modeCount"></span>
 </div>
 
 <main class="gallery-main">
-<div id="galleryRoot"></div>
+<div id="galleryRoot" role="tabpanel" aria-label="Selected works"></div>
 </main>
 
 <!-- LIGHTBOX -->
-<div class="lightbox" id="lightbox">
-  <button class="lb-close" id="lbClose">✕</button>
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Artwork viewer">
+  <button class="lb-close" id="lbClose" aria-label="Close">✕</button>
   <div class="lb-inner">
     <div class="lb-art" id="lbArt"></div>
     <div class="lb-info">

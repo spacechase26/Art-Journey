@@ -91,7 +91,7 @@
     <div class="hero-badge hb-4">Always Learning</div>
     <div class="hero-badge hb-5">Colour · Light</div>
     <div class="hero__circle">
-      <img class="art-canvas" src="../img/portfolio-pfp.webp" alt="Spacechase">
+      <img class="art-canvas" src="../img/portfolio-pfp.webp" alt="Spacechase" width="696" height="700" fetchpriority="high">
     </div>
   </div>
 
@@ -223,12 +223,12 @@
 </footer>
 
 <!-- ══ LIGHTBOX ══ -->
-<div class="lightbox" id="lightbox">
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Artwork viewer">
   <div class="lightbox__back" id="lbBack"></div>
   <div class="lightbox__frame">
     <div class="lightbox__canvas" id="lbCanvas"></div>
   </div>
-  <button class="lightbox__close" id="lbClose">✕</button>
+  <button class="lightbox__close" id="lbClose" aria-label="Close">✕</button>
 </div>
 
 <script src="../portfolio-data.js"></script>

@@ -59,6 +59,8 @@ body::after {
   pointer-events: none; z-index: 499;
 }
 a { color: inherit; text-decoration: none; }
+/* keyboard focus ring — shows only for keyboard users (:focus-visible), never on mouse/touch, so the design is unchanged */
+:focus-visible { outline: 2px solid var(--coral); outline-offset: 2px; }
 button { background: none; border: none; cursor: none; padding: 0; }
 img { display: block; max-width: 100%; }
 
@@ -913,7 +915,7 @@ img { display: block; max-width: 100%; }
     gap: 0;
   }
   .hero__content { padding-top: 1.4rem; text-align: center; }
-  .hero__roles, .hero__palette, .doodle-cta-wrap { justify-content: center; }
+  .hero__palette, .doodle-cta-wrap { justify-content: center; }
   .hero__note { margin-left: auto; margin-right: auto; }
   .hero__visual {
     order: -1;

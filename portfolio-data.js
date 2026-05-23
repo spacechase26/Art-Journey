@@ -26,10 +26,10 @@ const FEATURED = {
 /* ── GALLERY GRID ───────────────────────────────────── */
 // Add / remove entries freely — count and layout update automatically.
 const GALLERY_PIECES = [
-  { title:"Spidey & Cat", medium:"Digital · Krita", year:"2026", tags:["fan art","character"],  file:"2026-art/2026-05-01-spiderman-cat.webp" },
-  { title:"Value Study",  medium:"Digital · Krita", year:"2026", tags:["study","portrait"],     file:"2026-art/2026-05-02-tom-holland-value.webp" },
-  { title:"Happy Sun",    medium:"Digital · Krita", year:"2026", tags:["cartoon","colour"],      file:"2026-art/2026-04-30-cartoony-sun.webp" },
-  { title:"Little Bear",  medium:"Digital · Krita", year:"2026", tags:["cartoon","first piece"], file:"2026-art/2026-04-29-bear-avatar.webp" },
+  { title:"Spidey & Cat", medium:"Digital · Krita", year:"2026", ratio:"portrait", tags:["fan art","character"],  file:"2026-art/2026-05-01-spiderman-cat.webp" },
+  { title:"Value Study",  medium:"Digital · Krita", year:"2026", ratio:"tall",     tags:["study","portrait"],     file:"2026-art/2026-05-02-tom-holland-value.webp" },
+  { title:"Happy Sun",    medium:"Digital · Krita", year:"2026", ratio:"wide",     tags:["cartoon","colour"],      file:"2026-art/2026-04-30-cartoony-sun.webp" },
+  { title:"Little Bear",  medium:"Digital · Krita", year:"2026", ratio:"square",   tags:["cartoon","first piece"], file:"2026-art/2026-04-29-bear-avatar.webp" },
 ];
 
 /* ── SPOTLIGHT SECTIONS (big full-width showcases) ─── */

@@ -22,11 +22,19 @@ function fmtDate(d){
     tall:'ar-tall', portrait:'ar-portrait',
     square:'ar-square', wide:'ar-wide', landscape:'ar-landscape'
   };
+  /* representative px dims per ratio tag → emitted as width/height so the browser
+     reserves the right box BEFORE the image loads (kills layout shift + masonry
+     re-layout thrash). CSS keeps aspect-ratio:auto, so the loaded image still shows
+     at its TRUE ratio — nothing is ever distorted. */
+  const RATIO_DIM = {
+    tall:[1414,2000], portrait:[1465,2000], square:[1140,1140],
+    wide:[2000,1414], landscape:[1920,1080]
+  };
   /* A piece is a "study" if tagged (mode:'study') OR it reads like practice
      (study/sketch/etc. in the title, or a traditional "on paper" medium).
      Set mode:'art' or mode:'study' in gallery-data.js to control it explicitly. */
   const STUDY_RX = /stud(y|ies)|sketch|gesture|\bform\b|anatomy|\bline\b|speed|theory|exercise|practice/i;
-  const MODE = it => it.mode || ((STUDY_RX.test(it.title) || /on paper/i.test(it.medium)) ? 'study' : 'art');
+  const MODE = it => it.mode || ((STUDY_RX.test(it.title||'') || /on paper/i.test(it.medium||'')) ? 'study' : 'art');
   const root  = document.getElementById('galleryRoot');
   const years = [...new Set(GALLERY.map(g=>g.year))].sort((a,b)=>b-a);  // newest first
 
@@ -47,19 +55,22 @@ function fmtDate(d){
       <div class="masonry">
         ${items.map(item=>{
           const rc = RATIO[item.ratio]||'ar-portrait';
+          const title = item.title || 'Untitled';
+          const med   = (item.medium || '').trim();
+          const [iw,ih] = RATIO_DIM[item.ratio] || RATIO_DIM.portrait;
           const frame = item.file
-            ? `<img class="art-frame ${rc}" src="../img/gallery/${item.file}" alt="${item.title}" loading="lazy" decoding="async">`
+            ? `<img class="art-frame ${rc}" src="../img/gallery/${item.file}" alt="${title}" width="${iw}" height="${ih}" loading="lazy" decoding="async">`
             : `<div class="art-frame ${rc} ${item.css||''}"></div>`;
           return `<article class="art-item" data-mode="${MODE(item)}"
-            data-title="${item.title}"
-            data-medium="${item.medium}"
+            data-title="${title}"
+            data-medium="${med}"
             data-year="${item.year}"
             ${item.date?`data-date="${item.date}"`:''}
             ${item.file?`data-file="${item.file}"`:''}
             ${item.css?`data-art="${item.css}"`:''}>${frame}
             <div class="art-caption">
-              <span class="cap-title">${item.title}</span>
-              <span class="cap-meta">${item.medium.split('·')[0].trim()} · ${item.year}</span>
+              <span class="cap-title">${title}</span>
+              <span class="cap-meta">${med?med.split('·')[0].trim()+' · ':''}${item.year}</span>
               ${item.date?`<span class="art-date">${fmtDate(item.date)}</span>`:''}
               ${item.note?`<p class="art-note">${item.note}</p>`:''}
             </div></article>`;
@@ -232,6 +243,7 @@ const lightbox=document.getElementById('lightbox');
 const lbArt   =document.getElementById('lbArt');
 const lbTitle =document.getElementById('lbTitle');
 const lbMeta  =document.getElementById('lbMeta');
+let lbReturn  =null;   // element focus returns to when the lightbox closes
 
 document.getElementById('galleryRoot').addEventListener('click',e=>{
   const frame=e.target.closest('.art-frame');
@@ -257,11 +269,13 @@ document.getElementById('galleryRoot').addEventListener('click',e=>{
   lbMeta.textContent=item.dataset.date
     ? `${item.dataset.medium} · ${fmtDate(item.dataset.date)}`
     : `${item.dataset.medium} · ${item.dataset.year}`;
+  lbReturn = document.activeElement;
   lightbox.classList.add('open');
   document.body.style.overflow='hidden';
+  document.getElementById('lbClose').focus();   // move focus into the dialog
 });
 
-function closeLb(){lightbox.classList.remove('open');document.body.style.overflow='';}
+function closeLb(){lightbox.classList.remove('open');document.body.style.overflow='';if(lbReturn&&lbReturn.focus)lbReturn.focus();}
 document.getElementById('lbClose').addEventListener('click',closeLb);
 lightbox.addEventListener('click',e=>{if(e.target===lightbox)closeLb();});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLb();});

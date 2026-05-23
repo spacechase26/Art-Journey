@@ -43,6 +43,13 @@ function buildFeatured() {
     </div>`;
 }
 
+/* representative px dims per ratio tag → width/height attrs reserve the box before
+   load (no layout shift); CSS aspect-ratio:auto keeps the real image undistorted. */
+const RATIO_DIM = {
+  tall:[1414,2000], portrait:[1465,2000], square:[1140,1140],
+  wide:[2000,1414], landscape:[1920,1080]
+};
+
 /* ── BUILD GALLERY ── */
 function buildGallery() {
   const root    = document.getElementById('galleryRoot');
@@ -50,8 +57,9 @@ function buildGallery() {
   countEl.textContent = String(GALLERY_PIECES.length).padStart(2,'0') + ' pieces';
 
   GALLERY_PIECES.forEach((p, i) => {
+    const [pw,ph] = RATIO_DIM[p.ratio] || RATIO_DIM.portrait;
     const artHtml = p.file
-      ? `<img src="../img/gallery/${p.file}" alt="${p.title}" class="art-canvas" loading="lazy" decoding="async">`
+      ? `<img src="../img/gallery/${p.file}" alt="${p.title || 'Untitled'}" width="${pw}" height="${ph}" class="art-canvas" loading="lazy" decoding="async">`
       : `<div class="art-canvas ${p.css || ''}"></div>`;
 
     const card = document.createElement('article');
@@ -164,28 +172,32 @@ addHover('a, button, .artwork, .portfolio-card');
 const lb       = document.getElementById('lightbox');
 const lbCanvas = document.getElementById('lbCanvas');
 
+let lbReturn = null;   // element focus returns to when the lightbox closes
 function openLb(src) {
+  if (!src.file && !src.css) return;              // nothing to show → don't open a blank box
+  lbReturn = document.activeElement;
   lbCanvas.innerHTML = '';
   lbCanvas.className = 'lightbox__canvas';
   lb.classList.toggle('lb-photo', !!src.file);   // real image → fit whole image to screen
   if (src.file) {
     const img = document.createElement('img');
     img.src = `../img/gallery/${src.file}`;
-    img.alt = ''; img.decoding = 'async';
+    img.alt = src.title || 'Artwork, enlarged view'; img.decoding = 'async';
     lbCanvas.appendChild(img);
   } else if (src.css) {
     lbCanvas.classList.add(src.css);
   }
   lb.classList.add('open');
   document.body.style.overflow = 'hidden';
+  document.getElementById('lbClose').focus();    // move focus into the dialog
 }
-function closeLb() { lb.classList.remove('open'); document.body.style.overflow = ''; }
+function closeLb() { lb.classList.remove('open'); document.body.style.overflow = ''; if (lbReturn && lbReturn.focus) lbReturn.focus(); }
 
 document.addEventListener('click', e => {
   if (e.target.id === 'lbClose' || e.target.id === 'lbBack') { closeLb(); return; }
 
   const card = e.target.closest('.portfolio-card');
-  if (card) { openLb({ css: card.dataset.css, file: card.dataset.file }); return; }
+  if (card) { openLb({ css: card.dataset.css, file: card.dataset.file, title: card.querySelector('.pc-title')?.textContent }); return; }
 
   const artwork = e.target.closest('.artwork[data-css], .artwork[data-file]');
   if (artwork && !artwork.closest('#lightbox')) {

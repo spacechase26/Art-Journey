@@ -68,6 +68,8 @@ body::after {
   pointer-events: none; z-index: 499;
 }
 a { color: inherit; text-decoration: none; }
+/* keyboard focus ring — :focus-visible only, so mouse/touch users see no change */
+:focus-visible { outline: 2px solid var(--terra); outline-offset: 2px; }
 button { background: none; border: none; cursor: none; padding: 0; }
 
 /* ══════════════════════════════════════
@@ -649,10 +651,7 @@ button { background: none; border: none; cursor: none; padding: 0; }
   .nav__logo { display: none; }                 /* phones: links take the full width */
   .nav__links { flex: 1; justify-content: space-between; gap: .4rem; }
   .nav__link { font-size: .66rem; letter-spacing: .06em; }
-  .statement { padding: 6rem 6vw; }
-  .statement__text { font-size: clamp(1.1rem, 4.5vw, 1.5rem); }
   body { cursor: auto; }
-  .cursor, .cursor-dot { display: none; }
   .closing__links { flex-direction: column; align-items: center; }
   .closing { padding: 7rem 6vw 5rem; }
 }

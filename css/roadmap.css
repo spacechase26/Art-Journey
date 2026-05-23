@@ -832,6 +832,9 @@ details.week[open] .w-arrow {
   transition: all 0.25s;
   outline: none;
 }
+/* keyboard focus rings — :focus-visible only (mouse/touch unaffected); restores an indicator for the checkbox whose outline is removed above */
+:focus-visible { outline: 2px solid var(--terra); outline-offset: 2px; }
+.week-checkbox:focus-visible { outline: 2px solid var(--terra); outline-offset: 3px; }
 .week-checkbox:checked {
   border-color: transparent;
 }
