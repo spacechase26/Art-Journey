@@ -513,6 +513,7 @@ img.art-frame { display: block; width: 100%; height: auto; aspect-ratio: auto; }
 .lightbox {
   position: fixed; inset: 0; z-index: 800;
   display: flex; align-items: center; justify-content: center;
+  padding: 3.5rem 1.25rem 1.6rem;       /* clear the close button + never kiss the screen edges */
   opacity: 0; pointer-events: none;
   transition: opacity .4s ease;
   background: rgba(10,8,5,.92); backdrop-filter: blur(6px);
@@ -521,21 +522,27 @@ img.art-frame { display: block; width: 100%; height: auto; aspect-ratio: auto; }
 .lb-inner {
   position: relative; z-index: 1;
   display: flex; flex-direction: column; align-items: center; gap: 1.4rem;
+  max-height: 100%;                     /* the whole stack (art + caption) stays within the viewport */
   transform: scale(.9); transition: transform .5s var(--ease);
 }
 .lightbox.open .lb-inner { transform: scale(1); }
 .lb-art {                            /* placeholders: a box in the piece's own ratio, fitted to the viewport by JS */
-  width: min(80vw, 540px); max-height: 84vh;
+  width: min(80vw, 540px);
+  max-height: min(84vh, calc(100dvh - 12rem));
   border-radius: 8px; overflow: hidden;
 }
-.lb-art--photo {                     /* a real photo: size to the picture, show it WHOLE at any aspect */
-  width: auto; aspect-ratio: auto; max-height: 82vh; overflow: visible;
+.lb-art--photo {                     /* a real photo: shrink-to-fit the room left after the caption, shown WHOLE */
+  width: auto; aspect-ratio: auto; overflow: visible;
+  min-height: 0; flex: 0 1 auto;
+  display: flex; align-items: center; justify-content: center;
 }
 .lb-art--photo img {
   display: block; width: auto; height: auto;
-  max-width: min(90vw, 920px); max-height: 82vh; border-radius: 8px;
+  max-width: min(90vw, 920px);
+  max-height: 100%;                    /* fills only the column space left above the caption → never clips */
+  object-fit: contain; border-radius: 8px;
 }
-.lb-info { text-align: center; }
+.lb-info { text-align: center; flex: 0 0 auto; }
 .lb-title {
   font-family: var(--serif); font-size: 1.4rem; font-weight: 700;
   color: var(--cream); margin-bottom: .4rem;

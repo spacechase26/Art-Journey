@@ -248,7 +248,7 @@ document.getElementById('galleryRoot').addEventListener('click',e=>{
     if(art) lbArt.classList.add(art);
     const m=(getComputedStyle(frame).aspectRatio||'').match(/([\d.]+)\s*\/\s*([\d.]+)/);
     const rw=m?+m[1]:3, rh=m?+m[2]:4;
-    const maxW=Math.min(innerWidth*0.86,560), maxH=innerHeight*0.80;
+    const maxW=Math.min(innerWidth*0.86,560), maxH=Math.min(innerHeight*0.82, innerHeight-190);
     let w=maxW, h=w*rh/rw;
     if(h>maxH){ h=maxH; w=h*rw/rh; }                          // tall/portrait → bound by height instead
     lbArt.style.width=w+'px'; lbArt.style.height=h+'px';
