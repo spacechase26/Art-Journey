@@ -189,7 +189,6 @@ function openLb(src) {
   }
   lb.classList.add('open');
   document.body.style.overflow = 'hidden';
-  document.getElementById('lbClose').focus();    // move focus into the dialog
 }
 function closeLb() { lb.classList.remove('open'); document.body.style.overflow = ''; if (lbReturn && lbReturn.focus) lbReturn.focus(); }
 

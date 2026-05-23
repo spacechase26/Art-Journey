@@ -272,7 +272,6 @@ document.getElementById('galleryRoot').addEventListener('click',e=>{
   lbReturn = document.activeElement;
   lightbox.classList.add('open');
   document.body.style.overflow='hidden';
-  document.getElementById('lbClose').focus();   // move focus into the dialog
 });
 
 function closeLb(){lightbox.classList.remove('open');document.body.style.overflow='';if(lbReturn&&lbReturn.focus)lbReturn.focus();}
