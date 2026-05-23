@@ -3,7 +3,7 @@
   --paper:  #fffdf8;
   --ink:    #2a1c0e;
   --ink-2:  #3d2a18;
-  --ink-m:  #8a7a68;
+  --ink-m:  #736353;   /* darkened from #8a7a68 → clears WCAG AA (4.5:1) for small muted text */
   --coral:  #c84828;
   --amber:  #b86820;
   --sage:   #3a7a52;
@@ -73,6 +73,12 @@ body::after {
 a { color: inherit; text-decoration: none; }
 /* keyboard focus ring — :focus-visible only, so mouse/touch users see no change */
 :focus-visible { outline: 2px solid var(--coral); outline-offset: 2px; }
+/* reduced-motion: viewfinder cursor is disabled in JS → restore the native pointer here */
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{ cursor: auto !important; }
+  a,button,[role="tab"],.art-frame,.mode-tab,.yn-pill,.social-link{ cursor: pointer !important; }
+  #spotlight,#spotDot{ display: none !important; }
+}
 button { background: none; border: none; cursor: none; padding: 0; }
 
 /* ── CURSOR — "viewfinder" framing brackets (touch devices keep the native cursor) ── */

@@ -70,6 +70,12 @@ body::after {
 a { color: inherit; text-decoration: none; }
 /* keyboard focus ring — :focus-visible only, so mouse/touch users see no change */
 :focus-visible { outline: 2px solid var(--terra); outline-offset: 2px; }
+/* reduced-motion: brush cursor is disabled in JS → restore the native pointer here */
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{ cursor: auto !important; }
+  a,button,summary,label,.social-link{ cursor: pointer !important; }
+  .brush,.brush-nib,.paint-trail{ display: none !important; }
+}
 button { background: none; border: none; cursor: none; padding: 0; }
 
 /* ══════════════════════════════════════

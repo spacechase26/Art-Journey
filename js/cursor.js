@@ -12,6 +12,7 @@
    ===================================================================== */
 (function () {
   if (!matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;   // reduced-motion → native cursor (see CSS)
 
   /* ---- styles ------------------------------------------------------- */
   const css = `
@@ -50,8 +51,8 @@
 
   /* bloom over anything interactive (delegated, so it covers every page) */
   const HOT = 'a,button,.frame,.artwork,.portfolio-card,.insp-card,.portrait-art,.why__visual,.c-btn,.social-link';
-  document.addEventListener('mouseover', (e) => { if (e.target.closest(HOT)) document.body.classList.add('cursor-hover'); });
-  document.addEventListener('mouseout',  (e) => { if (e.target.closest(HOT)) document.body.classList.remove('cursor-hover'); });
+  document.addEventListener('mouseover', (e) => { if (e.target.closest(HOT)) document.body.classList.add('cursor-hover'); }, { passive: true });
+  document.addEventListener('mouseout',  (e) => { if (e.target.closest(HOT)) document.body.classList.remove('cursor-hover'); }, { passive: true });
 
   const colorAt = (t) => {
     const n = PAL.length, i = Math.floor(t) % n, j = (i + 1) % n, f = t - Math.floor(t);

@@ -161,6 +161,7 @@ function fmtDate(d){
    morphs to that photo's rect ("focusing the shot"). #spotDot is a tiny tick at the exact mouse. */
 (function(){
   if(!matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;   // reduced-motion → native cursor (see CSS)
   const frame=document.getElementById('spotlight');
   const tick =document.getElementById('spotDot');
   const body=document.body;
