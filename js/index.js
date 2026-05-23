@@ -29,6 +29,7 @@ function buildFeatured() {
           ${f.file ? `data-file="${f.file}"` : ''}>
           ${artHtml}
         </div>
+        <div class="featured__plate"><b>No. ${f.number}</b><span class="plate-dot"></span>${f.title}</div>
       </div>
       <div class="featured__info">
         <div class="featured__num">No. ${f.number}</div>
