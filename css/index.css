@@ -503,7 +503,7 @@ img { display: block; max-width: 100%; }
   position: relative; overflow: hidden; border-radius: 4px;
   width: 100%;
   aspect-ratio: 4 / 5;          /* default box for placeholders */
-  border: 1.5px solid #4a453f;  /* thin dark-grey keyline framing each piece */
+  border: 1.5px solid rgba(74,69,63,.6);  /* thin, softened dark-grey keyline framing each piece */
   box-shadow: 0 18px 32px -4px rgba(18,11,4,.52);   /* soft resting depth */
   transition: transform .5s var(--ease), box-shadow .5s var(--ease);
 }
@@ -592,7 +592,7 @@ img { display: block; max-width: 100%; }
   letter-spacing: -.04em;
 }
 .spotlight > * { position: relative; z-index: 1; }
-.artwork--spotlight { aspect-ratio: 3/4; border-radius: 4px; box-shadow: 0 30px 54px -6px rgba(18,11,4,.58); }
+.artwork--spotlight { aspect-ratio: 3/4; border-radius: 4px; border: 1.5px solid rgba(74,69,63,.6); box-shadow: 0 30px 54px -6px rgba(18,11,4,.58); }
 .spotlight__text { padding: .5rem 0; }
 .spotlight__num {
   display: block; font-size: .66rem; font-weight: 600;
