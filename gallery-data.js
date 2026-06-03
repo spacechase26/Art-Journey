@@ -45,7 +45,7 @@ const YEAR_DESC = {
 const GALLERY = [
 
   /* ── 2026 · Artwork ──────────────────────────────────────────────── */
-  { year:2026, title:"Charcoal Portrait", medium:"Digital · Krita", ratio:"tall",     mode:"art", file:"2026-art/2026-05-06-sad-greekguy-charcoal.webp", date:"2026-05-06" },
+  { year:2026, title:"Charcoal Portrait", medium:"Digital · Krita", ratio:"tall",     mode:"art", file:"2026-art/2026-05-06-sad-greekguy-charcoal.webp", date:"2026-06-02" },
   { year:2026, title:"Downstream",        medium:"Digital · Krita", ratio:"tall",     mode:"art", file:"2026-art/2026-05-03-boat-on-river-value.webp",   date:"2026-05-03" },
   { year:2026, title:"Hollow Knight",     medium:"Digital · Krita", ratio:"tall",     mode:"art", file:"2026-art/2026-05-01-hollow-knight.webp",         date:"2026-05-01", note:"Fan art, drawn out of love — Hollow Knight © Team Cherry." },
   { year:2026, title:"Spidey & Cat",      medium:"Digital · Krita", ratio:"portrait", mode:"art", file:"2026-art/2026-05-01-spiderman-cat.webp",         date:"2026-05-01", note:"Fan art — Spider-Man © Marvel." },
